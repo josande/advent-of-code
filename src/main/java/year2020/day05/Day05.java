@@ -25,42 +25,28 @@ public class Day05 {
         return -1;
     }
     static int findSeatId(String seatData) {
-        int minRow=0;
-        int maxRow=127;
-        int curRow=(minRow+maxRow)/2;;
-        int minCol=0;
-        int maxCol=7;
-        int curCol=(minCol+maxCol)/2;
-        for(char c : seatData.toCharArray()) {
-             if (c=='F') {
-                maxRow = curRow;
-                curRow=(minRow+maxRow)/2;
-             } else if (c=='B'){
-                minRow = curRow+1;
-                curRow=(minRow+maxRow)/2;
-             } else if (c=='L') {
-                maxCol = curCol;
-                curCol=(minCol+maxCol)/2;
-             } else if (c=='R'){
-                minCol = curCol+1;
-                curCol=(minCol+maxCol)/2;
-             }
+        int seat=0;
+        int mul=1;
+        for(int i=9; i>=0;i--) {
+            if(seatData.charAt(i)=='B' || seatData.charAt(i)=='R')
+                seat+=mul;
+            mul*=2;
         }
-        return 8*curRow+curCol;
+        return seat;
     }
 
 
     public static void main(String[] args){
-        String day = "Day05";
+        var day = "Day05";
 
-        List<String> inputs = new FileHelper().readFile("2020/"+day+".txt");
+        var inputs = new FileHelper().readFile("2020/"+day+".txt");
 
-        long t0 = System.currentTimeMillis();
-        int ansA=solveA(inputs);
-        long t1 = System.currentTimeMillis();
-        int ansB=solveB(inputs);
-        long timePart1 = System.currentTimeMillis()-t0;
-        long timePart2 = System.currentTimeMillis()-t1;
+        var t0 = System.currentTimeMillis();
+        var ansA = solveA(inputs);
+        var t1 = System.currentTimeMillis();
+        var ansB = solveB(inputs);
+        var timePart1 = System.currentTimeMillis()-t0;
+        var timePart2 = System.currentTimeMillis()-t1;
 
         System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //989
         System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //548
