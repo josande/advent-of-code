@@ -23,54 +23,45 @@ public class Day04 {
             """;
     static List<String> neededKeys = Arrays.asList("byr","iyr","eyr","hgt","hcl","ecl","pid");
     static int solveA(List<String> values) {
+        int valid=0;
 
-        List<HashMap<String, String>> passports=new ArrayList<>();
-        passports.add(new HashMap<String, String>());
-
-        int passPortCounter=0, validPassports=0;
+        HashMap<String, String> passPort = new HashMap<>();
         for (String str : values) {
-            if(str.isEmpty()) {
-                passPortCounter++;
-                passports.add(new HashMap<>());
+            if( str.isEmpty() ) {
+                if(hasAllKeyFields(passPort) )
+                    valid++;
+                passPort = new HashMap<>();
                 continue;
             }
             for (String strPart : str.split(" ")) {
-
-                passports.get(passPortCounter).put(strPart.split(":")[0],strPart.split(":")[1]);
+                passPort.put(strPart.split(":")[0],strPart.split(":")[1]);
             }
         }
-        for (var passport : passports) {
-            if (hasAllKeyFields(passport))
-                validPassports++;
-        }
-        return validPassports;
+        if( hasAllKeyFields(passPort) )
+            valid++;
+        return valid;
     }
     static boolean hasAllKeyFields(HashMap<String, String> passport) {
         return (passport.keySet().containsAll(neededKeys));
 
     }
     static int solveB(List<String> values) {
-        List<HashMap<String, String>> passports=new ArrayList<>();
-        passports.add(new HashMap<String, String>());
+        int valid=0;
 
-        int passPortCounter=0, validPassports=0;
-
+        HashMap<String, String> passPort = new HashMap<>();
         for (String str : values) {
-            if(str.isEmpty()) {
-                passPortCounter++;
-                passports.add(new HashMap<>());
+            if( str.isEmpty() ) {
+                if(hasAllKeyFields(passPort) && hasValidFieldData(passPort))
+                    valid++;
+                passPort = new HashMap<>();
                 continue;
             }
             for (String strPart : str.split(" ")) {
-
-                passports.get(passPortCounter).put(strPart.split(":")[0],strPart.split(":")[1]);
+                passPort.put(strPart.split(":")[0],strPart.split(":")[1]);
             }
         }
-        int valid=0;
-        for(var passPort: passports)
-            if(hasAllKeyFields(passPort) && hasValidFieldData(passPort))
-               valid++;
-
+        if(hasAllKeyFields(passPort) && hasValidFieldData(passPort))
+            valid++;
         return valid;
     }
     static boolean hasValidFieldData(HashMap<String, String> passport) {
