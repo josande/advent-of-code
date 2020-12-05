@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class Day06Test {
 
     @Test
-    void solveA() {
+    void testSolveA() {
     }
 
     @Test
-    void solveB() {
+    void testSolveB() {
     }
 }
