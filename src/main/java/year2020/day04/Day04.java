@@ -2,38 +2,27 @@ package year2020.day04;
 
 import utils.FileHelper;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Day04 {
 
+    static final List<String> neededKeys = Arrays.asList("byr","iyr","eyr","hgt","hcl","ecl","pid");
+    static final List<String> harColors = Arrays.asList("amb","blu","brn","gry","grn","hzl","oth");
 
-    static String data = """
-            byr (Birth Year)
-            iyr (Issue Year)
-            eyr (Expiration Year)
-            hgt (Height)
-            hcl (Hair Color)
-            ecl (Eye Color)
-            pid (Passport ID)
-            cid (Country ID)
-            """;
-    static List<String> neededKeys = Arrays.asList("byr","iyr","eyr","hgt","hcl","ecl","pid");
     static int solveA(List<String> values) {
-        int valid=0;
+        var valid=0;
+        var passPort = new HashMap<String, String>();
 
-        HashMap<String, String> passPort = new HashMap<>();
-        for (String str : values) {
+        for (var str : values) {
             if( str.isEmpty() ) {
                 if(hasAllKeyFields(passPort) )
                     valid++;
                 passPort = new HashMap<>();
                 continue;
             }
-            for (String strPart : str.split(" ")) {
+            for (var strPart : str.split(" ")) {
                 passPort.put(strPart.split(":")[0],strPart.split(":")[1]);
             }
         }
@@ -48,15 +37,15 @@ public class Day04 {
     static int solveB(List<String> values) {
         int valid=0;
 
-        HashMap<String, String> passPort = new HashMap<>();
-        for (String str : values) {
+        var passPort = new HashMap<String, String>();
+        for (var str : values) {
             if( str.isEmpty() ) {
                 if(hasAllKeyFields(passPort) && hasValidFieldData(passPort))
                     valid++;
                 passPort = new HashMap<>();
                 continue;
             }
-            for (String strPart : str.split(" ")) {
+            for (var strPart : str.split(" ")) {
                 passPort.put(strPart.split(":")[0],strPart.split(":")[1]);
             }
         }
@@ -65,53 +54,40 @@ public class Day04 {
         return valid;
     }
     static boolean hasValidFieldData(HashMap<String, String> passport) {
-        int byr = Integer.valueOf(passport.get("byr")) ;
-        if (byr<1920 || byr >2002) return false; // byr (Birth Year) - four digits; at least 1920 and at most 2002.
+        int byr = Integer.parseInt(passport.get("byr")) ;
+        if (byr < 1920 || byr > 2002) return false;
 
-        int iyr = Integer.valueOf(passport.get("iyr")) ;
-        if (iyr<2010 || iyr >2020) return false; //iyr (Issue Year) - four digits; at least 2010 and at most 2020.
+        int iyr = Integer.parseInt(passport.get("iyr")) ;
+        if (iyr < 2010 || iyr > 2020) return false;
 
-        int eyr = Integer.valueOf(passport.get("eyr")) ;
-        if (eyr<2020 || eyr >2030) return false; //eyr (Expiration Year) - four digits; at least 2020 and at most 2030.
+        int eyr = Integer.parseInt(passport.get("eyr")) ;
+        if (eyr < 2020 || eyr > 2030) return false;
 
+        String _hgt = passport.get("hgt");
+        if(!_hgt.endsWith("cm") || _hgt.endsWith("in")) return false;
+        int hgt = Integer.parseInt(_hgt.replaceAll("cm","").replaceAll("in",""));
+        if (_hgt.endsWith("cm") ) {
+            if (hgt < 150 || hgt > 193) return false;
+        } else if (hgt < 59 || hgt > 76) return false;
 
-        int hgt = Integer.valueOf(passport.get("hgt").replaceAll("cm","").replaceAll("in",""));
-        if (passport.get("hgt").endsWith("cm") ) {
-             if (hgt<150 || hgt >193) return false;
-        } else if (passport.get("hgt").endsWith("in")) {
-            if (hgt<59 || hgt >76) return false;
-        } else {
-            return false;
-        }
-        String hcl = passport.get("hcl");
-        if(hcl.length() != 7 ||
-                !hcl.startsWith("#") ||
-                !hcl.substring(1,7).matches("[0-9a-f]{6}")
-        ) return false;
+        if(!passport.get("hcl").matches("#[0-9a-f]{6}")) return false;
 
-        String ecl = passport.get("ecl");
-        List<String> harColors = Arrays.asList("amb","blu","brn","gry","grn","hzl","oth");
-        if(!harColors.contains(ecl)) return false;
+        if(!harColors.contains(passport.get("ecl"))) return false;
 
-        String pid = passport.get("pid");
-
-        if( !pid.matches("[0-9]{9}")) {
-            return false;
-        }
-        return true;
+        return passport.get("pid").matches("[0-9]{9}");
     }
 
     public static void main(String[] args){
-        String day = "Day04";
+        var day = "Day04";
 
-        List<String> inputs = new FileHelper().readFile("2020/"+day+".txt");
+        var inputs = new FileHelper().readFile("2020/"+day+".txt");
 
-        long t0 = System.currentTimeMillis();
-        int ansA=solveA(inputs);
-        long t1 = System.currentTimeMillis();
-        int ansB=solveB(inputs);
-        long timePart1 = System.currentTimeMillis()-t0;
-        long timePart2 = System.currentTimeMillis()-t1;
+        var t0 = System.currentTimeMillis();
+        var ansA = solveA(inputs);
+        var t1 = System.currentTimeMillis();
+        var ansB = solveB(inputs);
+        var timePart1 = System.currentTimeMillis()-t0;
+        var timePart2 = System.currentTimeMillis()-t1;
 
         System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //204
         System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //179
