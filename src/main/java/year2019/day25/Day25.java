@@ -179,7 +179,7 @@ public class Day25 {
 if(!output.contains("\n\n\n")) {
     System.out.println(output);
 }
-        output=output.substring(output.lastIndexOf("\n\n\n"), output.length());
+        output=output.substring(output.lastIndexOf("\n\n\n"));
         String[] things = output.split("\n");
         String name="";
         List<String> doors=new ArrayList<>();
@@ -189,7 +189,7 @@ if(!output.contains("\n\n\n")) {
                 name = string;
             }
             if (!string.startsWith("-")) continue;
-            string = string.substring(2, string.length());
+            string = string.substring(2);
             if (string.equals("north") || string.equals("west") || string.equals("east") || string.equals("south")) {
                 doors.add(string);
             } else {

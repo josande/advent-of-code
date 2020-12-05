@@ -43,8 +43,8 @@ public class Day15 {
 
             Point north=position.north();
             Point south=position.south();
-            Point west =position.west();;
-            Point east =position.east();;
+            Point west =position.west();
+            Point east =position.east();
 
             if('#' != map.get(north)) {
                 possibleStates.add(new State(computer, map, north, steps+1));
@@ -65,8 +65,8 @@ public class Day15 {
              List<State> possibleStates=new ArrayList<>();
              Point north=position.north();
              Point south=position.south();
-             Point west =position.west();;
-             Point east =position.east();;
+             Point west =position.west();
+             Point east =position.east();
 
 
              //Check north

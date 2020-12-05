@@ -57,7 +57,6 @@ public class Day07 {
     }
     static int getMaxThrusterWithLoop(int rangeStart, int rangeEnd, OpComputer ampA, OpComputer ampB, OpComputer ampC, OpComputer ampD, OpComputer ampE) {
         int maxThrust=0;
-        int maxtThrustCombo=0;
         for (int i=rangeStart; i<=rangeEnd; i++) {
             for (int j=rangeStart; j<=rangeEnd; j++) {
                 if (i!=j)
