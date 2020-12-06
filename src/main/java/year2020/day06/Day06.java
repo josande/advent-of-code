@@ -1,19 +1,51 @@
 package year2020.day06;
 
 import utils.FileHelper;
+import utils.MapUtil;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Day06 {
 
     static int solveA(List<String> values) {
-        return -1;
+        int total=0;
+        StringBuilder groupResponse= new StringBuilder();
+        for(String val : values) {
+            if(val.isEmpty()) {
+                total+=MapUtil.getLetterOccurrencesMap(groupResponse.toString()).size();
+                groupResponse = new StringBuilder();
+            } else {
+                groupResponse.append(val);
+            }
+        }
+        total+=MapUtil.getLetterOccurrencesMap(groupResponse.toString()).size();
+
+        return total;
     }
 
     static int solveB(List<String> values) {
-        return -1;
+        int total=0;
+
+        var responses = new HashSet<Character>();
+        boolean newGroup=true;
+        for(String val : values) {
+            if(val.isEmpty()) {
+                total+=responses.size();
+                responses.clear();
+                newGroup=true;
+            } else {
+                if (responses.isEmpty() && newGroup) {
+                    responses.addAll(MapUtil.getLetterOccurrencesMap(val).keySet());
+                    newGroup=false;
+                }
+                else
+                    responses.retainAll(MapUtil.getLetterOccurrencesMap(val).keySet());
+            }
+        }
+        total+=responses.size();
+
+        return total;
     }
 
     public static void main(String[] args){
@@ -28,7 +60,7 @@ public class Day06 {
         var timePart1 = System.currentTimeMillis()-t0;
         var timePart2 = System.currentTimeMillis()-t1;
 
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //
+        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //6930
+        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //3585
     }
 }
