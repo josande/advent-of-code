@@ -13,7 +13,7 @@ class Day05Test {
 
 
     @Test
-    void solveA() {
+    void testSolveA() {
         String input =
                 """
                 FBFBBFFRLR
@@ -35,7 +35,7 @@ class Day05Test {
     }
 
     @Test
-    void solveB() {
+    void testSolveB() {
         String input =
                 """
                 FBFBBFFRLR
