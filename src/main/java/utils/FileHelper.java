@@ -29,6 +29,5 @@ public class FileHelper {
             ints.add(Integer.valueOf(s));
         }
         return ints;
-
     }
 }
