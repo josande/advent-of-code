@@ -1,96 +1,58 @@
 package year2020.day08;
 
 import utils.FileHelper;
+import utils.OnboardComputer;
+import utils.OnboardComputerBuilder;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class Day08 {
-    static int position=0;
-    enum Instruction {
-        NOP("nop"),
-        ACC("acc"),
-        JMP("jmp");
 
-        private final String name;
-        Instruction(String name) {
-            this.name=name;
-        }
-        static Instruction fromString(String name) {
-            for(Instruction instruction : values()) {
-                if(instruction.name.equals(name))
-                    return instruction;
-            }
-            throw new RuntimeException("No such operation! '"+name+"'");
-        }
-    }
-    static class Operation {
-        final Instruction instruction;
-        final int value;
-        Operation(Instruction instruction, int value ){
-            this.instruction=instruction;
-            this.value=value;
-        }
-    }
-    static List<Operation> asOperations(List<String> strings) {
-        List<Operation> operations=new ArrayList<>();
-        for (String s : strings) {
-            operations.add(new Operation(Instruction.fromString(s.split(" ")[0]),
-                                         Integer.parseInt(s.split(" ")[1])));
-        }
-        return operations;
-    }
-    static int doOperation(Operation op, int acc) {
-        switch (op.instruction) {
-            case  NOP ->   position++;
-            case  ACC -> { position++; acc+=op.value; }
-            case  JMP ->   position+=op.value;
-        }
-        return acc;
-    }
 
     static int solveA(List<String> values) {
-        position=0;
-        List<Operation> operations = asOperations(values);
+        OnboardComputer computer = new OnboardComputerBuilder().setInstructions(values).create();
         HashSet<Integer> doneOperations = new HashSet<>();
-        int accumulator=0;
-        while(!doneOperations.contains(position)) {
-            doneOperations.add(position);
-            accumulator=doOperation(operations.get(position), accumulator);
+        while(!doneOperations.contains(computer.getPosition())) {
+            doneOperations.add(computer.getPosition());
+            computer.doNextOperation();
         }
-
-        return accumulator;
+        return computer.getAccumulator();
     }
 
     static int solveB(List<String> values) {
-        List<Operation> operations = asOperations(values);
+        OnboardComputer computer = new OnboardComputerBuilder().setInstructions(values).create();
+        List<OnboardComputer.Operation> operations = computer.getOperations();
+
         for (int i= 0; i< operations.size(); i++) {
-            List<Operation> newOperations = new ArrayList<>(operations);
-            if (operations.get(i).instruction == Instruction.JMP) {
-                newOperations.set(i, new Operation(Instruction.NOP, operations.get(i).value));
-            } else if (operations.get(i).instruction == Instruction.NOP) {
-                newOperations.set(i, new Operation(Instruction.JMP, operations.get(i).value));
+            List<OnboardComputer.Operation> newOperations = new ArrayList<>(operations);
+            if (operations.get(i).getInstruction() == OnboardComputer.Instruction.JMP) {
+                newOperations.set(i, new OnboardComputer.Operation(OnboardComputer.Instruction.NOP,
+                                                                   operations.get(i).getValue()));
+            } else if (operations.get(i).getInstruction() == OnboardComputer.Instruction.NOP) {
+                newOperations.set(i, new OnboardComputer.Operation(OnboardComputer.Instruction.JMP,
+                                                                   operations.get(i).getValue()));
             } else {
                 continue;
             }
-            Integer acc = runOperations(newOperations);
+            OnboardComputer newComputer = new OnboardComputerBuilder().setOperations(newOperations).create();
+
+            Integer acc = runOperations(newComputer);
             if(acc != null) {
                 return acc;
             }
         }
-        return -99;
+        throw new RuntimeException("No changes made the computer stop looping!");
     }
-    static Integer runOperations(List<Operation> operations) {
-        position=0;
-        int accumulator=0;
+    static Integer runOperations(OnboardComputer computer) {
         HashSet<Integer> doneOperations = new HashSet<>();
         while(true) {
-            if(position == operations.size())
-                return accumulator;
-            doneOperations.add(position);
-            accumulator = doOperation(operations.get(position), accumulator);
-            if (doneOperations.contains(position) )
+            if(computer.getPosition() == computer.getOperations().size())
+                return computer.getAccumulator();
+            doneOperations.add(computer.getPosition());
+            computer.doNextOperation();
+            if (doneOperations.contains(computer.getPosition()) )
                 return null;
         }
     }
