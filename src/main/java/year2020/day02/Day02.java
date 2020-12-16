@@ -2,12 +2,6 @@ package year2020.day02;
 
 import utils.FileHelper;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Day02 {
@@ -17,15 +11,16 @@ public class Day02 {
 
         for (String rule : inputs) {
             String times = rule.split(" ")[0];
-            int lowerBound = Integer.valueOf(times.split("-")[0]);
-            int upperBound = Integer.valueOf(times.split("-")[1]);
+            int lowerBound = Integer.parseInt(times.split("-")[0]);
+            int upperBound = Integer.parseInt(times.split("-")[1]);
             char letter = rule.split(" ")[1].charAt(0);
             char[] password = rule.split(" ")[2].toCharArray();
             int match = 0;
             for (char c : password) {
                 if (c == letter) {
                     match++;
-                    if (match>upperBound) continue;
+                    if (match>upperBound)
+                        break;
                 }
 
             }
@@ -39,8 +34,8 @@ public class Day02 {
         int validPasswords=0;
         for (String rule : inputs) {
             String times = rule.split(" ")[0];
-            int lowerBound = Integer.valueOf(times.split("-")[0]);
-            int upperBound = Integer.valueOf(times.split("-")[1]);
+            int lowerBound = Integer.parseInt(times.split("-")[0]);
+            int upperBound = Integer.parseInt(times.split("-")[1]);
             char letter = rule.split(" ")[1].toCharArray()[0];
 
             String pw = rule.split(" ")[2];

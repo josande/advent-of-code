@@ -1,9 +1,6 @@
 package year2020.day12;
 
 import utils.FileHelper;
-import utils.Point;
-
-import java.util.Arrays;
 import java.util.List;
 
 public class Day12 {
@@ -55,18 +52,18 @@ public class Day12 {
                 }
                 case 'L' -> {int degrees = Integer.parseInt(v.substring(1));
                     while (degrees>0) {
-                        int x = wpY;
+                        int temp = wpY;
                         wpY = -wpX;
-                        wpX=x;
+                        wpX = temp;
                         degrees-=90;
                     }
                 }
                 case 'R' -> {
                     int degrees = Integer.parseInt(v.substring(1));
                     while (degrees > 0) {
-                        int x = -wpY;
+                        int temp = -wpY;
                         wpY = +wpX;
-                        wpX=x;
+                        wpX = temp;
                         degrees -= 90;
                     }
                 }

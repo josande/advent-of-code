@@ -18,9 +18,9 @@ public class Day07 {
         // , 2 muted yellow
         // .
 
-        boolean foundnew = true;
-        while (foundnew) {
-            foundnew = false;
+        boolean foundNew = true;
+        while (foundNew) {
+            foundNew = false;
 
             for (String rule : values) {
 
@@ -34,7 +34,7 @@ public class Day07 {
                     String goodBag = lookingFor.get(i);
                     if (content.contains(goodBag) && !lookingFor.contains(currentBag.trim())) {
                         lookingFor.add(currentBag.trim());
-                        foundnew = true;
+                        foundNew = true;
                     }
                 }
 
@@ -45,11 +45,11 @@ public class Day07 {
     }
 
     static int solveB(List<String> values) {
-        return getContaintBags("shiny gold", values) -1;
+        return getBagContent("shiny gold", values) -1;
 
 
     }
-    static int getContaintBags(String bag, List<String> rules) {
+    static int getBagContent(String bag, List<String> rules) {
 
         for (var rule : rules) {
             if(rule.startsWith(bag)) {
@@ -61,23 +61,23 @@ public class Day07 {
                     String[] parts = rule.split(", ");
 
                     String newBag1 = parts[0].split("bags contain ")[1].trim();
-                    int count = Integer.valueOf(newBag1.split(" ")[0]);
+                    int count = Integer.parseInt(newBag1.split(" ")[0]);
                     newBag1=newBag1.substring(2).split(" bag")[0];
-                    int part1 = count*getContaintBags(newBag1, rules);
+                    int part1 = count* getBagContent(newBag1, rules);
 
                     String newBag2 = parts[1].trim();
-                    int count2 = Integer.valueOf(newBag2.split(" ")[0]);
+                    int count2 = Integer.parseInt(newBag2.split(" ")[0]);
                     newBag2=newBag2.substring(2).split(" bag")[0];
-                    int part2 = count2*getContaintBags(newBag2, rules);
+                    int part2 = count2* getBagContent(newBag2, rules);
 
                     int part3=0;
 
                     if(parts.length>2) {
 
                         String newBag3 = parts[2].trim();
-                        int count3 = Integer.valueOf(newBag3.split(" ")[0]);
+                        int count3 = Integer.parseInt(newBag3.split(" ")[0]);
                         newBag3 = newBag3.substring(2).split(" bag")[0];
-                        part3 = count3*getContaintBags(newBag3, rules);
+                        part3 = count3* getBagContent(newBag3, rules);
 
                     }
 
@@ -85,10 +85,10 @@ public class Day07 {
                     return 1 + part1+part2+part3;
                 } else {
                     String newBag = rule.split("bags contain ")[1].trim();
-                    int count = Integer.valueOf(newBag.split(" ")[0]);
+                    int count = Integer.parseInt(newBag.split(" ")[0]);
                     newBag=newBag.substring(2).split(" bag")[0];
 
-                    return 1 + count*getContaintBags(newBag, rules);
+                    return 1 + count* getBagContent(newBag, rules);
                 }
             }
         }

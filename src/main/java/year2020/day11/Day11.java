@@ -3,10 +3,7 @@ package year2020.day11;
 import utils.FileHelper;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Day11 {
 
@@ -19,7 +16,7 @@ public class Day11 {
             map[i]=values.get(i).toCharArray();
         }
         var newMap = makeNewMap(map);
-        while(!isSameMap(map, newMap)) {
+        while(isDifferentMap(map, newMap)) {
             map = newMap;
             newMap = makeNewMap(map);
         }
@@ -33,8 +30,8 @@ public class Day11 {
         return occupiedSeats;
     }
     static char[][] makeNewMap(char[][] map) {
-        int maxY=map.length;
-        int maxX= map[0].length;
+        int maxY = map.length;
+        int maxX = map[0].length;
         var newMap = new char[maxY][maxX];
 
         for(int y=0; y<maxY; y++) {
@@ -51,8 +48,8 @@ public class Day11 {
         return newMap;
     }
     static char[][] makeNewMapB(char[][] map) {
-        int maxY=map.length;
-        int maxX= map[0].length;
+        int maxY = map.length;
+        int maxX = map[0].length;
         var newMap = new char[maxY][maxX];
 
         for(int y=0; y<maxY; y++) {
@@ -67,13 +64,13 @@ public class Day11 {
         }
         return newMap;
     }
-    public static boolean isSameMap(char[][] map1, char[][] map2) {
-        if (map1 == null || map2 == null) return false;
-        if (map1.length!=map2.length) return false;
+    public static boolean isDifferentMap(char[][] map1, char[][] map2) {
+        if (map1 == null || map2 == null) return true;
+        if (map1.length!=map2.length) return true;
         for (int i =0; i<map1.length; i++) {
-            if(!Arrays.equals(map1[i], map2[i])) return false;
+            if(!Arrays.equals(map1[i], map2[i])) return true;
         }
-        return true;
+        return false;
 
     }
     static int getPeopleNear(int y, int x, char[][] seatMap) {
@@ -116,7 +113,6 @@ public class Day11 {
             if(seatMap[y][x]=='L') return false;
         }
         return false;
-
     }
 
     static int solveB(List<String> values) {
@@ -127,7 +123,7 @@ public class Day11 {
             map[i]=values.get(i).toCharArray();
         }
         var newMap = makeNewMapB(map);
-        while(!isSameMap(map, newMap)) {
+        while(isDifferentMap(map, newMap)) {
             map = newMap;
             newMap = makeNewMapB(map);
         }
