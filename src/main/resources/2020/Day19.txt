@@ -1,0 +1,560 @@
+60: 117 a | 89 13 a | 89 13
+38: a 45 | b 32
+77: a 51 | b 48
+23: 72 b | 27 7
+61: 105 a | a 13
+103: a 121 | b 112
+76: 88 b | 124 7
+28: 61 b | 27 7
+24: a 17 | b 33
+115: 128 b | 126 7
+82: b 73 | a 64
+107: 130 b | 1 7
+49: 59 a | 100 13
+131: 86 a | 87 13
+53: a 105 | b 13
+27: 105 105
+21: a b | b 7
+84: a 26 | b 32
+62: 90 b | 94 7
+18: 93 13
+65: 75 b | 40 7
+39: b 93 | a 95
+6: a 38 | b 25
+64: 99 7
+73: a 93 | b 32
+101: b 81 | a 19
+116: b 39 | a 122
+55: b 32 | a 53
+48: b 91 | a 61
+93: b 13
+108: a 7 | b 105
+94: b 91 | a 32
+118: b 79 | a 57
+41: a 21 | b 32
+113: a 61 | b 26
+74: a 53 | b 93
+52: 55 b | 70 7
+5: 108 b | 27 7
+30: 14 a | 50 13
+7: "a"
+50: b 23 | a 111
+32: b a | b 13
+92: 114 b | 125 7
+89: 108 a | 72 13
+9: a 28 | b 127
+35: a 131 | b 47
+86: 26 b | 108 7
+67: a 44 | b 69
+44: a 80 | b 22
+46: a 67 | b 35
+111: 32 a | 72 13
+11: 42 31
+112: b 91 | a 2
+99: a 7
+81: 72 a | 26 13
+123: 37 b | 20 7
+45: a b | b 13
+56: 119 b | 112 7
+63: b 61 | a 95
+57: a 9 | b 83
+3: b 106 | a 43
+97: 84 b | 73 7
+85: b 93 | a 108
+117: a 53 | b 21
+47: 16 a | 54 13
+71: 129 a | 63 13
+95: b 13 | a 7
+37: 26 13
+2: a b | b 105
+72: a b | a 7
+43: 85 b | 16 7
+4: 130 a | 25 13
+69: a 22 | b 80
+68: 93 a | 32 13
+22: 45 b | 53 7
+78: b 2 | a 27
+14: 28 b | 119 7
+17: b 60 | a 6
+129: 91 a | 32 13
+87: 26 7
+79: 58 a | 107 13
+130: b 72 | a 91
+90: a 45 | b 2
+8: 42
+114: b 30 | a 34
+66: 61 a | 93 13
+128: a 108 | b 72
+31: b 36 | a 15
+127: b 108 | a 32
+110: 73 b | 29 7
+58: a 113 | b 48
+120: a 56 | b 97
+19: b 53 | a 2
+83: b 78 | a 74
+34: a 110 | b 4
+75: a 102 | b 52
+25: b 72 | a 95
+16: a 72 | b 21
+100: b 82 | a 116
+42: b 92 | a 10
+119: b 2 | a 95
+88: 71 b | 101 7
+126: b 72 | a 61
+33: 96 b | 123 7
+1: 61 a | 53 13
+96: 55 a | 41 13
+102: a 104 | b 87
+98: 91 b | 91 7
+104: 26 b | 32 7
+51: a 95 | b 26
+125: b 120 | a 3
+91: b 7
+13: "b"
+10: 65 a | 46 13
+105: b | 7
+59: b 115 | a 77
+106: 5 b | 66 7
+80: 72 b | 53 7
+20: 93 a | 61 13
+15: 118 a | 76 13
+70: 91 b | 93 7
+29: b 26 | a 21
+122: a 26 | b 72
+124: 12 b | 109 7
+26: a 13
+121: 91 7
+36: b 49 | a 24
+12: 68 b | 98 7
+109: 18 a | 23 13
+54: b 108 | a 61
+0: 8 11
+40: a 103 | b 62
+
+abbabbaabaaaabbaabaabbbbabaaaabb
+abbababaabbbbbbaababaaababaabbbb
+bbabbbabbabbaaaaaaabbbbbaabaababbbababbaaabbabaa
+abaabbaaabbbbabbbabbaaaabbaababb
+bbaaaaabbbbbbaabbabbbabaaabaabba
+bababaabbaabbbbbbbabbbaa
+abbababbababbaabbababababbbbbaaababaaaaaabababaa
+abbbaabbabbbabbabbabbaabaabbaaaa
+abbaaaabbbbabbaaaabababb
+babbaaabaababbababbbbbaaaababbaaababbbaabbbaaaba
+abbbabbbabbbaaaaaabababababbbbaabaaaabbbbabbabbabaaabaaaabababba
+aababbaaabbaabbbaababbbbaabbbabaaaaababb
+aaaaababaababbabbbaabbbaaabaabbabbbaaaaa
+baabaababababbabaabbbbbaabbabaaabbaaaabaaaababbbbabaabbb
+bbaaaaabbababaaaabaaabbabbabbabbbaaabaabbabaabab
+bbbbbabaaaaabbbabbaaaabb
+bbbaaabbabbabbaaaababaab
+bbaaabbbbbbabbababaaaaaa
+abaabbabbbbbbbbabbabbbbabbaaaabaaaaababa
+bbababbaabaaaaabbbaabbaabbabaabbbbbbbbbabbabbbaaabaaaabb
+bbabbbbbbbabbbbbbbaaaaaa
+aabbaabbbaaaaabaabbbbbaabaabbabbaabababb
+bbabbabbaababbabababbbbababbbabaababbbbbabbabbbbbaababba
+bababaabbabbbbaaabbabbab
+bbbbaaabbbbbbabbbbbbbbbabbabbabaabbabbaaabaabaab
+bbabbaabababbaaabaabaaab
+abaaaaaababbabaabaabbbaa
+aabaabaabaaabaabbbabbaaabbbabbbbbabaababbabbbbbb
+bbabaabbbbbbbabababbbababaaababaaababbabbaabbaabbabaabab
+abbbbbaababababaabbaabbbaabbababbbbaaaaa
+bababbbbbbbaabbabbbbbbbaabaaabaaaabbaaba
+babaaababbaaaaabbbaaaaabaaababababbabbbb
+baaabbbbbabaaabbaaabaabababbabbaaaabaaaabbaabababababbaa
+baabbaaababbaaabbabbaaabbbaaaabaabaaaaaa
+bbbabbaabbaabbababbaaaabbbbabbbabbaabaab
+aababaaaabaabbababbaaabbbaababbaabbbbaaa
+baaaabaabbaabbbaaaababbbaaaaabaabbbaaaba
+abbbaabababbbbbabbabbabaababbbba
+babaabbabbabbaabaaababbbaabbbbababbbabbbaabbbbaabbaabaab
+aabaabaaabbababaabbaabbbbaabbbaaabbabbbb
+bbaabbababbaaabbabbbaaaaabaaaaabbbabbbbababaababbaaababb
+baaaaaabaabaabbaabbbbabbaabbabbbaabaaaabababbaaaaaabaaab
+babbaaaaaaabaaabbbaabbabababbaba
+aaaabbabbbbabbaabbaabbab
+aababaaababbababaabbbbabbbabaaaababbbbab
+abbaaaabaaabaaaaaabaaaaa
+aaabaaabaababbbbaabababb
+aabbbaaabababbbbabbaaabbaabaaaabbbaababa
+babaaababbabaaababbabaabbabbaaaa
+bbabbabbbbbbbabbbbabaaab
+bbabbbabaababbabababbaabaaabaaabaabaaaba
+aaabaaababbababaabaaabbababbbbab
+abbbababbbabbbabbbbaabbbababbbaaabbabbbbabbaaaaa
+abbaababbbbaabbbaabbaaaa
+bbabbaabbaabbbbbaabaabba
+abbaabbbaabbbaaababaabbabaaabbbbbabaaaaaaabbbbbb
+bbabbbbaaabbaaaabbbaaaabaaaaaaaabbbbaaaa
+babaabbababbaabbabbbbabbbabbbabaabbaababbababbbbabbbaaab
+babbbbaaabbbbbbbabbabbab
+babababababbaababaabaaaa
+bbabababbababaaaaaabaabb
+aaabaaaabbbbbabbaabbaaaa
+abbbabaabbabbbbaabaaaaba
+aaabaaabaaaabbababababaa
+bbabbaababbbababbbababaa
+aaabaaabbabababaabaababbaababababaababbbabbabbbabababbaa
+bbbaabbbabbbbbbbaaabaabb
+abaabbaabbbbbaaaaaaaaabbbbbaaaabaaababaa
+bbbabbbbaababaaabaabbaab
+aababababaabbabbbbbabababbbabbba
+bbbaabbbbaaaaaaaabaabbbabbaaabbbabbaabbabbbabbbababbbbab
+aaaaaababbaaaaaababbaabb
+bbbabbbbbbbaabbbbbaaaaabbaababbabbabaaab
+abbabaabaababbababaabbbabbababbaaabbaabaaabbbbbbbbababaabaaaabbb
+aabaabbaabbabbbabbaaaabbababaaba
+bababaaabaabababbaabababbaaabaabbbbbbaaaabaabaabbaaaabbbabbbaaab
+aababbbbbabbaabbbaabbaab
+bbaabbbabaaaabaaaabbabbbbbaabbbbababaabbaabaabbaabababba
+abbbaaaaabaabbabbbabaabbabaabbab
+bbaaaaababaaaaabbbbaaaab
+babbaaaabbaaabbbaabababbabbaabbbbbbaaaaaaaabbaaabaababbaaabaabaabbaaaaabaabaabba
+babaaabaabbbabbabbbbbbbabbbbbbab
+abaababbbbaaabababbaaaabbabaabbaaaabbbba
+babababababaaababbbbbababbbabbabaaabbbbbaaabaaaaabbabaaa
+bbaaaaabbbbaababbbabbaabbbaababa
+babababaabbbbbbabbabaaaa
+ababaaaaababbbaaabbbaababbababaa
+aaaabbbaaabbbaaaabbbbbbabaaaaababaaababb
+abbbababbbaaaaabbbbbbaaababaaaaabaaaababbaababbb
+aaaababbbaaabaaabbbbaaba
+bbbaabababbbabbabaaaaababbaabbbbaababbbbabbaabaaabbaabaabaaaabba
+abbbbbbbbbbaaaaabaabaaaabababbababababab
+babbbbbaabbbaabbabbbbbbaaabaababaaabaaaabbbaababaaaaaababbabaaba
+babbabbbbbaaabbbbbbabbabbbaaaaaa
+aababbaaaaaaababbbabbabaaababbaa
+babbaababbbbbabaaaaaaaababaaabbabbabbbbb
+bbbbbaaabbbabbababaaabbaaabbbaaaabaabaaaaaaababa
+aaaaabbbbbaaaaababbbbbaabbaabbabbbbaaaaaaaababbabaaababbabaaabab
+bbbababbaabaaaabbbaabbbababbaaabababbbabbbbbabbaabaaabbb
+bbabbaaabaaababababaaabbbbaaaaabbbbbaabbababbbbbabaabaab
+aabaababaababbaaabaaaaababaabbaaaabbbbbb
+babbbababbbabaabbaaaabba
+bbababbabbbababbababaaaabaaaaababaabababbbbbabbabababbba
+babbbbaabaaabaabbbaaaaba
+baaabaabbbbaabbbabaaabab
+abbaaabbbbbabbbbbababbba
+abbaaaabaaababbbabbbbbbbaababaaaaaaabaab
+baaaababbbbabaabbbabbaabbbaabbabbabaabbb
+abbabbaabbbaaabbaababaaabbbbbabbbabaaaaaaabaaaaa
+aabbbaaabbbbbbaabbababbaabbabaabbbaaaabb
+aaabaaaaaaabaaaaaabbbaab
+abbabbaaaabbabababaabbaabbbbababababbbab
+aaabaababbbbbbaaabbbaabaabbabaaababbbbab
+abbababbbbaaabbbaabbbbba
+bbababbaababaaaabbbbaaabbbabbababbbaabaa
+bbabaaaabbbbaaaabbbbabaa
+abaabbaababbbbbaabbbabaaababbbaaababaabb
+abbabaabaababbbaaabbbabbabbbababbbbbaabb
+bbbababbabbababababbbaaa
+baaaabaaabbbbabababaababbabbabba
+babbababbaaabaabbaaaabaaabbbaaaabbaababbabbabbabbbbabaaa
+ababbbaababaabbabbabbababbbbbaaabaabbbbaaababaababababaababbbaab
+aabaaaabaabbababaababbaaabababaaaaabbaaa
+abbbbbbabbabbabbababbbab
+babbaaaabbbbbabbbabbababaaaabbaa
+bbbbbbaaaabaabbbbaaaabba
+ababbbbbabbabaabbabababaaabaaababaabbbbbbbbabbaaabaaaabb
+aaaabbabbaabbabbaababaaaaaabbaaa
+abbabbbbbaabbaabababbaaa
+abaababbaabaaaabababbbbb
+baaabababbaabaaaaababaaaababaaba
+aabaabababbbbbaaaabababb
+aabaabaaaaabbbbbbabaaaaaabbaabbbaaaababaaabababb
+bbbbbabbabbbabaaababbaaaaaabbaaaaaabbbba
+bbaaaaababaabbbaabbaabbbabbbabbb
+abaaaaabbabbaababbbaabbaaaaaabbaabbbbaaa
+bbaabbaaabbbababbabbbaaa
+abaabaaaababbbaabbbbbaaaabbbbbbaabbbbbaabbabbaaa
+bbbbbbbaababaabbbabbbbbaaaababbbbbbbbabbabbabbbbaabbbbbb
+bbaabbbaabaababbaaaaabba
+abbaababbbaabbabbbbaabaaabbbbbabaaaabbaabaababbb
+baabbbabaababbbaaababbabbabbbbaaaabbaaaabaaabbabbabbabbabaaabaaabbababbb
+bbbabaabbabbbbaababbbbaaaabaaabb
+bbabbaabbabbababbbbabbaaaaaaaabbaabaaaaaaabbbbba
+bbbbbaabbabbaaaababbaaaaabbbbabbbbabaaba
+baaababbbabaababbbbaabbbababbaab
+baabbbbababaaaaaabababaa
+abaabbbabbaabbbbabaabbbabbaaababbbbbabaa
+bbbbbbbaabaabbbaababbbab
+bbaaaaabbaabababbaaaaaaabababbbababbbbab
+aabbaabbbbabbabaababbbab
+babbabbaaabbbbababbbbbaabbaaabaabbbbabba
+bbabbabaaabbaaabababbbbabaababbb
+ababbbbabbbbbaabbbbabbbbaabbbabbbabbbbab
+bbaabaaababbbabaaabbabaa
+abbaaabbbbaabbbbabbababaabbbabbbaaaababa
+bbbabbabbbbbababaaabbbba
+aabbababbaaaababbbbababbbababaabbaaaaaaababbabaaababbbabaabbbbbb
+aaabaaababaabbbabaaaababbababbaa
+bbbaaabbabaabbaabababaabaaabaabb
+aabbbaaaaaabbabbbbaaabbaaaababaaaabbbaaa
+bbbaabbabbabbaaababbbbba
+bbabababbbababaababaaaababaaaaabaaabbbbbbabbbabbabbabbab
+aabaababbbbbbbbabbabbabaaababaaabaaaaababaaaaabbbaabbaba
+aaababbbabbabaaaabaabaabbbbbbbbbaaaaabababaaaabaaabbbbbaabbbbbabbabaaaaa
+baaaabaababbaaabbabaaabbabbaabba
+abbbbabbbbbbbabbbaabbbab
+bbbbbabbbbbbbabbbaabbbbbbbbbbbbabaabbabaaaaaaaaa
+bbabaabbaabbbbabbabbaabaabaaaaab
+bbabaabbbbbbbababbbbbbbb
+bbabbaaababbabbaaaabaababbabababbaaabaabaabaabbabbaaaaababbbabaaabbbabbbabbaabaa
+abbbabbabbbbbabaaaabababaabababaaabaababbaabbbbbbaaabaaa
+baaaabaabbbaaabbabbaaaab
+bababbaabbbabaaaabbaabaabaaabbbbabaaaaabbbaaabbb
+bbbabaabbbaaabaabbabababaabbabababbaaaaabbbbabbabaabbaba
+abaaaabbbabbbabaaababbababbbbaabbaabbbbbbbbabbba
+bbabbabaabbbbbbaabaaabbabaabbbbbbbaababaaabaabbaababbabb
+baaabbbbbabaaabaaaaaababbaaabbbabaabbababaaabaaabaabbaab
+abbbbbaabbbbbbbaaabbbbabaabaabba
+aaabbbabbabbbabaaaaabaab
+bbababbabaabbabbbbaaaababbbbbabbababbaba
+bbabababaabaabaaaabaabaaaababbbabbabaaaa
+bbaaaabbbabbabbbbabbaaaaaabbbbbaabbaaaabbaaaaabb
+bbbbbbbabaaaaaaabbbaaababbabbbaaaaaaaaabababbbbabbabbaaaababbbbabbaabbba
+bbbaaabbabbababbbbaaaabababaabaa
+abaaaaabbaaaababbbaaaaababbbaaab
+abaabbaaabbaaabbbbbabbaababbbbabbbbaaaaa
+bababaaabbbbababbbabbaab
+babbabbabaabababbabbaabbaaaababa
+abbbbbbbaaabaaabaaabbbabbabbaababbbbababbabaabbabaabbaab
+bbbbaabbbaaaabaababaaabaaaaabbbaabababbbbaaabaaa
+abbbaabbabaaabbaabbaabbbabbabbbbbabbbbabbabbbaababbaaaba
+abaabbabbaabbbaaabbbaababaaabaababbaabababababbaabbaaaaaabbabbaababbabaababababbaaaabbab
+ababbbaaabaaabbaaabbbaaaaababbbaabbabbba
+bbbbbabbbaabbbbbaaabaaaaaabaabaabaaabbbbaaabbbbaabbbbaba
+baaaabaaabbbbbbbaababaab
+aaabababbaaababababbbaab
+abbbabbaaabaabaaaabaabbbbbbabaababaaabbbaaabbaaa
+aaabbabbaababaaaaabaabbbbbababaaabaaaabaabbbbbbb
+bababaabbaabaaaaabaabaaa
+baababaabbaaabababaaaaaaabbabbbbbabbbaab
+bbaabbaabbabbababaabbabbbbabbabbabbbbabaaaaabbaa
+bbaabbbabbaaabbbaabbaaababbbbbbababbaaabbbbaaaaabaabaaabaaaaaababaaabbab
+aaababbaabaabbbabbbaaaaaababbbaabaabbaba
+ababbbbaaaabbbababbbbbaababbbababaabbbbbbaabbabbbbabaaabbaaaabbabbbaabaabbbababababbbbbb
+bbbaaabbabaabbbabbabbbbb
+abaabbababaabbababaabbabaaaaaabbaababaabbbabaaab
+bbbabbaaabbbaababaaaabaabbaabaaaaabbbbaaaaaabaaa
+aababaaaaaabbbbbabbbbaabbbaababababaaaab
+bbbababbaabbaabbabbaabbbbabbabbbaababbbaaabbbbbabbbbaaba
+aabbabbbbaaaaaaaabbbbabbaabaababbaaabababbbabbba
+abaababbabaaaaababababba
+bbaabbaabaabababbaabaabb
+babbabababbbbbbabbbbbbbb
+babbabababbbbabbaabbbbaa
+bbbaababbaaaabaaaaaabbbb
+bbabbbababbaaabbbaaaabba
+abaaaaabbbabbababbbbabbb
+bbabaaaaaababbaabbbbbabbaaabaabbbaababbaabaaaaababaaaaaaababbabbbbbbbabaababbaab
+aababbabbabaaabbabbababbabbaabba
+aaabaaabbaaabababababababbaaaababbaabaab
+abbbbaabaaabbababbbababbaaabaabb
+bbaaabbbbbabbbabaabbbaba
+abbbbbbababbabababbbbbaabbbaabbbabbbaabb
+aaaabbabbbaaababbaababaaaaaaaaababababababbbbbab
+baaabbabbbabbaabbbaabababbbababbaaaabaabbbbaaabbbabbabab
+abbbbbaabbbaabababbaaabbababbbabaaabbabb
+baaabbbababbababbbbbaabbaaaaaabbabbabbba
+bbababbbaabbbbaababbbaab
+babaaaaaabbababbbabababb
+bababbbbbbaabbbaaabbbbabbabaaababbaaabbbabbbbbbaabababba
+babbbababbaaababbbbbbaaabaabaabbaaaaabba
+aabbababbbbaaabbbabaabab
+aababaaabaaababaaababbabaaabbbbabbaababb
+aaaaabbbaabbaaabbbbaabbabbbbabaa
+baaaabaabaaabaabaabbaaababaaaaaa
+ababbbaaaabababaabbabbaababaaabaabbbbaba
+bbbabbaaabaaaaabbbbbbbbb
+bbababbabbaaaababbbbbbaaabaaababbaababba
+abaabbabbbbbbaaaaaabbababaaaabaababbabaaaababbba
+baaababaabbbbbaaabbaaabbaabbaaaaabababaa
+baaaaaaaaabababaaaabaababaabbbbbaababbaababbabaa
+bbbababbaababbababaababbaaabaaabaabaaaaa
+baabbbbabbabbaabbaabbbaa
+bbbabaaaaaabbaaaaabaaaaaaabaaabb
+aababbbbbaabbaabaaabbaaabbababbbbbbabaaa
+bbbbbbbabbabbaaaabbaababbaabbbbbbabaaaaabbbbbbbbbabaaaababaaaaba
+abbbbbbabbbbababaaaaaaabaaabbaabbaabaaaa
+bbabbbabbbbabaababbabbaabbbabaaaaaaaabba
+aaabbbababaabbaababbaabbbaabaaabbbbbaaba
+bababaababaabbaabbbabbbbbaabbbbabbbaaaaa
+aaaaabbbbbbbaaabbaaabbbaaabbbbbbababbaba
+aababbabaababbabbabaaabbbaaaabaaaaaaabbaababbbab
+aabaaaababbbabaabbbbababaabaaaba
+baaaaabaabbbababbbabbabaaabaaaaa
+bababbbbbbbabbabbaabbbbabbabababbbbbaaaa
+aaababbbaaaaabbbbbabbbabbbabababaaabaaaabbbbaaabbaaabbaabaabbbaa
+abbbbbbbaabbabaaaabaabaaabbbaaaabbbaaaaababababbaabbaaabaaaaaabaaaabbbabbbbbbaaababaaabbbbbaaabb
+bababbbbbabbaababbabaabbbabbaabbabbabbbb
+abbbaaaabbabababbbbabbababbaabaa
+baabababbbbbbaaaaaaaaaaa
+bbbaabbaaaaaabbbbbaabbaababbbaab
+aabaaaabaaabaaaaaababbbbbbbaaaba
+abbbaababaabababbbabbabbaaaaaaabaaaaaaaabbabbbaa
+abbbbaaabbabaaababababbb
+abbaababbbbbaabbbabaaaab
+babbaaaabbaaabbbbbbbaaabbabaabaabaaaabbb
+bbbbbaababaababbaabaaaba
+baaabbbabaaabbbababbbabb
+aababaaabbbaababbababaabbbbbabbabaabaabb
+bbbaaabbabbabbaabaabaaba
+babaaabbbabbaabbbabaaabababababbabababbb
+bbabbabbbabababababaabbb
+baabababbabbbabbaaaabaabaabbbbba
+abaababbaaababababaababbbbbaaaab
+bbbababbaabbababaabaaaab
+abaaabbabbbbaabbabbbbaba
+baabbaaabababaabaababbababaaaabbbabbabaa
+baaabaaaaaabbbaaabaababaaaaabaab
+bbbbbbaabbaaabaaaabaababaabaaaabbabbaabbbaaabaaa
+aabababababaaabbabaabbabbbaabbbbbbbbabbaabbbaaab
+babbbbbaabaabbbabbabbabbaabaababbaaabaabbabaabaaabaaabbbabababbb
+babbbbbbbbbbabaaaaabbaabbaabaaababbbabbb
+bbabaabbaabaabababaabbaaabbabbaababbbabb
+aababbbbaaabaaaabaaabbab
+bbababbabbbbaabbbaaababb
+aaaaaabbbbbaabbaabaaaaabbabaaabaaababbabababbaaabbaababb
+ababaaababbbbbaaabaaabaa
+bababaababaabbaabbababbaaabaabbaabababaa
+baaaababbabbaabbbabbbbaabaabbaba
+bbbabbabababaaaabaaaabba
+bbabaabbababbaaaaababbba
+baaaababaaabaaaababaaaaabababbba
+bbbababbabbbabbaaaababababbaaabaabaaaaba
+bbaaabaababababaaabbaaabbaabaabb
+babbbbbaabbaaabbbbbaababbabbbaaaaabbaaaa
+ababbaaabaaaabaaaaaabbbaabaaabbb
+aaabbababbbabbaabaaaababbbaaaaabbabbaaaaaabbabbbabbabaabbaaaaaabbbbbbbbb
+aaabbbabbabbaaaabbabbaaaabaabaaa
+bababaabaababaaabaabbaab
+bbabbbabaaabababbbbbbaaabbbbabaa
+bbbaaabbbbaabaaabbbabbabababbaababbaabaa
+bbbbabbabaaaaabbbbabbbbaaabaabbbabbbbaaaabbaababbbbaabbabbaaabbb
+aaaabbababbbbbaaabbaabbbabbbbaaa
+aaababbbabbaabbbaaabaabaaabbbbba
+abaababbbaaabbbabaaaabbabbaabbaabaaaabbbbbbbaaababbaaababbbaabaabbbbabbabbbbbbbbbabbbaab
+abbbbbbbabbbabbaabbabbab
+abbbaabbaaabaabaaabbabbbaabbaabbbaabaaaaabbabaabababaaba
+bbbbbabbbaabbabbbbbbbbbabaabbaba
+abbabbaabababbbbbbbbaaba
+baaaabaababbaaabbbbaaaaa
+bbaabbababaaabbaabbaababbbbaabbbbababbababaabaaa
+babaabbabbabbbabbbaaaaabbbbbaabababbbbab
+aabbbbababbaababbabbaaaaaabbbaaababaaababaaabbbaabbabbab
+babbababbaaabababbbbbaaabbabaabaaaabbaaa
+aabbaaabaabbaaabaabbababbaaabbaababaabaa
+aaaaaaabbbbbbaabababaabb
+baaabbbbaabaaaabbbaabbabababaaba
+bababaaabbbbaaababbabbaaabaababaaaabbaab
+baaababaababaaaaaabbabaa
+bbbabbabbabbabbbaaaaaaba
+baaabaabaaaaaabbababaaaaababababbaabbbaa
+abaabbaababbabbbaabaabaaaaabaabbbbbabbba
+bbabbbbabaabababbbababaa
+ababbaaaabaaabbabbababbababbabababbbbaababbabaabaababbbabbabbbaabaaaabbb
+babbbbaabbbabbaabaaaabbbbbbbaaaaabbbbbab
+aaaaaabbbababbbbbabbbaabababbbababaababb
+baaabbbbaabaababababbabbabbbaaabaaaabababbbaaabaabbabababaabaabaababbbbaaabaaabbabbbbaaa
+bbabbaababbababbbbaaaaababbabbbb
+abbbbaabbbaabbbbabbbabbabaaababababbaabbbbbbaaaaaaaababa
+aabbabbbbbabbaabaabbbaaaababaaaaabaabbbaaaabbaaabaababba
+abbababaabbbabbaabbbaaab
+abbababababbababaabaaabb
+aaabbabaaaaaaabbaabbbbbbbabbbabb
+aabbbbbaaaaabbbbabbbbaaaabbaabaaabaabbbaaaabaaaabbbbbbab
+abaabbabbbaabbaababbbababbaaabaabbbbaabbbaabaabbaaaabbaaaabaaaba
+aabbaabbaaaaaaabaaaabaab
+abaabbaabbbababbabbbbaabaaaabbbaabbbabaaabbbbbab
+baabbbbabbabbbbaaaaaaabbbabbaaaaaabaabba
+baabababaaabbbbbbababaaaabbbabbaaabbbbbbabaabbbb
+abaababbbbbbbaaaabbababbaabbbbbb
+ababaaaaaaabbabaabbbbbbabbbabbaaaaabbbbbbababbba
+abbbaabbaaaaaaababaabaaa
+bbbabbabbabaaabaababbbbaaabbbbbbabaabbbb
+bbabbabbbabbbbbabbbaabbaaaababbbabbaaaba
+bababbbaababaabaababaabbbaaabababbbbaaaaaaaaaaaaaaabaabbabbbabbababbbbab
+aababaaaaabbaabbaabaaabb
+bababaabbaaaaaaaaaaaababbabaaaab
+baabbbbbaabaabaaaabaabbbbbabbaabbaabaaaa
+bbbaababaabbaaabbbbbabaa
+aababbbbabbaaaababababbababaabbbaabbbbbaaaabbaabbabbabab
+aaaaabbbbbabbaabababbbbabbabaaba
+aababaaaabaaabbaaabbbaab
+baabbaaabbabbaaaaababbabbaaaabaabbbabbbbaabbbbbabababbab
+baaababababaabbaaaaabbaa
+aababbaabbaaaababbaaabaaaabbbaab
+abbababbbababbbbbabaabbb
+bbbabbbbbabbbbbaaaabbbbbaabbaababaaaabbb
+aabaabbbaaaaababbababbab
+abaaaaabbabbaabbababaaabbaaaaababbaaaabb
+bbabbaaababbaaaaabababababbbbaaaabababaabaabbaab
+aaabbabaabbbaabbbaaabbbababaaaabaaabbaaa
+baabababbabbababbabbbababaaaaaabaaaababa
+bbabaababaaaaaabbbbaaaaabbbaaaaaabbbbaababaababa
+bbaaaababaaabbbbaababaaaabbbababaaaabbbaababababbabbbbbbbabbbbbb
+bbbbbababbabbabbbbbaaabbbabbabbbbabaabab
+babbbbbababaabbabbbbbaaabbabbaabbbbbabababbbbbbbbababbaabaaabbab
+aabbbbaabaaaabbbbbaababbbababbaabbaababb
+abbababaaaaaaabbaababaaaabaaabaa
+abbbbaabaababbbbaabaaaababbbaabbbaabababbbbaaaab
+abbbbbbabababaababaabbbabaaabaaa
+ababaaabbabaabbaaababbbbbbabaaaa
+bbbbaabbaaaaabbbbaabbaba
+babababaaababbabbbabbabaaabababb
+ababbbbabababbbbabbabbab
+abaabbabaabbaaababbaabbbbbbbbaab
+ababaaabaaabaaaaaaabbaaa
+ababbaaaaabbaaabbabaabab
+bbbabbabbbbbaabbaaaaababbbaababbabaaabab
+ababaabaababbabbbbbbabbbabbbaabaaaaaaaabbaabbbab
+aabbbbabbaabbbbbaabaaaababbababaaaabbabbaabaaaaa
+bbabababbabaaabaaabbabba
+bbbbaaabbbbaabbbabbabbaabbbbabbbbaaabbab
+aaaabbabbbbabbbbbbbbabbb
+ababbbbabbabababaababaaaabaabbbaabbaaaaa
+bbabbbbababbaabbbaabbabbbabbbabaaabababb
+babbbbbabbbbaaabaabbabba
+ababbaaabaaabaabababaabb
+aaaaaabbaabbabababbbaabaababaabb
+abbabababbaabbabbbaaaaaa
+abbbaababababaaabbabaaaa
+aaaabbbabababababaaaabaaaabaabaaaabbbabb
+bbaaaaabbbbababbbaabbbbbaababbaaaaaaaabaaabbbaba
+aaababbbabbaaabbbbbbabaa
+bbaaabbbbabbaabbabababaa
+abbababbabbbbaababbbbbbaabbbaabaaaabaabaababaaaaaaaaabba
+baaaabaaabbbbbbaabaabbbb
+bbaabaaaaabaababababbaabaaaabbaaabaabaab
+babbbbbababaaababbaababb
+aaaaababbbbababbabbbbbab
+bbabbaaabbbbbaaabbabaabbabbbaabbaabbbaaa
+abbbbbbabaabbabbaababbaabaaabbaa
+aababaaaaabaabaabababaaabbabababbbbabbaaabbaaababbbbbbbb
+baaabbbbbaabababbbbbbaaabbbbbaab
+bbabbababaabbbbbbaaaaaaaabbbbaabaaaabbabbabbbababbaaabba
+bbbaaabbabaababbaababbaababaaaab
+abbbbbabbaabbbaababbbbaababaabbbababaabaaaaaaaab
+bbbabaabaaaaababbbbbabbb
+bababaaabaaaaababbaaabbaaabbabbbbbbaabaaabbababbbaabaaaabbababba
+baabababbbaaabbbbbbbbbab
+bababaaabaaababaabaaaaaaaaaaabbaaabbaabb
+abbbaaaabbababbaabbabaaa
+abaababbaabbabbbbbabbabaaabbaabbbaaaaabaabababab
+bababaaabbaaabaaaaaabbbbaaababbabbabbababbbbabaaabbabbaaabbabbaaabbaaaababbbaabb
+abaaaaababaababbbaaabbbabaaaaaaabbaabbbbbaabbaba
+aababbbbababaaabbbabbbbb
+abbbbbaaabbbaababbabaaaa
+aaabbbbbaaaaabbbbbaaaaabaaabbabaaabababb
+bbaabbaabbaabbaabababaaa
+baaababababbababbaabbaba
+bbbabbabababbbaaaaaabaaa
+baabbbbbbbbbbaabbbabbbbaaabbaabbabbbababaaabbaaa
+baabbaaabbabbbabbbbbbababbbbabaa
+bbbbaabbabbbaaabbbabaaabaabaaaaa
+babbabbbaaabaaabbaaaabababaaabbb
+babbbabaaababaababaababbbabaaaabbaaababaaabbaababbaaaabbbaababbb
+aabbababaabbababababbbbabaabaabb
