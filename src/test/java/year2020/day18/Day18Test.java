@@ -14,20 +14,23 @@ class Day18Test {
     void solveA() {
         String input =
                 """
+                1 + 2 * 3 + 4 * 5 + 6
                 """;
         var values = Arrays.stream(input.split("\n")).collect(Collectors.toList());
 
-        assertEquals(-1, Day18.solveA(values));
+        assertEquals(71, Day18.solveA(values));
     }
 
     @Test
     void solveB() {
         String input =
                 """
+                1 + 2 * 3 + 4 * 5 + 6
+                5 + (8 * 3 + 9 + 3 * 4 * 3)
                 """;
         var values = Arrays.stream(input.split("\n")).collect(Collectors.toList());
 
-        assertEquals(-1, Day18.solveB(values));
+        assertEquals(231+1445, Day18.solveB(values));
     }
 
 }
