@@ -8,9 +8,24 @@ import java.util.List;
 public class Day25 {
 
 
-    static int solveA(List<String> values) {
+    static long solveA(List<String> values) {
+            long publicCardKey=Long.parseLong(values.get(0));
+            long publicDoorKey=Long.parseLong(values.get(1));
 
-        return -1;
+            long cardLoopSize = 0;
+            long subjectNumber = 7;
+            long remainder = 1;
+            while(remainder != publicCardKey) {
+                remainder=(remainder*subjectNumber) % 20201227;
+                cardLoopSize++;
+            }
+            subjectNumber=publicDoorKey;
+            long publicKey = 1;
+            for(int i=0; i<cardLoopSize; i++) {
+                publicKey=(publicKey*subjectNumber) % 20201227;
+            }
+
+        return publicKey;
     }
 
 
@@ -21,9 +36,8 @@ public class Day25 {
 
         var t0 = System.currentTimeMillis();
         var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
         var timePart1 = System.currentTimeMillis()-t0;
 
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //
+        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //3015200
     }
 }
