@@ -100,10 +100,8 @@ public class Point {
 
 
     public static void print(Collection<Point> points) {
-        int maxX= Integer.MIN_VALUE,
-                maxY= Integer.MIN_VALUE,
-                minX= Integer.MAX_VALUE,
-                minY= Integer.MAX_VALUE;
+        int maxX= Integer.MIN_VALUE, maxY= Integer.MIN_VALUE,
+            minX= Integer.MAX_VALUE, minY= Integer.MAX_VALUE;
         for ( Point p : points ) {
             maxX=Math.max(maxX, p.getX());
             maxY=Math.max(maxY, p.getY());
