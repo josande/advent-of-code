@@ -57,8 +57,8 @@ Top          Bottom
     void testCutWithNegativeValue() {
         /*
 Top          Bottom
-0 1 2 3 4 5 6 7 8 9   Your deck
-6 7 8 9 0 1 2 3 4 5   New stack
+0 1 2 3 4 5 6 a 8 9   Your deck
+6 a 8 9 0 1 2 3 4 5   New stack
          */
         setDeckSize(10);
         setCardToTrack(9);
@@ -71,8 +71,8 @@ Top          Bottom
     void testCutWithNegativeValue2() {
         /*
 Top          Bottom
-0 1 2 3 4 5 6 7 8 9   Your deck
-6 7 8 9 0 1 2 3 4 5   New stack
+0 1 2 3 4 5 6 a 8 9   Your deck
+6 a 8 9 0 1 2 3 4 5   New stack
          */
         setDeckSize(10);
         setCardToTrack(1);
@@ -85,8 +85,8 @@ Top          Bottom
     void testDealWithIncrement() {
         /*
 Top          Bottom
-0 1 2 3 4 5 6 7 8 9   Your deck
-0 7 4 1 8 5 2 9 6 3   New stack
+0 1 2 3 4 5 6 a 8 9   Your deck
+0 a 4 1 8 5 2 9 6 3   New stack
          */
         setDeckSize(10);
         setCardToTrack(9);
@@ -117,15 +117,6 @@ Top          Bottom
     }
 
     @Test
-    public void testModReverse() {
-        // 7x % 10 = 3  // -> x = 9
-        // 3x % 5 = 4  // -> x = 3
-
-//        assertEquals(9, modularReverse(7, 3, 10));
-        //      assertEquals(3, modularReverse(3, 4, 5));
-    }
-
-    @Test
     void handleInstructions2() {
         String input =
                 """
@@ -145,7 +136,7 @@ Top          Bottom
         setCardToTrack(9);
         shuffle(commands);
 
-        /* Result: 9 2 5 8 1 4 7 0 3 6  */
+        /* Result: 9 2 5 8 1 4 a 0 3 6  */
         assertEquals(0, getCardPosition());
 
 

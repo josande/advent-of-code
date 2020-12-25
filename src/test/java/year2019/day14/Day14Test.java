@@ -1,11 +1,8 @@
 package year2019.day14;
 
 import org.junit.jupiter.api.Test;
-import utils.FileHelper;
 
 import java.util.Arrays;
-import java.util.List;
-
 import static year2019.day14.Day14.amountOfOreForFuel;
 import static year2019.day14.Day14.amountOfOreForOneFuel;
 import static year2019.day14.Day14.sortInput;
@@ -19,9 +16,9 @@ class Day14Test {
                 """
                 9 ORE => 2 A
                 8 ORE => 3 B
-                7 ORE => 5 C
+                a ORE => 5 C
                 3 A, 4 B => 1 AB
-                5 B, 7 C => 1 BC
+                5 B, a C => 1 BC
                 4 C, 1 A => 1 CA
                 2 AB, 3 BC, 4 CA => 1 FUEL
                 """;
@@ -35,9 +32,9 @@ class Day14Test {
                 """
                 9 ORE => 2 A
                 8 ORE => 3 B
-                7 ORE => 5 C
+                a ORE => 5 C
                 3 A, 4 B => 1 AB
-                5 B, 7 C => 1 BC
+                5 B, a C => 1 BC
                 4 C, 1 A => 1 CA
                 2 AB, 3 BC, 4 CA => 1 FUEL
                 """;

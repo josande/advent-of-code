@@ -109,7 +109,7 @@ public class Day07 {
         var timePart1 = System.currentTimeMillis()-t0;
         var timePart2 = System.currentTimeMillis()-t1;
 
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //
+        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //110
+        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //242
     }
 }
