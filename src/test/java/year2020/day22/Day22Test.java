@@ -1,7 +1,6 @@
 package year2020.day22;
 
 import org.junit.jupiter.api.Test;
-import year2020.day17.Day17;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -13,19 +12,45 @@ class Day22Test {
     void solveA() {
         String input =
                 """
+                Player 1:
+                9
+                2
+                6
+                3
+                1
+                                
+                Player 2:
+                5
+                8
+                4
+                7
+                10
                 """;
         var values = Arrays.stream(input.split("\n")).collect(Collectors.toList());
 
-        assertEquals(-1, Day22.solveA(values));
+        assertEquals(306, Day22.solveA(values));
     }
 
     @Test
     void solveB() {
         String input =
                 """
+                Player 1:
+                9
+                2
+                6
+                3
+                1
+                                
+                Player 2:
+                5
+                8
+                4
+                7
+                10
                 """;
         var values = Arrays.stream(input.split("\n")).collect(Collectors.toList());
 
-        assertEquals(-1, Day22.solveB(values));
+        assertEquals(291L, Day22.solveB(values));
     }
 }
