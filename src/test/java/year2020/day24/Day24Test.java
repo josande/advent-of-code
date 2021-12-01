@@ -39,19 +39,8 @@ class Day24Test {
         assertEquals(10, Day24.solveA(values));
     }
     @Test
-    void solveB1() {
-        String input =
-                """
-                we
-                e
-                """;
-        var values = Arrays.stream(input.split("\n")).collect(Collectors.toList());
-
-        assertEquals(-1, Day24.solveB(values));
-    }
-    @Test
     void solveB() {
-        //noinspection SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection
+        //noinspection SpellCheckingInspection
         String input =
                 """
                 sesenwnenenewseeswwswswwnenewsewsw

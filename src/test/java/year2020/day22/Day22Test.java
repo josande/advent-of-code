@@ -28,7 +28,7 @@ class Day22Test {
                 """;
         var values = Arrays.stream(input.split("\n")).collect(Collectors.toList());
 
-        assertEquals(306, Day22.solveA(values));
+        assertEquals(306L, (Long) Day22.solveA(values));
     }
 
     @Test

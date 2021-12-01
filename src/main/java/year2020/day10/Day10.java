@@ -52,8 +52,8 @@ public class Day10 {
         var t0 = System.currentTimeMillis();
         var ansA = solveA(inputs);
         var t1 = System.currentTimeMillis();
-        var timePart1 = System.currentTimeMillis()-t0;
         var ansB = solveB(inputs);
+        var timePart1 = t1-t0;
         var timePart2 = System.currentTimeMillis()-t1;
 
         System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //1656

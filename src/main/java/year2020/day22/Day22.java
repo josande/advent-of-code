@@ -34,10 +34,10 @@ public class Day22 {
         }
         long result = 0;
         for(int i = deckA.size()-1; i>=0; i--) {
-            result+=deckA.get(i)*(i+1);
+            result+= (long) deckA.get(i) *(i+1);
         }
         for(int i = deckB.size()-1; i>=0; i--) {
-            result+=deckB.get(i)*(i+1);
+            result+= (long) deckB.get(i) *(i+1);
         }
         return result;
     }
@@ -106,8 +106,8 @@ public class Day22 {
         var t0 = System.currentTimeMillis();
         var ansA = solveA(inputs);
         var t1 = System.currentTimeMillis();
-        var timePart1 = System.currentTimeMillis()-t0;
         var ansB = solveB(inputs);
+        var timePart1 = t1-t0;
         var timePart2 = System.currentTimeMillis()-t1;
 
         System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //31455

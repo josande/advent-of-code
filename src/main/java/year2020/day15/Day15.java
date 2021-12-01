@@ -7,46 +7,38 @@ public class Day15 {
 
 
     static int solveA(List<String> values) {
-        List<Integer> numbers = new ArrayList<>();
-        for(String v : values.get(0).split(",")) {
-            numbers.add(Integer.parseInt(v));
-        }
-        int lastNumber=-1;
-        while(numbers.size()<=2020) {
-            lastNumber = numbers.get(numbers.size()-1);
-            int firstIndex=numbers.indexOf(lastNumber);
-            if(firstIndex != numbers.size()-1) {
-               numbers.set(firstIndex, -1);
-               numbers.add(numbers.size()-1-firstIndex);
-            } else {
-                numbers.add(0);
-            }
-        }
-        return lastNumber;
+        return solveFor(values, 2020);
     }
 
     static long solveB(List<String> values) {
-        // value, lastSeen
-        HashMap<Integer, Integer> numbers = new HashMap<>();
-        int turn=1;
-        for(String v : values.get(0).split(",")) {
-            numbers.put(Integer.parseInt(v), turn);
-            turn++;
-        }
-        int nextNumber=0;
-        int currentNumber=0;
-        while(turn<=30000000) {
-            currentNumber=nextNumber;
-            if( numbers.containsKey(nextNumber)) {
-                nextNumber=turn-numbers.get(nextNumber);
-            } else {
-                nextNumber = 0;
-            }
-            numbers.put(currentNumber, turn);
-            turn++;
-        }
-        return currentNumber;
+        return solveFor(values, 30000000);
+    }
 
+    private static int solveFor(List<String> values, int turns) {
+        int[] numbers = new int[turns];
+        int lastAdded=-1;
+        int turn = 0;
+        int currentValue = 0;
+        int nextValue;
+        for(String v : values.get(0).split(",")) {
+            turn++;
+            currentValue = Integer.parseInt(v);
+            numbers[currentValue] = turn;
+        }
+        numbers[currentValue] = 0;
+
+        while(turn <= turns) {
+            if(numbers[currentValue] > 0) {
+                nextValue = turn - numbers[currentValue];
+            } else {
+                nextValue = 0;
+            }
+            numbers[currentValue] = turn;
+            lastAdded = currentValue;
+            currentValue = nextValue;
+            turn++;
+        }
+        return lastAdded;
     }
 
 
@@ -59,8 +51,8 @@ public class Day15 {
         var t0 = System.currentTimeMillis();
         var ansA = solveA(inputs);
         var t1 = System.currentTimeMillis();
-        var timePart1 = System.currentTimeMillis()-t0;
         var ansB = solveB(inputs);
+        var timePart1 = t1-t0;
         var timePart2 = System.currentTimeMillis()-t1;
 
         System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //447

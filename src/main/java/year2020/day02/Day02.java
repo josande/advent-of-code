@@ -54,7 +54,7 @@ public class Day02 {
         int ansA = solveA(inputs);
         long t1 = System.currentTimeMillis();
         int ansB = solveB(inputs);
-        long timePart1 = System.currentTimeMillis() - t0;
+        var timePart1 = t1-t0;
         long timePart2 = System.currentTimeMillis() - t1;
         System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //469
         System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //267

@@ -37,7 +37,7 @@ public class Day03 {
         long ansA = solveA(inputs);
         long t1 = System.currentTimeMillis();
         long ansB = solveB(inputs);
-        long timePart1 = System.currentTimeMillis()-t0;
+        var timePart1 = t1-t0;
         long timePart2 = System.currentTimeMillis()-t1;
 
         System.out.println( day + "A: ("+timePart1+" ms)\t"+ansA); //176

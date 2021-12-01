@@ -9,8 +9,8 @@ public class Day16 {
 
 
     static int solveA(List<String> values) {
-        List<Integer> lowerBounds=new ArrayList<>();
-        List<Integer> upperBounds=new ArrayList<>();
+        List<Integer> lowerBounds = new ArrayList<>();
+        List<Integer> upperBounds = new ArrayList<>();
         for(var v : values) {
             for(var part : v.split(" ")) {
                 if(part.contains("-"))  {
@@ -23,7 +23,8 @@ public class Day16 {
         int part3=values.indexOf("nearby tickets:")+1;
         for(int i = part3; i<values.size(); i++) {
             for(var value : values.get(i).split(",")) {
-                if (!notInAnyRange(Integer.parseInt(value), lowerBounds, upperBounds)) {
+
+                if (notInAnyRange(Integer.parseInt(value), lowerBounds, upperBounds)) {
                     result+=Integer.parseInt(value);
                 }
             }
@@ -129,8 +130,8 @@ public class Day16 {
         var t0 = System.currentTimeMillis();
         var ansA = solveA(inputs);
         var t1 = System.currentTimeMillis();
-        var timePart1 = System.currentTimeMillis()-t0;
         var ansB = solveB(inputs);
+        var timePart1 = t1-t0;
         var timePart2 = System.currentTimeMillis()-t1;
 
         System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //25059

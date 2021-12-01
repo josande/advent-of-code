@@ -92,6 +92,6 @@ public class Day21 {
         var timePart2 = System.currentTimeMillis()-t1;
 
         System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //2203
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //
+        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //fqfm,kxjttzg,ldm,mnzbc,zjmdst,ndvrq,fkjmz,kjkrm
     }
 }
