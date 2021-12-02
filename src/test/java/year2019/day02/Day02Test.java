@@ -2,7 +2,6 @@ package year2019.day02;
 
 import org.junit.jupiter.api.Test;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 import static year2019.day02.Day02.runProgram;
 import static year2019.day02.Day02.splitToInt;
