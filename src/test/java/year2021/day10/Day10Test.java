@@ -12,22 +12,42 @@ class Day10Test {
     @Test
     void solveA() {
         String input = """
+                [({(<(())[]>[[{[]{<()<>>
+                [(()[<>])]({[<{<<[]>>(
+                {([(<{}[<>[]}>{[]{[(<()>
+                (((({<>}<{<{<>}{[]{[]{}
+                [[<[([]))<([[{}[[()]]]
+                [{[{({}]{}}([{[{{{}}([]
+                {<[[]]>}<{[{[{[]{()[[[]
+                [<(<(<(<{}))><([]([]()
+                <{([([[(<>()){}]>(<<{{
+                <{([{{}}[<[[[<>{}]]]>[]]
                 """;
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(null, Day10.solveA(values));
+        assertEquals(26397L, Day10.solveA(values));
     }
 
     @Test
     void solveB() {
         String input = """
+                [({(<(())[]>[[{[]{<()<>>
+                [(()[<>])]({[<{<<[]>>(
+                {([(<{}[<>[]}>{[]{[(<()>
+                (((({<>}<{<{<>}{[]{[]{}
+                [[<[([]))<([[{}[[()]]]
+                [{[{({}]{}}([{[{{{}}([]
+                {<[[]]>}<{[{[{[]{()[[[]
+                [<(<(<(<{}))><([]([]()
+                <{([([[(<>()){}]>(<<{{
+                <{([{{}}[<[[[<>{}]]]>[]]
                 """;
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(null, Day10.solveB(values));
+        assertEquals(288957L, Day10.solveB(values));
     }
 }

@@ -12,22 +12,24 @@ class Day07Test {
     @Test
     void solveA() {
         String input = """
+                16,1,2,0,4,2,7,1,2,14
                 """;
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(null, Day07.solveA(values));
+        assertEquals(37, Day07.solveA(values));
     }
 
     @Test
     void solveB() {
         String input = """
-                """;
+                16,1,2,0,4,2,7,1,2,14
+                 """;
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(null, Day07.solveB(values));
+        assertEquals(168, Day07.solveB(values));
     }
 }

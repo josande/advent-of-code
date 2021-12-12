@@ -12,22 +12,32 @@ class Day09Test {
     @Test
     void solveA() {
         String input = """
+                2199943210
+                3987894921
+                9856789892
+                8767896789
+                9899965678
                 """;
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(null, Day09.solveA(values));
+        assertEquals(15, Day09.solveA(values));
     }
 
     @Test
     void solveB() {
         String input = """
+                2199943210
+                3987894921
+                9856789892
+                8767896789
+                9899965678
                 """;
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(null, Day09.solveB(values));
+        assertEquals(1134, Day09.solveB(values));
     }
 }

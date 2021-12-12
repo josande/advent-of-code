@@ -24,9 +24,31 @@ public class Point {
         this.z=z;
         this.w=w;
     }
+    public Point(int[] coordinates) {
+        if (coordinates.length < 2 )
+            throw new IllegalArgumentException("To few coordinates for Point, "+coordinates.length);
+        if (coordinates.length > 4 )
+            throw new IllegalArgumentException("To many coordinates for Point, "+coordinates.length);
+        switch (coordinates.length)  {
+            case 4: this.w = coordinates[3];
+            case 3: this.z = coordinates[2];
+            case 2: this.y = coordinates[1]; this.x = coordinates[0];
+        }
+    }
+    public Point(String[] coordinates) {
+        this(asIntArray(coordinates));
+    }
+    private static int[] asIntArray(String[] coordinates) {
+        int[] result = new int[coordinates.length];
+        for (int i = 0; i < coordinates.length; i++) {
+            result[i] = Integer.parseInt(coordinates[i]);
+        }
+        return result;
+    }
     public int getX() {
         return x;
     }
+
 
     public void setX(int x) {
         this.x = x;
@@ -73,6 +95,15 @@ public class Point {
                 Math.abs(y-point.getY()) +
                 Math.abs(z-point.getZ()) +
                 Math.abs(w-point.getW());
+    }
+
+    public boolean isNeighbour(Point point) {
+        if(this.equals(point)) return false;
+
+        return Math.abs(x-point.getX()) <2 &&
+                Math.abs(y-point.getY()) <2 &&
+                Math.abs(z-point.getZ()) <2 &&
+                Math.abs(w-point.getW()) <2;
     }
     @Override
     public String toString() {
@@ -141,6 +172,25 @@ public class Point {
                 }
                 System.out.print("\n");
             }
+        }
+    }
+    public static void printIntMap(HashMap<Point, Integer> points) {
+        int maxX= Integer.MIN_VALUE,
+                maxY= Integer.MIN_VALUE,
+                minX= Integer.MAX_VALUE,
+                minY= Integer.MAX_VALUE;
+        for ( Point p : points.keySet() ) {
+            maxX=Math.max(maxX, p.getX());
+            maxY=Math.max(maxY, p.getY());
+            minX=Math.min(minX, p.getX());
+            minY=Math.min(minY, p.getY());
+        }
+
+        for (int y=minY-1;y<=maxY;y++) {
+            for (int x=minX-1;x<=maxX;x++) {
+                System.out.print(points.getOrDefault(new Point(x,y), 0 ));
+            }
+            System.out.print("\n");
         }
     }
     public static void print(HashMap<Point, Character> points) {
