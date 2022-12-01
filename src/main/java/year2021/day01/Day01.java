@@ -14,8 +14,8 @@ public class Day01 {
         List<Integer> intValues = values.stream().map(Integer::valueOf).collect(Collectors.toList());
 
         for(int val : intValues) {
-            if (Integer.valueOf(val) > lastVal) times++;
-            lastVal = Integer.valueOf(val);
+            if (val > lastVal) times++;
+            lastVal = val;
         }
 
         return times;
