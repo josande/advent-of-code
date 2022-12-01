@@ -12,22 +12,25 @@ class Day16Test {
     @Test
     void solveA() {
         String input = """
+                C0015000016115A2E0802F182340
                 """;
+//                C0015000016115A2E0802F182340
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(null, Day16.solveA(values));
+        assertEquals(23L, Day16.solveA(values));
     }
 
     @Test
     void solveB() {
         String input = """
+                C200B40A82
                 """;
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(null, Day16.solveB(values));
+        assertEquals(3L, Day16.solveB(values));
     }
 }

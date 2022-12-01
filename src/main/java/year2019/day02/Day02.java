@@ -44,7 +44,7 @@ public class Day02 {
         String[] inputs = input.split(",");
         Integer[] values = new Integer[inputs.length];
         for (int i=0;i<inputs.length; i++) {
-            values[i]= Integer.valueOf(inputs[i]);
+            values[i]= Integer.parseInt(inputs[i]);
         }
         return values;
     }

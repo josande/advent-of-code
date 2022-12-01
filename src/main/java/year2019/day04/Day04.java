@@ -37,8 +37,8 @@ public class Day04 {
     }
     public static void main(String[] args){
         String input = new FileHelper().readFile("year2019/day04/input.txt").get(0);
-        int start=Integer.valueOf(input.split("-")[0]);
-        int end  =Integer.valueOf(input.split("-")[1]);
+        int start=Integer.parseInt(input.split("-")[0]);
+        int end  =Integer.parseInt(input.split("-")[1]);
         int passwordsA=0, passwordsB=0;
 
         for (int number=start; number<=end; number++) {

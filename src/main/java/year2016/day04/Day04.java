@@ -13,7 +13,7 @@ public class Day04 {
 
         for(var value : values) {
             if (isValidRoom(value))
-                result+=Integer.valueOf(value.replaceAll("\\D", ""));
+                result+=Integer.parseInt(value.replaceAll("\\D", ""));
         }
 
         return result;
@@ -55,32 +55,33 @@ public class Day04 {
 
         for(var value : values) {
             if(isValidRoom(value) && isNorthPoleObjectStorage(value)) {
-                return Integer.valueOf(value.replaceAll("\\D", ""));
+                return Integer.parseInt(value.replaceAll("\\D", ""));
             }
         }
 
         return result;
     }
     static boolean isNorthPoleObjectStorage(String roomCode) {
+        return "northpole object storage".equals(getRoomName(roomCode));
+    }
+    static String getRoomName(String roomCode) {
         String roomName = roomCode.substring(0,roomCode.lastIndexOf("-")).replaceAll("-"," ");
-        int sectorId=Integer.valueOf(roomCode.replaceAll("\\D", ""));
+        int sectorId=Integer.parseInt(roomCode.replaceAll("\\D", ""));
         var asChars = roomName.toCharArray();
-         for(int steps = 0; steps<sectorId; steps++) {
-             for (int i = 0; i < asChars.length; i++) {
-                 if(asChars[i] == 'z') {
-                     asChars[i]='a';
-                 } else if (asChars[i] == ' ') {
+        for(int steps = 0; steps<sectorId; steps++) {
+            for (int i = 0; i < asChars.length; i++) {
+                if(asChars[i] == 'z') {
+                    asChars[i]='a';
+                } else if (asChars[i] == ' ') {
 
-                 } else {
-                     char c = asChars[i];
-                     c++;
-                     asChars[i] = c;
-                 }
-             }
-         }
-        roomName= String.valueOf(asChars);
-
-        return "northpole object storage".equals(roomName);
+                } else {
+                    char c = asChars[i];
+                    c++;
+                    asChars[i] = c;
+                }
+            }
+        }
+        return String.valueOf(asChars);
     }
 
 

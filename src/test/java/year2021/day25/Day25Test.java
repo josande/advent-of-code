@@ -12,11 +12,20 @@ class Day25Test {
     @Test
     void solveA() {
         String input = """
+                v...>>.vv>
+                .vv>>.vv..
+                >>.>v>...v
+                >>v>>.>.v.
+                v>v.vv.v..
+                >.>>..v...
+                .vv..>.>v.
+                v.v..>>v.v
+                ....v..v.>
                 """;
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(null, Day25.solveA(values));
+        assertEquals(58, Day25.solveA(values));
     }
 }

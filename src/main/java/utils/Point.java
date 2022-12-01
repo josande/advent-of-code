@@ -1,8 +1,7 @@
 package utils;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Point {
     private int x, y, z, w;
@@ -24,6 +23,17 @@ public class Point {
         this.z=z;
         this.w=w;
     }
+    public Point(String string) {
+        List<Integer> values = Arrays.stream(string.split(",")).map(Integer::valueOf).collect(Collectors.toList());
+        this.x=values.get(0);
+        this.y=values.get(1);
+        if(values.size()>2){
+            this.z=values.get(2);
+        }
+        if(values.size()>3){
+            this.w=values.get(3);
+        }
+    }
     public Point(int[] coordinates) {
         if (coordinates.length < 2 )
             throw new IllegalArgumentException("To few coordinates for Point, "+coordinates.length);
@@ -37,6 +47,12 @@ public class Point {
     }
     public Point(String[] coordinates) {
         this(asIntArray(coordinates));
+    }
+    public Point(Point other) {
+        this.x = other.getX();
+        this.y = other.getY();
+        this.z = other.getZ();
+        this.w = other.getW();
     }
     private static int[] asIntArray(String[] coordinates) {
         int[] result = new int[coordinates.length];
@@ -212,11 +228,19 @@ public class Point {
             System.out.print("\n");
         }
     }
+    public HashSet<Point> getOrthogonalNeighbours2d() {
+        HashSet<Point> points = new HashSet<>();
+        points.add(new Point(x-1, y));
+        points.add(new Point(x+1, y));
+        points.add(new Point(x, y-1));
+        points.add(new Point(x, y+1));
+        return points;
+    }
 
     public HashSet<Point> getAllNeighbours2d() {
         HashSet<Point> points = new HashSet<>();
         for(int _x = x-1; _x <= x+1; _x++) {
-            for(int _y = y-1; _x <= y+1; _y++) {
+            for(int _y = y-1; _y <= y+1; _y++) {
                 points.add(new Point(_x, _y));
             }
         }

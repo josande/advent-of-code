@@ -13,7 +13,7 @@ public class Day03 {
     static int solveA(List<String> values) {
         int valid=0;
         for( var row : values ) {
-            var lengths =  Arrays.stream(row.split(" ")).filter(s->!s.isEmpty()).map(Integer::valueOf).collect(Collectors.toList());
+            var lengths = Arrays.stream(row.split(" ")).filter(s->!s.isEmpty()).map(Integer::valueOf).collect(Collectors.toList());
             if (lengths.get(0)+lengths.get(1)>lengths.get(2) &&
                 lengths.get(1)+lengths.get(2)>lengths.get(0) &&
                 lengths.get(2)+lengths.get(0)>lengths.get(1))

@@ -11,7 +11,7 @@ public class Day02 {
         int horizontal=0, depth=0;
         for(var val : values) {
             String command = val.split(" ")[0];
-            int length = Integer.valueOf(val.split(" ")[1]);
+            int length = Integer.parseInt(val.split(" ")[1]);
             switch (command) {
                 case "forward" : {horizontal+=length; break;}
                 case "down" : {depth+=length; break;}
@@ -28,7 +28,7 @@ public class Day02 {
         int aim = 0, horizontal=0,depth = 0;
         for (var val : values) {
             String command = val.split(" ")[0];
-            int length = Integer.valueOf(val.split(" ")[1]);
+            int length = Integer.parseInt(val.split(" ")[1]);
             switch (command) {
                 case "forward": {
                     depth += aim * length;

@@ -15,11 +15,14 @@ class Day03Test {
     void testSolveA() {
         String input =
                 """
-
+                5 10 25
+                1 2 3
+                4 2 3
+                2 8 7 
                 """;
         List<String> values = Arrays.stream(input.split("\n")).collect(Collectors.toList());
 
-        assertEquals("1985", Day03.solveA(values));
+        assertEquals(2, Day03.solveA(values));
     }
 
     @Test

@@ -15,14 +15,12 @@ public class Day15 {
     static class State {
         OpComputer computer;
         HashMap<Point, Character> map;
-        HashSet<Point> visited;
         Point position;
         int steps=0;
 
         public State(OpComputer computer, HashMap<Point, Character> map, Point position, int steps) {
             this.computer = new OpComputer(computer);
             this.map = map;
-            this.visited = visited;
             this.position = position;
             this.steps = steps;
         }
@@ -131,7 +129,6 @@ public class Day15 {
         HashSet<Point> visited = new HashSet<>();
         queue.add(startState);
 
-        int shortestPath=Integer.MAX_VALUE;
         while (!queue.isEmpty()){
             HashSet<State> newToAdd  = new HashSet<>();
             HashSet<State> toBeRemoved = new HashSet<>();
@@ -205,7 +202,6 @@ public class Day15 {
 
         OpComputer computer = new OpComputer(input);
         HashMap<Point, Character> map = new HashMap<>();
-        HashSet<Point> visited = new HashSet<>();
         Point position=new Point(0,0);
 
         map.put(position,'S');

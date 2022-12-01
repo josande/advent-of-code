@@ -54,7 +54,7 @@ public class Day05 {
                 if(md5.startsWith("00000")) {
                     int pos=99;
                     try {
-                        pos= Integer.valueOf(""+md5.charAt(5));
+                        pos= Integer.parseInt(""+md5.charAt(5));
                     } catch (Exception ex) {
                     }
                     if (pos<8 && password[pos] == '*') {

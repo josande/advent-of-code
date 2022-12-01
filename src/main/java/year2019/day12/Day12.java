@@ -142,9 +142,9 @@ public class Day12 {
             s=s.replaceAll("y=", "");
             s=s.replaceAll("z=", "");
             String[] values=s.split(", ");
-            Moon moon = new Moon(Integer.valueOf(values[0]),
-                                 Integer.valueOf(values[1]),
-                                 Integer.valueOf(values[2]));
+            Moon moon = new Moon(Integer.parseInt(values[0]),
+                                 Integer.parseInt(values[1]),
+                                 Integer.parseInt(values[2]));
             moons.add(moon);
         }
         return moons;

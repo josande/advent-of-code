@@ -12,22 +12,24 @@ class Day17Test {
     @Test
     void solveA() {
         String input = """
+                target area: x=20..30, y=-10..-5
                 """;
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(null, Day17.solveA(values));
+        assertEquals(45, Day17.solveA(values));
     }
 
     @Test
     void solveB() {
         String input = """
+                target area: x=20..30, y=-10..-5
                 """;
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(null, Day17.solveB(values));
+        assertEquals(112, Day17.solveB(values));
     }
 }

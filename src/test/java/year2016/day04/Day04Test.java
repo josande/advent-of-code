@@ -33,7 +33,6 @@ class Day04Test {
                 """;
         List<String> values = Arrays.stream(input.split("\n")).collect(Collectors.toList());
 
-        assertEquals(1514, Day04.isNorthPoleObjectStorage("qzmt-zixmtkozy-ivhz-343"));
-
+        assertEquals("very encrypted name", Day04.getRoomName("qzmt-zixmtkozy-ivhz-343"));
     }
 }

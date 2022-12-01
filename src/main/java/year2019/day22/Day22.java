@@ -34,7 +34,7 @@ public class Day22 {
         cardPosition = BigInteger.valueOf(card);
     }
     static void setDeckSize(long size) {
-        deckSize=BigInteger.valueOf(size);
+        deckSize = BigInteger.valueOf(size);
     }
 
     static void shuffle(List<String> commands) {
@@ -43,11 +43,11 @@ public class Day22 {
             for (String command : commands) {
                 String[] words = command.split(" ");
                 if (words[0].equals("cut")) {
-                    cut(Integer.valueOf(words[1]));
+                    cut(Integer.parseInt(words[1]));
                 }
                 if (words[0].equals("deal")) {
                     if (words[1].equals("with")) {
-                        deal(Integer.valueOf(words[3]));
+                        deal(Integer.parseInt(words[3]));
                     } else {
                         dealIntoNewOrder();
                     }

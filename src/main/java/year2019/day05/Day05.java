@@ -35,7 +35,7 @@ public class Day05 {
         String[] inputs = input.split(",");
         Integer[] values = new Integer[inputs.length];
         for (int i=0;i<inputs.length; i++) {
-            values[i]= Integer.valueOf(inputs[i]);
+            values[i]= Integer.parseInt(inputs[i]);
         }
         return values;
     }
@@ -67,7 +67,7 @@ public class Day05 {
                 int varB=getVariableValue(2, position, values);
                 int varC = values[position + 3];
                 values[varC] = varA+varB;
-                position = position += 4;
+                position += 4;
                 return position;
             }
             case 2: {
@@ -76,7 +76,7 @@ public class Day05 {
                 int varC=values[position + 3];
 
                 values[varC] = varA * varB;
-                position = position += 4;
+                position += 4;
                 return position;
             }
             case 3: {

@@ -26,7 +26,7 @@ public class FileHelper {
     public List<Integer> readFileAsIntegers(String fileName) {
         List<Integer> ints=new ArrayList<>();
         for (String s : readFile(fileName)) {
-            ints.add(Integer.valueOf(s));
+            ints.add(Integer.parseInt(s));
         }
         return ints;
     }

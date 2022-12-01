@@ -30,7 +30,7 @@ public class Day03 {
             int x=0, y=0, steps=0;
             for (String instruction : string.split(",")) {
                 char direction = instruction.charAt(0);
-                int length=Integer.valueOf(instruction.substring(1));
+                int length=Integer.parseInt(instruction.substring(1));
                 for (int s=0; s<length;s++) {
                     steps++;
                     if (direction == 'R') { x++; }

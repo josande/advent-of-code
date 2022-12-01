@@ -68,13 +68,13 @@ public class Day14 {
             String resultAmount = result.split(" ")[0];
             String resultName = result.split(" ")[1];
 
-            Component resultComponent = new Component(Integer.valueOf(resultAmount), resultName);
+            Component resultComponent = new Component(Integer.parseInt(resultAmount), resultName);
             List<Component> ingredientComponents = new ArrayList<>();
 
             for (String ingredient : parts.split(", ")) {
                 String amount = ingredient.split(" ")[0];
                 String name = ingredient.split(" ")[1];
-                ingredientComponents.add(new Component(Integer.valueOf(amount), name));
+                ingredientComponents.add(new Component(Integer.parseInt(amount), name));
             }
             materialComponents.put(resultName, resultComponent);
             transformations.put(resultComponent, ingredientComponents);

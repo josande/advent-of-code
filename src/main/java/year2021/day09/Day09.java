@@ -38,7 +38,7 @@ public class Day09 {
        HashMap<Point, Integer> points= new HashMap<>();
         for (int x = 0; x<xMax; x++) {
             for (int y=0;y<yMax;y++) {
-                points.put(new Point(x,y), Integer.valueOf(""+values.get(y).charAt(x)));
+                points.put(new Point(x,y), Integer.parseInt(""+values.get(y).charAt(x)));
             }
         }
        List<Integer> basinSizes = new ArrayList<>();

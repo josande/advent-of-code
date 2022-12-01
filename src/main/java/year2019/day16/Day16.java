@@ -76,7 +76,7 @@ public class Day16 {
     }
     static int getFirstEight(int[] values) {
         String res = Arrays.toString(values).replaceAll("\\[|\\]|,|\\s", "");;
-        return  Integer.valueOf(res.substring(0,8));
+        return  Integer.parseInt(res.substring(0,8));
     }
 
     static int getPatternValue(int position, int offset, int repeat) {
@@ -97,7 +97,7 @@ public class Day16 {
         int[] result =runPhases(start,100);
         int ansA=getFirstEight(result);
 
-        int offset=Integer.valueOf(input.substring(0,7));
+        int offset=Integer.parseInt(input.substring(0,7));
         start=splitInput(input, 10000);
         result = runPhases(start, 100, true);
 

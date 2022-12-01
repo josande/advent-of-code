@@ -54,29 +54,33 @@ public class Day12 {
     }
     static Object solveA(List<String> values) {
         HashSet<Cave> caves = getCaves(values);
-        HashSet<List<Cave>> allPaths = getListOfCaves(caves, false);
-        return allPaths.size();
+        return getListOfCaves(caves, false).size();
+    }
+
+    static Object solveB(List<String> values) {
+        HashSet<Cave> caves = getCaves(values);
+        return getListOfCaves(caves, true).size();
     }
 
     private static HashSet<List<Cave>> getListOfCaves(HashSet<Cave> caves, boolean allowRepeatSmallCave) {
         Cave startCave = caves.stream().filter(Cave::isStart).findFirst().get();
 
-        List<Cave> start = new ArrayList<>();
-        start.add(startCave);
-        HashSet<List<Cave>> queue = new HashSet<>();
+        ArrayList<List<Cave>> queue = new ArrayList<>();
+
+        List<Cave> start = Collections.singletonList(startCave);
+
         queue.add(start);
         HashSet<List<Cave>> allPaths = new HashSet<>();
 
         while(!queue.isEmpty()) {
-            List<Cave> current = queue.stream().findFirst().get();
+            List<Cave> current = queue.get(queue.size()-1);
             queue.remove(current);
 
-            Set<Cave> possibleCaves = current.get(current.size()-1).getConnections();
-
-            for (Cave c : possibleCaves) {
+            for (Cave c : current.get(current.size()-1).getConnections()) {
                 if (c.isBig() || (allowRepeatSmallCave || !current.contains(c))) {
 
-                    if(c.isStart()) continue;
+                    if(c.isStart())
+                        continue;
                     List<Cave> newList = new ArrayList<>(current);
                     newList.add(c);
                     if(c.isEnd()) {
@@ -99,14 +103,6 @@ public class Day12 {
         return filtered.values().stream().filter(v -> v>1L).count();
     }
 
-
-    static Object solveB(List<String> values) {
-        HashSet<Cave> caves = getCaves(values);
-
-        HashSet<List<Cave>> allPaths = getListOfCaves(caves, true);
-
-        return allPaths.size();
-    }
 
     private static HashSet<Cave> getCaves(List<String> values) {
         HashSet<Cave> caves = new HashSet<>();
