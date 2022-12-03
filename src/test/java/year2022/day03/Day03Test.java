@@ -12,21 +12,33 @@ class Day03Test {
     @Test
     void testSolveA(){
         String input = """
+                vJrwpWtwJgWrhcsFMMfFFhFp
+                jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+                PmmdzqPrVvPwwTWBwg
+                wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+                ttgJtRGJQctTZtZT
+                CrZsJsPPZsGzwwsLwLmpwMDw
                 """;
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(-1, Day03.solveA(values));
+        assertEquals(157, Day03.solveA(values));
     }
     @Test
     void testSolveB() {
         String input = """
+                vJrwpWtwJgWrhcsFMMfFFhFp
+                jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+                PmmdzqPrVvPwwTWBwg
+                wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+                ttgJtRGJQctTZtZT
+                CrZsJsPPZsGzwwsLwLmpwMDw
                 """;
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(-1, Day03.solveB(values));
+        assertEquals(70, Day03.solveB(values));
     }
 }
