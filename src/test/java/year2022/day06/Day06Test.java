@@ -12,21 +12,21 @@ class Day06Test {
     @Test
     void testSolveA(){
         String input = """
+                mjqjpqmgbljsphdztnvjfqwrcgsmlb
                 """;
         var values = Arrays.stream(input.split("\n"))
-                .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(-1, Day06.solveA(values));
+        assertEquals(7, Day06.solveA(values));
     }
     @Test
     void testSolveB() {
         String input = """
+                mjqjpqmgbljsphdztnvjfqwrcgsmlb
                 """;
         var values = Arrays.stream(input.split("\n"))
-                .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(-1, Day06.solveB(values));
+        assertEquals(19, Day06.solveB(values));
     }
 }
