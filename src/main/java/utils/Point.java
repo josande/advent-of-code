@@ -168,28 +168,7 @@ public class Point {
         }
     }
 
-    public static void printMap(HashMap<Point, Character> points) {
-        int maxX= Integer.MIN_VALUE, maxY= Integer.MIN_VALUE, maxZ= Integer.MIN_VALUE,
-            minX= Integer.MAX_VALUE, minY= Integer.MAX_VALUE, minZ= Integer.MAX_VALUE;
-        for ( Point p : points.keySet() ) {
-            maxX=Math.max(maxX, p.getX());
-            maxY=Math.max(maxY, p.getY());
-            maxZ=Math.max(maxZ, p.getZ());
-            minX=Math.min(minX, p.getX());
-            minY=Math.min(minX, p.getY());
-            minZ=Math.min(minZ, p.getZ());
-        }
 
-        for (int z=minZ;z<=maxZ;z++) {
-            System.out.println("z="+z);
-            for (int y = minY - 1; y <= maxY; y++) {
-                for (int x = minX - 1; x <= maxX; x++) {
-                    System.out.print(points.getOrDefault(new Point(x, y, z), ' '));
-                }
-                System.out.print("\n");
-            }
-        }
-    }
     public static void printIntMap(HashMap<Point, Integer> points) {
         int maxX= Integer.MIN_VALUE,
                 maxY= Integer.MIN_VALUE,
