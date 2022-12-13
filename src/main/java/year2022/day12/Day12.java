@@ -1,19 +1,122 @@
 package year2022.day12;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import utils.FileHelper;
+import utils.MapUtil;
+import utils.Point;
 
 import java.lang.invoke.MethodHandles;
-import java.util.List;
+import java.util.*;
 
 public class Day12 {
 
-    static Object solveA(List<String> values) {
+    @Data
+    @AllArgsConstructor
+    static class State {
+        ArrayList<Point> points;
 
-        return -1;
+        Point getPoint() {
+            return points.get(points.size()-1);
+        }
     }
-    static Object solveB(List<String> values) {
+    static Object solveA(List<String> values) {
+        HashMap<Point, Character> map = MapUtil.asMap(values);
 
-        return -1;
+        Point start=null;
+        Point end=null;
+        for(Map.Entry<Point, Character> e : map.entrySet() ) {
+            if(e.getValue() == 'S') {
+                start = e.getKey();
+            }
+            if(e.getValue() == 'E') {
+                end = e.getKey();
+            }
+        }
+
+        map.put(start, 'a');
+        map.put(end, 'z');
+
+
+        Queue<State> queue=new LinkedList<>();
+        ArrayList<Point> startList = new ArrayList<>();
+        startList.add(start);
+        queue.add(new State(startList));
+        HashMap<Point, Integer> bestSoFarAtPoint=new HashMap<>();
+
+        while(!queue.isEmpty()) {
+            State current = queue.poll();
+            if(bestSoFarAtPoint.containsKey(current.getPoint()) && bestSoFarAtPoint.get(current.getPoint())<current.getPoints().size())
+                continue;
+            for (Point p : current.getPoint().getOrthogonalNeighbours2d()) {
+                if(map.containsKey(p) && map.get(p) <= 1 + (map.get(current.getPoint()))) {
+                    ArrayList<Point> points = new ArrayList<>(current.getPoints());
+                    points.add(p);
+                    if(!bestSoFarAtPoint.containsKey(p) || bestSoFarAtPoint.get(p)>points.size()) {
+                        queue.add(new State(points));
+                        bestSoFarAtPoint.put(p, points.size());                                    queue.add(new State(points));
+                    }
+                }
+            }
+
+        }
+        return bestSoFarAtPoint.get(end)-1;
+    }
+
+    static Object solveB(List<String> values) {
+        HashMap<Point, Character> map = MapUtil.asMap(values);
+
+        Point end=null;
+        List<Point> starts = new ArrayList<>();
+
+        for(Map.Entry<Point, Character> e : map.entrySet() ) {
+            if(e.getValue() == 'S' || e.getValue() == 'a') {
+                starts.add(e.getKey());
+            }
+            if(e.getValue() == 'E') {
+                end = e.getKey();
+            }
+        }
+
+        map.put(end, 'z');
+
+
+        Queue<State> queue=new LinkedList<>();
+        HashMap<Point, Integer> bestSoFarAtPoint=new HashMap<>();
+
+        for(Point start : starts) {
+            map.put(start, 'a');
+            ArrayList<Point> startList = new ArrayList<>();
+            startList.add(start);
+            queue.add(new State(startList));
+
+            bestSoFarAtPoint.put(start, startList.size());
+
+        }
+
+
+
+        while(!queue.isEmpty()) {
+            State current = queue.poll();
+            if(bestSoFarAtPoint.containsKey(current.getPoint()) && bestSoFarAtPoint.get(current.getPoint())<current.getPoints().size())
+                continue;
+            for (Point p : current.getPoint().getOrthogonalNeighbours2d()) {
+            if(map.containsKey(p) && map.get(p) <= 1 + (map.get(current.getPoint()))) {
+                    ArrayList<Point> points = new ArrayList<>(current.getPoints());
+                    if(!points.contains(p)) {
+                        points.add(p);
+                        if(!bestSoFarAtPoint.containsKey(p) || bestSoFarAtPoint.get(p)>points.size()) {
+                            queue.add(new State(points));
+                            bestSoFarAtPoint.put(p, points.size());
+                            queue.add(new State(points));
+                        }
+                    }
+                }
+            }
+        }
+        return bestSoFarAtPoint.get(end)-1;
     }
     public static void main(String[] args){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
@@ -26,7 +129,7 @@ public class Day12 {
         var timePart1 = t1-t0;
         var timePart2 = System.currentTimeMillis()-t1;
 
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //
+        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //339
+        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //332
     }
 }
