@@ -12,21 +12,25 @@ class Day14Test {
     @Test
     void testSolveA(){
         String input = """
+                498,4 -> 498,6 -> 496,6
+                503,4 -> 502,4 -> 502,9 -> 494,9
                 """;
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(-1, Day14.solveA(values));
+        assertEquals(24, Day14.solveA(values));
     }
     @Test
     void testSolveB() {
         String input = """
+                498,4 -> 498,6 -> 496,6
+                503,4 -> 502,4 -> 502,9 -> 494,9
                 """;
         var values = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(-1, Day14.solveB(values));
+        assertEquals(93, Day14.solveB(values));
     }
 }
