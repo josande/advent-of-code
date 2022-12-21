@@ -98,6 +98,7 @@ public class MapUtil {
         }
     }
     public static int getMaxX(HashMap<Point, ?> points) {
+        if(points.isEmpty()) return 0;
         int maxX=Integer.MIN_VALUE;
         for ( Point p : points.keySet() ) {
             maxX=Math.max(maxX, p.getX());
@@ -105,6 +106,7 @@ public class MapUtil {
         return maxX;
     }
     public static int getMinX(HashMap<Point, ?> points) {
+        if(points.isEmpty()) return 0;
         int minX=Integer.MAX_VALUE;
         for ( Point p : points.keySet() ) {
             minX=Math.min(minX, p.getX());
@@ -112,6 +114,7 @@ public class MapUtil {
         return minX;
     }
     public static int getMaxY(HashMap<Point, ?> points) {
+        if(points.isEmpty()) return 0;
         int maxY=Integer.MIN_VALUE;
         for ( Point p : points.keySet() ) {
             maxY=Math.max(maxY, p.getY());
@@ -119,6 +122,7 @@ public class MapUtil {
         return maxY;
     }
     public static int getMinY(HashMap<Point, ?> points) {
+        if(points.isEmpty()) return 0;
         int minY=Integer.MAX_VALUE;
         for ( Point p : points.keySet() ) {
             minY=Math.min(minY, p.getY());
@@ -126,6 +130,7 @@ public class MapUtil {
         return minY;
     }
     public static int getMaxZ(HashMap<Point, ?> points) {
+        if(points.isEmpty()) return 0;
         int maxZ=Integer.MIN_VALUE;
         for ( Point p : points.keySet() ) {
             maxZ=Math.max(maxZ, p.getZ());
@@ -133,6 +138,7 @@ public class MapUtil {
         return maxZ;
     }
     public static int getMinZ(HashMap<Point, ?> points) {
+        if(points.isEmpty()) return 0;
         int minZ=Integer.MAX_VALUE;
         for ( Point p : points.keySet() ) {
             minZ=Math.min(minZ, p.getZ());
@@ -141,6 +147,7 @@ public class MapUtil {
     }
 
     public static int getMaxX(Collection<Point> points) {
+        if(points.isEmpty()) return 0;
         int maxX=Integer.MIN_VALUE;
         for ( Point p : points ) {
             maxX=Math.max(maxX, p.getX());
@@ -148,6 +155,7 @@ public class MapUtil {
         return maxX;
     }
     public static int getMinX(Collection<Point> points) {
+        if(points.isEmpty()) return 0;
         int minX=Integer.MAX_VALUE;
         for ( Point p : points ) {
             minX=Math.min(minX, p.getX());
@@ -155,6 +163,7 @@ public class MapUtil {
         return minX;
     }
     public static int getMaxY(Collection<Point> points) {
+        if(points.isEmpty()) return 0;
         int maxY=Integer.MIN_VALUE;
         for ( Point p : points ) {
             maxY=Math.max(maxY, p.getY());
@@ -162,6 +171,7 @@ public class MapUtil {
         return maxY;
     }
     public static int getMinY(Collection<Point> points) {
+        if(points.isEmpty()) return 0;
         int minY=Integer.MAX_VALUE;
         for ( Point p : points ) {
             minY=Math.min(minY, p.getY());
@@ -169,6 +179,7 @@ public class MapUtil {
         return minY;
     }
     public static int getMaxZ(Collection<Point> points) {
+        if(points.isEmpty()) return 0;
         int maxZ=Integer.MIN_VALUE;
         for ( Point p : points) {
             maxZ=Math.max(maxZ, p.getZ());
@@ -176,6 +187,7 @@ public class MapUtil {
         return maxZ;
     }
     public static int getMinZ(Collection<Point> points) {
+        if(points.isEmpty()) return 0;
         int minZ=Integer.MAX_VALUE;
         for ( Point p : points ) {
             minZ=Math.min(minZ, p.getZ());

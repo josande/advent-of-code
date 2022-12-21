@@ -95,16 +95,22 @@ public class Point {
     }
 
     public Point north() {
-        return new Point(x,y-1);
+        return new Point(x,y-1,z);
     }
     public Point east() {
-        return new Point(x+1,y);
+        return new Point(x+1,y,z);
     }
     public Point south() {
-        return new Point(x,y+1);
+        return new Point(x,y+1,z);
     }
     public Point west() {
-        return new Point(x-1,y);
+        return new Point(x-1,y,z);
+    }
+    public Point up() {
+        return new Point(x,y,z+1);
+    }
+    public Point down() {
+        return new Point(x,y,z-1);
     }
     public int getManhattanDistance(Point point) {
         return Math.abs(x-point.getX()) +
@@ -142,7 +148,7 @@ public class Point {
     }
     @Override
     public int hashCode() {
-        return x*37+y*11-z*133+w*5+12;
+        return x*37+y*117-z*133+w*5+12;
     }
 
 
@@ -213,6 +219,16 @@ public class Point {
         points.add(new Point(x+1, y));
         points.add(new Point(x, y-1));
         points.add(new Point(x, y+1));
+        return points;
+    }
+    public HashSet<Point> getOrthogonalNeighbours3d() {
+        HashSet<Point> points = new HashSet<>();
+        points.add(new Point(x-1, y, z));
+        points.add(new Point(x+1, y, z));
+        points.add(new Point(x, y-1, z));
+        points.add(new Point(x, y+1, z));
+        points.add(new Point(x, y, z-1));
+        points.add(new Point(x, y, z+1));
         return points;
     }
 
