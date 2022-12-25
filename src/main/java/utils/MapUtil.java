@@ -64,9 +64,9 @@ public class MapUtil {
         for (int z=minZ;z<=maxZ;z++) {
             if(maxZ>0)
                 System.out.println("z="+z);
-            for (int y = minY - 1; y <= maxY; y++) {
+            for (int y = minY - 1; y <= maxY+1; y++) {
                 System.out.print(y+"\t");
-                for (int x = minX - 1; x <= maxX; x++) {
+                for (int x = minX - 1; x <= maxX+1; x++) {
                     System.out.print(points.getOrDefault(new Point(x, y, z), ' '));
                 }
                 System.out.print("\n");
@@ -222,5 +222,32 @@ public class MapUtil {
         }
         return points;
 
+    }
+
+    public static HashMap<Point, Character> rotateClockWise(HashMap<Point, Character> map) {
+        int maxX = getMaxX(map);
+
+        HashMap<Point, Character> rotated = new HashMap<>();
+        for(Map.Entry<Point, Character> entry : map.entrySet()) {
+            rotated.put(new Point(maxX-entry.getKey().getY(),entry.getKey().getX()), entry.getValue());
+        }
+        // (00,00) -> (10,00)
+        // (00,10) -> (00,00)
+        // (10,0)  -> (10,10)
+        // (10,10) -> (00,10)
+        return rotated;
+    }
+    public static HashMap<Point, Character> rotateCounterClockWise(HashMap<Point, Character> map) {
+        int maxY = getMaxY(map);
+
+        HashMap<Point, Character> rotated = new HashMap<>();
+        for(Map.Entry<Point, Character> entry : map.entrySet()) {
+            rotated.put(new Point(entry.getKey().getY(), maxY-entry.getKey().getX()), entry.getValue());
+        }
+        // (00,00) <- (10,00)
+        // (00,10) <- (00,00)
+        // (10,0)  <- (10,10)
+        // (10,10) <- (00,10)
+        return rotated;
     }
 }
