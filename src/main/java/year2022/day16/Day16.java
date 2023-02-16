@@ -62,27 +62,15 @@ public class Day16 {
         Valve valve;
         HashMap<Valve, Integer> openedValves;
 
-        public int getScore(int timelimit) {
+        public int getScore(int timeLimit) {
             int score = 0;
             for (Map.Entry<Valve, Integer> e : openedValves.entrySet()) {
-                if (e.getValue() > timelimit) continue;
+                if (e.getValue() > timeLimit) continue;
                 int flow = e.getKey().getFlow();
-                int timeLeft = timelimit - e.getValue();
+                int timeLeft = timeLimit - e.getValue();
                 score+=flow*timeLeft;
             }
             return score;
-        }
-        public void print() {
-            int total=0;
-            for(int i=0; i<=26; i++) {
-                for(Map.Entry<Valve, Integer> s : openedValves.entrySet()) {
-                    if(s.getValue().equals(i)) {
-                        System.out.println(i+"\tOpen "+s.getKey().getName()+", "+s.getKey().getFlow());
-                        total+=(26-i)*s.getKey().getFlow();
-                    }
-                }
-            }
-            System.out.println("For a total of "+total);
         }
     }
 
@@ -197,10 +185,25 @@ public class Day16 {
                 }
 
                 stack2.add(new State(0, start, map ));
+                HashMap<Collection<Valve>, Integer> testedStatesElephant = new HashMap<>();
 
                 while(!stack2.isEmpty()) {
                     State state2 = stack2.pop();
                     if(state2.getTime() >= 26) {
+                        boolean hasSeenBetterElephant=false;
+                        for(Map.Entry<Collection<Valve>, Integer> ee : testedStatesElephant.entrySet()) {
+                            if (ee.getKey().containsAll(state2.getOpenedValves().keySet()) &&
+                                    ee.getKey().size() == state2.getOpenedValves().keySet().size() &&
+                                    ee.getValue() >= state2.getScore(26)) {
+                                hasSeenBetterElephant=true;
+                                break;
+                            }
+                        }
+                        if(hasSeenBetterElephant) {
+                            continue;
+                        }
+                        testedStatesElephant.put(state2.getOpenedValves().keySet(), state2.getScore(26));
+
                         int score = 0;
                         for (Map.Entry<Valve, Integer> e : state2.getOpenedValves().entrySet()) {
                             if (e.getValue() > 26) continue;

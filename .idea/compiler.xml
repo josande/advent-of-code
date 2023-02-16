@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="15">
-      <module name="advent-of-code" target="1.15" />
+      <module name="advent-of-code" target="15" />
     </bytecodeTargetLevel>
   </component>
 </project>
