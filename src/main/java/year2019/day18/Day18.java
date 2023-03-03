@@ -3,11 +3,12 @@ package year2019.day18;
 import utils.FileHelper;
 import utils.Point;
 
+import java.lang.invoke.MethodHandles;
 import java.util.*;
 
 public class Day18 {
 
-    static List allKeys=new ArrayList<>();
+    static List<Object> allKeys=new ArrayList<>();
 
     static class State {
         HashMap<Point, Character> map;
@@ -53,31 +54,31 @@ public class Day18 {
             Point east = position.east();
 
             if (!visitedPoints.contains(north) && map.get(north) != '#') {
-                if (!isLockedDoor(north))
+                if (isUnLockedDoor(north))
                     possibleStates.add(new State(this, north));
             }
             if (!visitedPoints.contains(south) && map.get(south) != '#') {
-                if (!isLockedDoor(south))
+                if (isUnLockedDoor(south))
                     possibleStates.add(new State(this, south));
             }
             if (!visitedPoints.contains(west) && map.get(west) != '#') {
-                if (!isLockedDoor(west))
+                if (isUnLockedDoor(west))
                     possibleStates.add(new State(this, west));
             }
             if (!visitedPoints.contains(east) && map.get(east) != '#') {
-                if (!isLockedDoor(east))
+                if (isUnLockedDoor(east))
                     possibleStates.add(new State(this, east));
             }
 
             return possibleStates;
         }
-        boolean isLockedDoor(Point p) {
+        boolean isUnLockedDoor(Point p) {
             int c = (int) map.get(p);
             if (c>=65 && c<=90) {
-                return(!keys.contains(c+32));
+                return(keys.contains(c+32));
             }
 
-            return false;
+            return true;
         }
 
         public HashMap<Point, Character> getMap() {
@@ -136,7 +137,7 @@ public class Day18 {
         for (Map.Entry<Point, Character> e : map.entrySet()) {
             if (e.getValue() == '@') return e.getKey();
         }
-        return null;
+        throw new IllegalArgumentException("Entrance not found!");
     }
     static Point[] getEntrances(HashMap<Point, Character> map) {
         List<Point> entrances = new ArrayList<>();
@@ -164,10 +165,6 @@ public class Day18 {
             State current = stack.pop();
             if (!haveBeenBetter(current, visitedStates)) {
 
-              //  HashMap<List<Integer>, Integer> previousVisitsHere = visitedStates.getOrDefault(current.getPosition(), new HashMap<>());
-              //  previousVisitsHere.put(current.getKeys(), current.getSteps());
-              //  visitedStates.put(current.getPosition(), previousVisitsHere);
-
                 if (current.getKeys().size() == maxKeysSoFar) {
                     fewestSteps = Math.min(current.getSteps(), fewestSteps);
                 }
@@ -185,17 +182,17 @@ public class Day18 {
     }
     static boolean haveBeenBetter(State state, HashMap<Point, HashMap<List<Integer>, Integer>> visitedStates) {
         if (!visitedStates.containsKey(state.getPosition())) {
-            HashMap record = new HashMap<>();
+            HashMap<List<Integer>, Integer> record = new HashMap<>();
             record.put(state.getKeys(), state.getSteps());
             visitedStates.put(state.getPosition(), record);
             return false;
         }
         HashMap<List<Integer>, Integer> previousVisitsHere = visitedStates.get(state.getPosition());
         for (Map.Entry<List<Integer>, Integer> e : previousVisitsHere.entrySet()) {
-            if (e.getKey().containsAll(state.getKeys()) && e.getValue() <= state.getSteps()) {
+            if (new HashSet<>(e.getKey()).containsAll(state.getKeys()) && e.getValue() <= state.getSteps()) {
                 return true;
             }
-            if (e.getKey().containsAll(state.getKeys()) && e.getKey().size() == state.getKeys().size())  {
+            if (new HashSet<>(e.getKey()).containsAll(state.getKeys()) && e.getKey().size() == state.getKeys().size())  {
                 e.setValue(state.getSteps());
                 return false;
             }
@@ -216,8 +213,8 @@ public class Day18 {
                     int blockedSides = 0;
                     if ( currentMap.getOrDefault(e.getKey().north(), '#') == '#') blockedSides++;
                     if ( currentMap.getOrDefault(e.getKey().south(), '#') == '#') blockedSides++;
-                    if ( currentMap.getOrDefault(e.getKey().west(), '#' ) == '#') blockedSides++;
-                    if ( currentMap.getOrDefault(e.getKey().east(), '#' ) == '#') blockedSides++;
+                    if ( currentMap.getOrDefault(e.getKey().west(),  '#') == '#') blockedSides++;
+                    if ( currentMap.getOrDefault(e.getKey().east(),  '#') == '#') blockedSides++;
 
                     if (blockedSides == 3 && e.getValue()!='#') {
                         newMap.put(e.getKey(), '#');
@@ -282,14 +279,11 @@ public class Day18 {
                     previousVisitsHere.put(current.getKeys(), current.getSteps());
                     visitedStates.put(current.getPosition(), previousVisitsHere);
 
-
                     if (current.gotAllKeys()) {
                         foundAll = true;
                         shortestPath = Math.min(shortestPath, current.getSteps());
                     }
-                    for (State state : current.getPossibleStates()) {
-                        newToAdd.add(state);
-                    }
+                    newToAdd.addAll(current.getPossibleStates());
                 }
             }
             queue.addAll(newToAdd);
@@ -306,15 +300,17 @@ public class Day18 {
     }
     public static void main(String[] args) {
         long t0 = System.currentTimeMillis();
-        List<String> input = new FileHelper().readFile("year2019/day18/input.txt");
-        HashMap<Point, Character> startMap = makeMap(input);
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
+
+        HashMap<Point, Character> startMap = makeMap(inputs);
         HashMap<Point, Character> mapA= simplifyMap(startMap);
         Point entranceA = getEntrance(mapA);
         State startStateA = new State(entranceA, mapA);
 
         int stepsA=findShortestDistance(startStateA);
 
-        HashMap<Point, Character> mapB = makeMap(input);
+        HashMap<Point, Character> mapB = makeMap(inputs);
         updateEntrances(mapB);
         simplifyMap(mapB);
 

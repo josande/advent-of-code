@@ -2,20 +2,22 @@ package year2019.day08;
 
 import utils.FileHelper;
 
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Day08 {
 
     public static void main(String[] args) {
-        String input = new FileHelper().readFile("year2019/day08/input.txt").get(0);
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
         int height = 6, width = 25;
-        int numberOfLayers = input.length()/(height*width);
+        int numberOfLayers = inputs.get(0).length()/(height*width);
 
         List<String> layers = new ArrayList<>();
         for (int i=0;i<numberOfLayers;i++) {
-            layers.add(input.substring(i*150, (i+1)*150));
+            layers.add(inputs.get(0).substring(i*150, (i+1)*150));
         }
 
         int fewestZeroes =150;

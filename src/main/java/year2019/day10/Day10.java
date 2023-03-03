@@ -3,8 +3,8 @@ package year2019.day10;
 import utils.FileHelper;
 import utils.Point;
 
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Day10 {
@@ -51,8 +51,7 @@ public class Day10 {
                 blockedPoints.add(new Point(x,y));
             }
         }
-        List<Point> visiblePoints  =new ArrayList<>();
-        visiblePoints.addAll(asteroids);
+        List<Point> visiblePoints = new ArrayList<>(asteroids);
         visiblePoints.removeAll(blockedPoints);
         visiblePoints.remove(p);
         return visiblePoints;
@@ -206,17 +205,14 @@ public class Day10 {
                 }
             }
         }
-        if (nextTarget!=null) {
-            return nextTarget;
-        }
-return null;
-
+        return nextTarget;
     }
     public static void main(String[] args) {
-        List< String > input = new FileHelper().readFile("year2019/day10/input.txt");
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
        // List<String> input = Arrays.asList(in.split("\n"));
-        List<Point> asteroids = getAsteroidMap(input);
+        List<Point> asteroids = getAsteroidMap(inputs);
 
         int maxInSight=0;
         Point bestSpot=null;

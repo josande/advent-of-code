@@ -45,8 +45,6 @@ public class Day05 {
                 int fromBox = Integer.parseInt(s.split(" ")[3]);
                 int toBox = Integer.parseInt(s.split(" ")[5]);
 
-                System.out.println(toMove+" "+fromBox+" "+toBox);
-
                 for(int i=0; i<toMove;i++) {
                     char c = crates.get(fromBox).pop();
                     crates.get(toBox).add(c);
@@ -116,7 +114,6 @@ public class Day05 {
                     stack.add(crates.get(fromBox).pop());
                 }
 
-             //   rev  erseStack(stack);
                 while(!stack.isEmpty()) {
                     crates.get(toBox).add(stack.pop());
                 }
@@ -144,7 +141,7 @@ public class Day05 {
         var timePart1 = t1-t0;
         var timePart2 = System.currentTimeMillis()-t1;
 
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //
+        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // VJSFHWGFT
+        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // LCTQFBVZV
     }
 }

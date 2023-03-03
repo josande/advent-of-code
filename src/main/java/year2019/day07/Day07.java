@@ -3,6 +3,8 @@ package year2019.day07;
 import utils.FileHelper;
 import utils.OpComputer;
 
+import java.lang.invoke.MethodHandles;
+
 public class Day07 {
 
     static long getMaxThruster(int rangeStart, int rangeEnd, OpComputer ampA, OpComputer ampB, OpComputer ampC, OpComputer ampD, OpComputer ampE) {
@@ -88,12 +90,12 @@ public class Day07 {
         return maxThrust;
     }
     static int getThrustOutput(OpComputer ampA, OpComputer ampB, OpComputer ampC, OpComputer ampD, OpComputer ampE) {
-        Long maxThrust=0L, thrust=0L;
+        long maxThrust=0L, thrust=0L;
         while (true) {
             ampA.addInput(thrust);
             ampA.runUntilOutput();
             if (!ampA.isRunning())
-                return maxThrust.intValue();
+                return (int) maxThrust;
             ampB.addInput(ampA.getOutput());
             ampA.clearOutput();
             ampA.restartIfNeeded();
@@ -101,28 +103,28 @@ public class Day07 {
             ampB.restartIfNeeded();
             ampB.runUntilOutput();
             if (!ampB.isRunning())
-                return maxThrust.intValue();
+                return (int) maxThrust;
             ampC.addInput(ampB.getOutput());
             ampB.clearOutput();
 
             ampC.restartIfNeeded();
             ampC.runUntilOutput();
             if (!ampC.isRunning())
-                return maxThrust.intValue();
+                return (int) maxThrust;
             ampD.addInput(ampC.getOutput());
             ampC.clearOutput();
 
             ampD.restartIfNeeded();
             ampD.runUntilOutput();
             if (!ampD.isRunning())
-                return maxThrust.intValue();
+                return (int) maxThrust;
             ampE.addInput(ampD.getOutput());
             ampD.clearOutput();
 
             ampE.restartIfNeeded();
             ampE.runUntilOutput();
             if (!ampE.isRunning())
-                return maxThrust.intValue();
+                return (int) maxThrust;
             thrust=ampE.getOutput();
             ampE.clearOutput();
 
@@ -130,12 +132,14 @@ public class Day07 {
         }
     }
     public static void main(String[] args) {
-        String input = new FileHelper().readFile("year2019/day07/input.txt").get(0);
-        OpComputer ampA=new OpComputer(input);
-        OpComputer ampB=new OpComputer(input);
-        OpComputer ampC=new OpComputer(input);
-        OpComputer ampD=new OpComputer(input);
-        OpComputer ampE=new OpComputer(input);
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
+
+        OpComputer ampA=new OpComputer(inputs.get(0));
+        OpComputer ampB=new OpComputer(inputs.get(0));
+        OpComputer ampC=new OpComputer(inputs.get(0));
+        OpComputer ampD=new OpComputer(inputs.get(0));
+        OpComputer ampE=new OpComputer(inputs.get(0));
 
         System.out.println("Day07A "+ getMaxThruster(0,4,ampA,ampB,ampC,ampD,ampE));
         System.out.println("Day07B "+ getMaxThrusterWithLoop(5,9,ampA,ampB,ampC,ampD,ampE));

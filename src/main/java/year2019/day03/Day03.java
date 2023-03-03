@@ -3,8 +3,8 @@ package year2019.day03;
 import utils.FileHelper;
 import utils.Point;
 
+import java.lang.invoke.MethodHandles;
 import java.util.HashMap;
-import java.util.List;
 
 public class Day03 {
 
@@ -44,11 +44,13 @@ public class Day03 {
     }
 
     public static void main(String[] args){
-        List<String> wires = new FileHelper().readFile("year2019/day03/input.txt");
-        HashMap<Point, Integer> wireA= stringToPoints(wires.get(0));
-        HashMap<Point, Integer> wireB = stringToPoints(wires.get(1));
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
-        System.out.println("Day03A "+getClosestDistance(wireA, wireB));
-        System.out.println("Day03B "+getShortestWalk(wireA, wireB));
+        HashMap<Point, Integer> wireA= stringToPoints(inputs.get(0));
+        HashMap<Point, Integer> wireB = stringToPoints(inputs.get(1));
+
+        System.out.println("Day03A "+getClosestDistance(wireA, wireB)); // 3229
+        System.out.println("Day03B "+getShortestWalk(wireA, wireB)); // 32132
     }
 }

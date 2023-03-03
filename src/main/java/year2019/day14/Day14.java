@@ -2,10 +2,10 @@ package year2019.day14;
 
 import utils.FileHelper;
 
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Day14 {
 
@@ -120,13 +120,10 @@ public class Day14 {
     }
 
     static public long amountOfOreForFuel(long amountOfFuel) {
-        List<Component> before = new ArrayList<>();
-        List<Component> after = new ArrayList<>();
-        before.addAll(getComponentsToMake(amountOfFuel, "FUEL"));
+        List<Component> before = new ArrayList<>(getComponentsToMake(amountOfFuel, "FUEL"));
+        List<Component> after;
 
-        int counter = 0;
         while (true) {
-            counter++;
             after = transformComponents(before);
             if (after.equals(before)) break;
             before = after;
@@ -148,9 +145,10 @@ public class Day14 {
 
 
     public static void main(String[] args) {
-        Long t0=System.currentTimeMillis();
-        List<String> input = new FileHelper().readFile("year2019/day14/input.txt");
-        sortInput(input);
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
+
+        sortInput(inputs);
 
         long oreForOneFuel = amountOfOreForOneFuel();
         System.out.println("Day14A: " + oreForOneFuel);
@@ -161,8 +159,8 @@ public class Day14 {
         long lowerLimit = maxOre / oreForOneFuel;
         long upperLimit = lowerLimit * 2;
 
-        long fuel = upperLimit+lowerLimit/2;
-        long oreForFuel=amountOfOreForFuel(fuel);
+        long fuel;
+        long oreForFuel;
         while(true) {
             leftoverMaterial=new HashMap<>();
             fuel = (upperLimit+lowerLimit)/2;
@@ -170,7 +168,7 @@ public class Day14 {
             if (oreForFuel>maxOre) {
                 upperLimit=fuel;
             }
-            else if (oreForFuel<=maxOre) {
+            else {
                 if (amountOfOreForFuel(fuel+1)>maxOre) {
                     break;
                 }

@@ -3,6 +3,7 @@ package year2019.day20;
 import utils.FileHelper;
 import utils.Point;
 
+import java.lang.invoke.MethodHandles;
 import java.util.*;
 
 public class Day20 {
@@ -27,7 +28,7 @@ public class Day20 {
     }
 
     static Character findOtherLetter(Point p) {
-        char b='?';
+        char b;
         char n = map.getOrDefault(p.north(), ' ');
         char w = map.getOrDefault(p.west(), ' ');
         char s = map.getOrDefault(p.south(), ' ');
@@ -64,12 +65,10 @@ public class Day20 {
     static boolean isPortal(Point p) {
         int n = (int) map.getOrDefault(p, ' ');
         if (n>=65 && n<=90) {
-            if( map.getOrDefault(p.north(), ' ')=='.' ||
-                map.getOrDefault(p.south(), ' ')=='.' ||
-                map.getOrDefault(p.west(), ' ')=='.' ||
-                map.getOrDefault(p.east(), ' ')=='.') {
-                return true;
-            }
+            return map.getOrDefault(p.north(), ' ') == '.' ||
+                    map.getOrDefault(p.south(), ' ') == '.' ||
+                    map.getOrDefault(p.west(), ' ') == '.' ||
+                    map.getOrDefault(p.east(), ' ') == '.';
         }
         return false;
     }
@@ -114,24 +113,6 @@ public class Day20 {
         setUpConnections();
     }
 
-    static int freeSides(Point p, HashMap<Point, Character>  map) {
-        int emptySides=0;
-
-        if(!map.containsKey(p.north()) || map.get(p.north()) ==' ' ) {
-            emptySides++;
-        }
-        if(!map.containsKey(p.south()) || map.get(p.south()) ==' ' ) {
-            emptySides++;
-        }
-        if(!map.containsKey(p.west()) || map.get(p.west()) ==' ' ) {
-            emptySides++;
-        }
-        if(!map.containsKey(p.east()) || map.get(p.east()) ==' ' ) {
-            emptySides++;
-        }
-        return emptySides;
-    }
-
     static Node findStart() {
         for ( Map.Entry<Point, Node> e : allNodes.entrySet() ){
             if (e.getValue().getName().equals("AA")) return e.getValue();
@@ -140,8 +121,9 @@ public class Day20 {
     }
     public static void main(String[] args) {
         long t0=System.currentTimeMillis();
-        List<String> input = new FileHelper().readFile("year2019/day20/input.txt");
-        makeMap(input);
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
+        makeMap(inputs);
 
         System.out.println("Day20A "+findShortestRoute(false));
         System.out.println("Day20B "+findShortestRoute(true));
@@ -311,14 +293,6 @@ public class Day20 {
                 || entrance.getX()==minX
                 || entrance.getX()==maxX;
         }
-        public Node getOtherEnd() {
-            for (Map.Entry<Point, Node> e : allNodes.entrySet()) {
-                if (e.getValue().getName().equals(this.getName()) && !this.getEntrance().equals(e.getKey())) {
-                    return e.getValue();
-                }
-            }
-            return null;
-        }
 
         public void addChild(Node node, int steps) {
             if (children.getOrDefault(node, Integer.MAX_VALUE) > steps) {
@@ -350,7 +324,7 @@ public class Day20 {
         throw new RuntimeException("Could not find other end for node "+node.getName()+" "+node.getEntrance().toString());
     }
     static class NodeState {
-        List<Node> previousNodes=new ArrayList<>();
+        List<Node> previousNodes;
         Node currentNode;
         int steps;
 
@@ -398,7 +372,7 @@ public class Day20 {
             NodeState o = (NodeState) other;
             return ( this.getCurrentNode().equals(o.getCurrentNode())
                     && this.getPreviousNodes().size()==o.getPreviousNodes().size()
-                    && this.getPreviousNodes().containsAll(o.getPreviousNodes()) );
+                    && new HashSet<>(this.getPreviousNodes()).containsAll(o.getPreviousNodes()) );
         }
     }
 }

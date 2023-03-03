@@ -3,16 +3,25 @@ package year2019.day09;
 import utils.FileHelper;
 import utils.OpComputer;
 
+import java.lang.invoke.MethodHandles;
+
 public class Day09 {
 
     public static void main(String[] args) {
-        String input = new FileHelper().readFile("year2019/day09/input.txt").get(0);
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
-        OpComputer computer = new OpComputer(input);
+
+        OpComputer computer = new OpComputer(inputs.get(0));
+        computer.addInput(1);
+        computer.run();
+        System.out.println("Day09A: "+computer.getOutput());
+
+        computer.reset();
         computer.addInput(2);
 
         computer.run();
-        System.out.print("Day09A: "+computer.getOutput());
+        System.out.println("Day09B: "+computer.getOutput());
     }
 
 

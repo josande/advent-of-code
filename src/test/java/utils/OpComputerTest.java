@@ -68,7 +68,7 @@ class OpComputerTest {
     }
     @Test
     void testPuzzleDay2A(){
-        String input = new FileHelper().readFile("year2019/day02/input.txt").get(0);
+        String input = new FileHelper().readFile("2019/Day02.txt").get(0);
         OpComputer computer = new OpComputer(input);
         computer.setMemory(12, 1);
         computer.setMemory(2, 2);
@@ -78,7 +78,7 @@ class OpComputerTest {
     //Day 2 Part B tests
     @Test
     void testPuzzleDay2B(){
-        String input = new FileHelper().readFile("year2019/day02/input.txt").get(0);
+        String input = new FileHelper().readFile("2019/Day02.txt").get(0);
         OpComputer computer = new OpComputer(input);
         computer.setMemory(82, 1);
         computer.setMemory(26, 2);
@@ -99,7 +99,7 @@ class OpComputerTest {
     }
     @Test
     void testPuzzleDay5A(){
-        String input = new FileHelper().readFile("year2019/day05/input.txt").get(0);
+        String input = new FileHelper().readFile("2019/Day05.txt").get(0);
         OpComputer computer = new OpComputer(input);
         computer.addInput(1);
         computer.run();
@@ -247,7 +247,7 @@ class OpComputerTest {
 
     @Test
     void testPuzzleDay5B(){
-        String input = new FileHelper().readFile("year2019/day05/input.txt").get(0);
+        String input = new FileHelper().readFile("2019/Day05.txt").get(0);
         OpComputer computer = new OpComputer(input);
         computer.addInput(5);
         computer.run();

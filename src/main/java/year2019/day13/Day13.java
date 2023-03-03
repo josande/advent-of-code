@@ -2,32 +2,22 @@ package year2019.day13;
 
 import utils.FileHelper;
 import utils.OpComputer;
-import utils.Point;
 
-import java.util.HashMap;
+import java.lang.invoke.MethodHandles;
 
 public class Day13 {
 
-    private static char convertToChar(int val) {
-        if (val==0) return ' '; //Empty
-        if (val==1) return '#'; //Wall
-        if (val==2) return '¤'; //Block
-        if (val==3) return '_'; //Horizontal Padd le
-        if (val==4) return 'o'; //Ball
-
-        return '?';
-    }
     public static void main(String[] args) {
         long t0 = System.currentTimeMillis();
-        String input = new FileHelper().readFile("year2019/day13/input.txt").get(0);
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
-        OpComputer computer = new OpComputer(input);
+        OpComputer computer = new OpComputer(inputs.get(0));
 
         int blocks = 0, score = 0;
 
-        HashMap<Point, Character> screen = new HashMap<>();
         computer.setMemory(2L,0);
-        int padX=-1, padY=-1, ballX=-1, ballY=-1, balldx=0;
+        int padX=-1, ballX=-1, balldx;
 
         while(computer.isRunning()) {
             computer.runUntilOutput();
@@ -52,8 +42,6 @@ public class Day13 {
             if ( x == -1 && y == 0 ) {
                 score = val;
             } else {
-                Point p = new Point(x, y);
-                screen.put(p, convertToChar(val));
                 if ( val == 3 ) {
                     padX = x;
                 }
@@ -80,9 +68,7 @@ public class Day13 {
         if ( ballY == 19 ) {
             balldx=0;
         }
-        if ((ballX+balldx) > padX) return  1;
-        if ((ballX+balldx) < padX) return -1;
-        return 0;
+        return Integer.compare(ballX + balldx, padX);
 
     }
 

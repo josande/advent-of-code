@@ -2,7 +2,7 @@ package year2019.day01;
 
 import utils.FileHelper;
 
-import java.util.List;
+import java.lang.invoke.MethodHandles;
 
 public class Day01 {
 
@@ -17,13 +17,16 @@ public class Day01 {
     }
 
     public static void main(String[] args){
-        List<Integer> inputs = new FileHelper().readFileAsIntegers("year2019/day01/input.txt");
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFileAsIntegers("2019/"+day+".txt");
+
         int massOfFuel = 0, massOfFuelIncFuel=0;
         for (int mass : inputs ) {
             massOfFuel+=getFuelNeededForMass(mass);
             massOfFuelIncFuel+=getFuelNeededForMassIncludingFuelWeight(mass);
         }
-        System.out.println("Day01A: "+massOfFuel);
-        System.out.println("Day01B: "+massOfFuelIncFuel);
+        System.out.println("Day01A: "+massOfFuel); // 3335787
+        System.out.println("Day01B: "+massOfFuelIncFuel); // 5000812
+
     }
 }

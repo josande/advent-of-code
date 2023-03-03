@@ -3,32 +3,28 @@ package year2019.day19;
 import utils.FileHelper;
 import utils.OpComputer;
 
+import java.lang.invoke.MethodHandles;
+
 public class Day19 {
     public static void main(String[] args) {
         long t0 = System.currentTimeMillis();
-        String input = new FileHelper().readFile("year2019/day19/input.txt").get(0);
-        OpComputer computer = new OpComputer(input);
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
+
+        OpComputer computer = new OpComputer(inputs.get(0));
         int counter=0;
         int firstHitX=0;
         int ansB=0;
         for (int y=0;y<50;y++) {
             for (int x=firstHitX;x<50;x++) {
                 firstHitX=0;
-                int out = getValueAt(x,y,computer);
-                if (out==1) {
-                    if (firstHitX == 0) {
-                        firstHitX = x;
-                    }
+                if (getValueAt(x,y,computer)==1) {
+                    firstHitX = x;
                     counter++;
-                } else if (firstHitX > 0) {
-                    x = 50;
                 }
             }
         }
         System.out.println("Day19A: "+counter); //173
-        long t1 = System.currentTimeMillis();
-
-        System.out.println("TimeA "+(System.currentTimeMillis()-t0));
 
         for (int y=50; ansB==0; y++) {
             for (int x=firstHitX;x<10000;x++) {
@@ -46,7 +42,6 @@ public class Day19 {
             }
         }
         System.out.println("Day19B: "+ansB); //6671097
-        System.out.println("TimeB "+(System.currentTimeMillis()-t1));
         System.out.println("Time: "+(System.currentTimeMillis()-t0)+" ms");
     }
     static private int getValueAt(int x, int y, OpComputer computer) {

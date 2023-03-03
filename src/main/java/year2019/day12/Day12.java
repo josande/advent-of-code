@@ -1,9 +1,9 @@
 package year2019.day12;
 
 import utils.FileHelper;
-import utils.MathTools;
 import utils.Point;
 
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,31 +77,6 @@ public class Day12 {
             return "x="+getX()+",y="+getY()+",z="+getZ()+", velX="+getVelX()+", velY="+getVelY()+", velZ="+getVelZ();
         }
     }
-/*    static class Position {
-        Moon m1, m2, m3, m4;
-        public Position(List<Moon> moons) {
-            this.m1=moons.get(0);
-            this.m2=moons.get(1);
-            this.m3=moons.get(2);
-            this.m4=moons.get(3);
-        }
-        @Override
-        public boolean equals(Object obj) {
-            if (obj == null)
-                return false;
-
-            if (!(obj instanceof Moon)) {
-                return false;
-            }
-
-            Position o = (Position) obj;
-            return this.m1.equals(o.m1) &&
-                    this.m2.equals(o.m2) &&
-                    this.m3.equals(o.m3) &&
-                    this.m4.equals(o.m4);
-        }
-    }
-*/
 
     static void updateVelocity(Moon a, Moon b) {
         if (a.getX() > b.getX()) {
@@ -151,11 +126,6 @@ public class Day12 {
     }
     static int getTotalEnergy(List<String> input) {
         List<Moon> moons = parseInput(input);
-        Moon moon1org = new Moon(moons.get(0));
-        Moon moon2org = new Moon(moons.get(1));
-        Moon moon3org = new Moon(moons.get(2));
-        Moon moon4org = new Moon(moons.get(3));
-
 
         for (int i=0; i<1000; i++) {
             updateVelocity(moons.get(0), moons.get(1));
@@ -188,7 +158,7 @@ public class Day12 {
         long yCycleLength = -1L;
         long zCycleLength = -1L;
 
-        while (true) {
+        do {
             updateVelocity(moons.get(0), moons.get(1));
             updateVelocity(moons.get(0), moons.get(2));
             updateVelocity(moons.get(0), moons.get(3));
@@ -221,14 +191,11 @@ public class Day12 {
                     moons.get(3).getZ() == moon4org.getZ() && moons.get(3).getVelZ() == 0) {
                 zCycleLength = steps;
             }
-            if (xCycleLength > 0 &&
-                    yCycleLength > 0 &&
-                    zCycleLength > 0) {
-                break;
-            }
-        }
+        } while (xCycleLength <= 0 ||
+                yCycleLength <= 0 ||
+                zCycleLength <= 0);
 
-        Long longestCycle = Math.max(xCycleLength, Math.max(yCycleLength, zCycleLength));
+        long longestCycle = Math.max(xCycleLength, Math.max(yCycleLength, zCycleLength));
         List<Long> primes = new ArrayList<>();
         for (long number = 2; number <= longestCycle; number++) {
             if(isPrime(number)) {
@@ -236,33 +203,31 @@ public class Day12 {
             }
         }
 
-        Long product = 1L;
-        for (int i=0; i < primes.size(); i++) {
+        long product = 1L;
+        for (Long prime : primes) {
             int xTimes = 0, yTimes = 0, zTimes = 0;
-            while ( xCycleLength % primes.get(i )== 0 ) {
+            while (xCycleLength % prime == 0) {
                 xTimes++;
-                xCycleLength /= primes.get(i);
+                xCycleLength /= prime;
             }
-            while ( yCycleLength % primes.get(i) == 0 ) {
+            while (yCycleLength % prime == 0) {
                 yTimes++;
-                yCycleLength /= primes.get(i);
+                yCycleLength /= prime;
             }
-            while ( zCycleLength % primes.get(i) == 0 ) {
+            while (zCycleLength % prime == 0) {
                 zTimes++;
-                zCycleLength /= primes.get(i);
+                zCycleLength /= prime;
             }
             int maxTimes = Math.max(xTimes, Math.max(yTimes, zTimes));
-            product *= (long) Math.pow(primes.get(i), maxTimes);
+            product *= (long) Math.pow(prime, maxTimes);
         }
         return product;
     }
     public static void main(String[] args) {
-        List<String> input = new FileHelper().readFile("year2019/day12/input.txt");
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
-        System.out.println("Day12A: " + getTotalEnergy(input));
-        System.out.println("Day12B: " + getCycleLength(input));
+        System.out.println("Day12A: " + getTotalEnergy(inputs)); // 12070
+        System.out.println("Day12B: " + getCycleLength(inputs)); // 500903629351944
     }
 }
-
-//500903629351944
-//488773941982944

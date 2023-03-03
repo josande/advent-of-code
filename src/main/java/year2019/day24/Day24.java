@@ -3,6 +3,7 @@ package year2019.day24;
 import utils.FileHelper;
 import utils.Point;
 
+import java.lang.invoke.MethodHandles;
 import java.util.*;
 
 public class Day24 {
@@ -232,7 +233,7 @@ public class Day24 {
         return afterTotal;
     }
     static int getNumberOfBugs(HashMap<Integer, HashMap<Point, Character>> levelMap) {
-        return (int) levelMap.values().stream().map(c -> c.values()).flatMap(Collection::stream).filter(c -> c =='#').count();
+        return (int) levelMap.values().stream().map(HashMap::values).flatMap(Collection::stream).filter(c -> c =='#').count();
 
     }
 
@@ -251,9 +252,11 @@ public class Day24 {
     }
     public static void main(String[] args) {
         long t0 = System.currentTimeMillis();
-        List<String> input = new FileHelper().readFile("year2019/day24/input.txt");
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
-        HashMap<Point, Character> map = makeMap(input);
+
+        HashMap<Point, Character> map = makeMap(inputs);
         Set<HashMap<Point, Character>> knownState=new HashSet<>();
         HashMap<Point, Character> after = evolve(map);
         while(!knownState.contains(after)) {

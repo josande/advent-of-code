@@ -4,32 +4,30 @@ import utils.FileHelper;
 import utils.OpComputer;
 import utils.Point;
 
+import java.lang.invoke.MethodHandles;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Day17 {
 
     public static void main(String[] args) {
-        long t0 = System.currentTimeMillis();
-        String input = new FileHelper().readFile("year2019/day17/input.txt").get(0);
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
         HashMap<Point, Character> map = new HashMap<>();
-        OpComputer computer = new OpComputer(input);
+        OpComputer computer = new OpComputer(inputs.get(0));
         int x = 0, y = 0;
         while (computer.isRunning()) {
             Long c = computer.runUntilOutput();
             if (c != null) {
-                if (c != null) {
-                    if (c.intValue() == 10) {
-                        x = 0;
-                        y++;
-                    } else {
-                        char ch = (char) c.intValue();
-                        map.put(new Point(x, y), ch);
-                        x++;
-                    }
+                if (c.intValue() == 10) {
+                    x = 0;
+                    y++;
+                } else {
+                    char ch = (char) c.intValue();
+                    map.put(new Point(x, y), ch);
+                    x++;
                 }
-
             }
         }
         int distance = 0;
@@ -91,25 +89,11 @@ public class Day17 {
             computer.addInput((int) c);
         }
 
-
-        HashMap<Point, Character> map2 = new HashMap<>();
-        x=0;
-        y=0;
         long result =0L;
         while(computer.isRunning()) {
             Long c = computer.runUntilOutput();
             if (c != null) {
                 result=c;
-                if (c != null) {
-                    if (c.intValue() == 10) {
-                        x = 0;
-                        y++;
-                    } else {
-                        char ch = (char) c.intValue();
-                        map2.put(new Point(x, y), ch);
-                        x++;
-                    }
-                }
             }
         }
         System.out.println("Day17B: "+result);

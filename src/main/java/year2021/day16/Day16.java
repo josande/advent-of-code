@@ -35,17 +35,15 @@ public class Day16 {
 
         long getLiteralValue() {
             int currentPos = 6;
-            long sum = 0;
 
-            String newBinaryValue = new String();
+            StringBuilder newBinaryValue = new StringBuilder();
             int literalValueLength=0;
             while(inputString.length() >= currentPos+5 ) {
                 literalValueLength+=5;
-                newBinaryValue += inputString.substring(currentPos+1,currentPos+5);
+                newBinaryValue.append(inputString, currentPos + 1, currentPos + 5);
                 if (inputString.charAt(currentPos) == '0') {
                     packageLength = 6 + literalValueLength;
-                    sum = Long.parseLong(newBinaryValue,2);
-                    return sum;
+                    return Long.parseLong(newBinaryValue.toString(),2);
                 }
                 currentPos+=5;
             }
@@ -62,10 +60,8 @@ public class Day16 {
                 int currentPos=startPos;
 
                 int packageLengthSoFar = 0;
-                int packageNumber=0;
                 this.packageLength +=startPos;
                 while (totalPackageLengthForSubPackage > packageLengthSoFar) {
-                    packageNumber++;
                     Package child = new Package(inputString.substring(currentPos));
                     packageLengthSoFar+=child.getPackageLength();
                     subpackages.add(child);
@@ -154,7 +150,7 @@ public class Day16 {
     }
 
     static Long getVersionRecursively(Package p) {
-        Long ver =0L;
+        long ver =0L;
         for(Package child : p.getSubpackages()) {
             ver+= getVersionRecursively(child);
         }
@@ -214,14 +210,10 @@ public class Day16 {
 
 
 
-//    static int getLengthOfSubPackage(String binaryString) {
-//        int length= getLengthTypeId(binaryString) == 0 ? 15 : 11;
-//        return Integer.parseInt(binaryString.substring(7,7+length),2);
-//    }
+
     public static void main(String[] args){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2021/"+day+".txt");
-//        var inputs = new FileHelper().readFileAsIntegers("2021/"+day+".txt");
 
         var t0 = System.currentTimeMillis();
         var ansA = solveA(inputs);

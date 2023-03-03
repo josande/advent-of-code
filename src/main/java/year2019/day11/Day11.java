@@ -4,6 +4,7 @@ import utils.FileHelper;
 import utils.OpComputer;
 import utils.Point;
 
+import java.lang.invoke.MethodHandles;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -83,8 +84,10 @@ public class Day11 {
         return paintedAreas.size();
     }
     public static void main(String[] args) {
-        String input = new FileHelper().readFile("year2019/day11/input.txt").get(0);
-        System.out.println("Day08A: "+solveA(input));
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
+
+        System.out.println("Day08A: "+solveA(inputs.get(0)));
 
         paintedAreas=new LinkedList<>();
         whiteAreas=new HashSet<>();

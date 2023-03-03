@@ -2,16 +2,10 @@ package year2019.day02;
 
 import utils.FileHelper;
 
-import java.util.List;
+import java.lang.invoke.MethodHandles;
 
 public class Day02 {
 
-    static void doOpCode(int a, int b, int c, int d, Integer[] values) {
-        switch(a) {
-            case 1: values[d]=values[b]+values[c]; return;
-            case 2: values[d]=values[b]*values[c]; return;
-        }
-    }
     static int runProgram(int noun, int verb, String input) {
         Integer[] values = splitToInt(input);
         setStartValues(noun, verb, values);
@@ -32,13 +26,20 @@ public class Day02 {
     }
     static Integer doOpCode(int position, Integer[] values) {
 
-        switch(values[position]) {
-            case 1: values[values[position+3]] = values[values[position+1]] + values[values[position+2]]; return position+4;
-            case 2: values[values[position+3]] = values[values[position+1]] * values[values[position+2]]; return position+4;
-            case 99: return -1;
-            default : System.out.println("Unknown code: "+values[position]);
+        switch (values[position]) {
+            case 1 -> {
+                values[values[position + 3]] = values[values[position + 1]] + values[values[position + 2]];
+                return position + 4;
+            }
+            case 2 -> {
+                values[values[position + 3]] = values[values[position + 1]] * values[values[position + 2]];
+                return position + 4;
+            }
+            case 99 -> {
+                return -1;
+            }
+            default -> throw new IllegalArgumentException("Unknown code: " + values[position]);
         }
-        return null;
     }
     static Integer[] splitToInt(String input) {
         String[] inputs = input.split(",");
@@ -60,8 +61,9 @@ public class Day02 {
         return -1;
     }
     public static void main(String[] args){
-        String input = new FileHelper().readFile("year2019/day02/input.txt").get(0);
-        System.out.println("Day02A "+runProgram(12,2, input));
-        System.out.println("Day02B "+solveB(input));
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
+        System.out.println("Day02A "+runProgram(12,2, inputs.get(0))); // 2890696
+        System.out.println("Day02B "+solveB(inputs.get(0))); // 8226
     }
 }

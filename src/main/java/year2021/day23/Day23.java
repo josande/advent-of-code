@@ -1,10 +1,8 @@
 package year2021.day23;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import utils.FileHelper;
 import utils.Point;
-import year2019.day20.Day20;
 
 import java.lang.invoke.MethodHandles;
 import java.util.*;
@@ -45,24 +43,10 @@ public class Day23 {
             }
             if(current.isWon()) {
                 lowestEnergyUsageFound = current.getEnergy();
-           //     lowestSolution = current;
             }
             var statesAfter = current.getAllStates();
             toDo.addAll(statesAfter);
         }
-
-
-      //  ArrayList<State> previousStates = new ArrayList<>();
-      //  State p = lowestSolution.getPreviousState();
-       // while (p!=null) {
-       //     previousStates.add(p);
-       //     p = p.getPreviousState();
-       // }
-      //  for(int i = previousStates.size()-1; i>=0; i--) {
-      //      Point.print(previousStates.get(i).getMap());
-      //      System.out.println("-->"+previousStates.get(i).getEnergy());
-//
-      //  }
 
         return lowestEnergyUsageFound;
     }
@@ -70,31 +54,12 @@ public class Day23 {
     static class State {
         HashMap<Point, Character> map;
         int energy;
-      //  State previousState;
 
-   //     @Override
-   //     public boolean equals(Object other) {
-   //         if (!(other instanceof State)) return false;
-   //         State o = (State) other;
-   //         return ( this.getMap().equals(o.getMap())
-   //                 && this.getEnergy() == o.getEnergy() );
-   //     }
-   //     @Override
-   //     public int hashCode() {
-   //
-   //         return map.hashCode()+energy*3+7;
-   //     }
 
         State(HashMap<Point, Character> map, int energy) {
             this.map=map;
             this.energy=energy;
         }
-      //  State(HashMap<Point, Character> map, int energy, State previousStates) {
-      //      this.map=map;
-      //      this.energy=energy;
-      //      this.previousState=previousStates;
-//
-      //  }
 
         List<State> getAllStates() {
             ArrayList<State> possibleStatesAfter = new ArrayList<>();
@@ -134,10 +99,6 @@ public class Day23 {
             if(foundGoodMove) {
                 possibleStatesAfter.clear();
                 possibleStatesAfter.add(goodMoveState);
-               // System.out.println("Found a good move..?");
-               // Point.print(map);
-               // System.out.println("--->");
-               // Point.print(goodMoveState.getMap());
             }
             return possibleStatesAfter;
         }
@@ -172,8 +133,7 @@ public class Day23 {
             if(token =='A' && end.getX()==3) return true;
             if(token =='B' && end.getX()==5) return true;
             if(token =='C' && end.getX()==7) return true;
-            if(token =='D' && end.getX()==9) return true;
-            return false;
+            return(token =='D' && end.getX()==9);
         }
 
         private boolean onlySameTokensInRoom(Character token, Point end, HashMap<Point, Character> map) {
@@ -216,17 +176,12 @@ public class Day23 {
             if (map.entrySet().stream().filter(e -> e.getValue() == 'A').allMatch(e -> e.getKey().getX() == 3 && e.getKey().getY() >= 2)) {
                 if (map.entrySet().stream().filter(e -> e.getValue() == 'B').allMatch(e -> e.getKey().getX() == 5 && e.getKey().getY() >= 2)) {
                     if (map.entrySet().stream().filter(e -> e.getValue() == 'C').allMatch(e -> e.getKey().getX() == 7 && e.getKey().getY() >= 2)) {
-                        if (map.entrySet().stream().filter(e -> e.getValue() == 'D').allMatch(e -> e.getKey().getX() == 9 && e.getKey().getY() >= 2)) {
-                            return true;
-                        }
+                        return map.entrySet().stream().filter(e -> e.getValue() == 'D').allMatch(e -> e.getKey().getX() == 9 && e.getKey().getY() >= 2);
                     }
                 }
             }
             return false;
         }
-
-
-
     }
     static Object solveB(List<String> values) {
         ArrayList<String> newMap = new ArrayList<>();
@@ -244,7 +199,6 @@ public class Day23 {
     public static void main(String[] args){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2021/"+day+".txt");
-//        var inputs = new FileHelper().readFileAsIntegers("2021/"+day+".txt");
 
         var t0 = System.currentTimeMillis();
         var ansA = solveA(inputs);

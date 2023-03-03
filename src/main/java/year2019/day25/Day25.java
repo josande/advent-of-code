@@ -3,224 +3,34 @@ package year2019.day25;
 import utils.FileHelper;
 import utils.OpComputer;
 
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class Day25 {
 
-    public static class Room {
-        String name;
-        List<String> wayHere;
-        List<String> doors;
-        List<String> items;
-
-        public Room(String name) {
-            this.name=name;
-        }
-        public Room(String name, List<String> wayHere, List<String> doors, List<String> items) {
-            this.name = name;
-            this.wayHere = new ArrayList<>(wayHere);
-            this.doors = new ArrayList<>(doors);
-            if(name.contains("Security Checkpoint"))
-                this.doors=new ArrayList<>();
-            this.items = new ArrayList<>(items);
-
-            for(String string : new HashSet<>(items)) {
-                if (!string.equals("giant electromagnet")
-                        && !string.equals("escape pod")
-                        && !string.equals("photons")
-                        && !string.equals("molten lava")
-                        && !string.equals("infinite loop")
-
-                        ) {
-                //    allItems.add(string);
-                    runCommands();
-                }
-            }
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setWayHere(List<String> wayHere) {
-            this.wayHere = wayHere;
-            for(String string :items) {
-                System.out.print("Item "+string+" at: "+name+" ");
-                for(String s : wayHere) System.out.print(s);
-                System.out.print("\n");
-                computer.addInput("take " + string);
-            }
-        }
-
-        public List<String> getWayHere() {
-            return wayHere;
-        }
-        public List<String> getWayBack() {
-            List<String> wayBack=new ArrayList<>();
-            for(int i=wayHere.size()-1; i>=0; i--) {
-                if(wayHere.get(i).equals("north"))
-                    wayBack.add("south");
-                if(wayHere.get(i).equals("south"))
-                    wayBack.add("north");
-                if(wayHere.get(i).equals("west"))
-                    wayBack.add("east");
-                if(wayHere.get(i).equals("east"))
-                    wayBack.add("west");
-            }
-            return wayBack;
-        }
-
-        public List<String> getDoors() {
-            return doors;
-        }
-
-        public List<String> getItems() {
-            return items;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            Room o = (Room) obj;
-            return this.getName().equals(o.getName());
-        }
-
-        @Override
-        public int hashCode() {
-            return getName().hashCode();
-        }
-
-    }
-
     static OpComputer computer;
-    static List<Room> allRooms = new ArrayList<>();
     static List<String> allItems = new ArrayList<>();
 
-
-
-    static void goToRoom(Room room) {
-        List<String> routeSoFar = new ArrayList<>(room.getWayHere());
-
-        computer.restartIfNeeded();
-
-        for(String door : routeSoFar) {
-            computer.addInput(door);
-            runCommands();
-        }
-    }
-    static String goToRoom(String direction, Room previousRoom) {
-        List<String> routeSoFar = new ArrayList<>(previousRoom.getWayHere());
-        routeSoFar.add(direction);
-
-        computer.restartIfNeeded();
-        String roomData="";
-
-        for(String door : routeSoFar) {
-            computer.addInput(door);
-            roomData=runCommands();
-        }
-        Room newRoom = searchRoom(roomData);
-
-
-        if(!allRooms.contains(newRoom)) {
-            newRoom.setWayHere(routeSoFar);
-
-            if (newRoom.getName().isEmpty()) {
-                System.out.print("no name?");
-            } else {
-                allRooms.add(newRoom);
-            }
-        }
-        computer.restartIfNeeded();
-
-        for(String door:newRoom.getWayBack()) {
-            computer.addInput(door);
-        }
-        return roomData;
-    }
     static String runCommand(String command) {
         computer.addInput(command);
         return runCommands();
     }
     static String runCommands() {
-        String output="\n\n\n\n";
+        StringBuilder output= new StringBuilder("\n\n\n\n");
         computer.restartIfNeeded();
         while (computer.isRunning()) {
             Long c = computer.runUntilOutput();
             if (c != null) {
-                output+=(char) c.intValue();
+                output.append((char) c.intValue());
             }
         }
-        if(output.contains("You can't go that way.")) {
-            System.out.print("what happened here?");
+        if(output.toString().contains("You can't go that way.")) {
+            throw new IllegalArgumentException("Bad pathing! "+output);
         }
-        return output;
-    }
-    static String runAndPrint() {
-        String output = runCommands();
-        System.out.print(output);
-        return output;
+        return output.toString();
     }
 
-    static Room searchRoom(String roomData) {
-        String output=roomData;
-//        System.out.println(output);
-        if(output.contains("pressure"))
-//            System.out.println(output);
-        if(output.contains("sensor"))
-//            System.out.println(output);
-        if(output.contains("plate"))
-//            System.out.println(output);
-        if(output.contains("You can't go that way."))
-            System.out.println(output);
-
-
-if(!output.contains("\n\n\n")) {
-    System.out.println(output);
-}
-        output=output.substring(output.lastIndexOf("\n\n\n"));
-        String[] things = output.split("\n");
-        String name="";
-        List<String> doors=new ArrayList<>();
-        List<String> items=new ArrayList<>();
-        for (String string : things ) {
-            if (string.contains("==")) {
-                name = string;
-            }
-            if (!string.startsWith("-")) continue;
-            string = string.substring(2);
-            if (string.equals("north") || string.equals("west") || string.equals("east") || string.equals("south")) {
-                doors.add(string);
-            } else {
-                items.add(string);
-
-            }
-        }
-        return new Room(name, new ArrayList<>(), doors, items);
-
-
-    }
-
-    static void mapAllRooms() {
-        HashSet<Room> queue=new HashSet<>();
-        HashSet<Room> visited=new HashSet<>();
-        Room start = searchRoom(runCommands());
-        allRooms.add(start);
-        queue.add(start);
-        while(!queue.isEmpty()) {
-
-            for (Room r : queue) {
-                visited.add(r);
-                for (String door : r.getDoors()) {
-                    goToRoom(door, r);
-                }
-            }
-            queue.addAll(allRooms);
-            queue.removeAll(visited);
-
-        }
-    }
     public static void main(String[] args) {
 
         allItems.add("whirled peas");
@@ -233,8 +43,10 @@ if(!output.contains("\n\n\n")) {
         allItems.add("manifold");
 
         long t0 = System.currentTimeMillis();
-        String input = new FileHelper().readFile("year2019/day25/input.txt").get(0);
-        computer = new OpComputer(input);
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
+
+        computer = new OpComputer(inputs.get(0));
 
         runCommand("north");
         runCommand("take mutex");

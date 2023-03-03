@@ -2,10 +2,8 @@ package year2019.day16;
 
 import utils.FileHelper;
 
-import java.util.ArrayList;
+import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 
 public class Day16 {
 
@@ -36,7 +34,7 @@ public class Day16 {
         return calculatePhase(input, false);
     }
     static int[] calculatePhase(int[] input, boolean onlySecondHalf) {
-        int result[] = new int[input.length];
+        int[] result = new int[input.length];
         if (onlySecondHalf) {
             result[result.length - 1] = input[result.length - 1];
             for (int i = result.length - 2; i > 0; i--) {
@@ -58,24 +56,8 @@ public class Day16 {
         return result;
     }
 
-    static HashMap<Integer, List<Integer>> patterns = new HashMap<>();
-    static void setUpPatterns(int length) {
-        int[] pattern = {0,1,0,-1};
-
-        for (int repeat=1;repeat<=length;repeat++) {
-            List<Integer> resultList= new ArrayList<>();
-            while(resultList.size() <= (length+1)) {
-                for (int p : pattern) {
-                    for (int i=0;i<repeat;i++) {
-                        resultList.add(p);
-                    }
-                }
-            }
-            patterns.put(repeat, resultList);
-        }
-    }
     static int getFirstEight(int[] values) {
-        String res = Arrays.toString(values).replaceAll("\\[|\\]|,|\\s", "");;
+        String res = Arrays.toString(values).replaceAll("\\[|]|,|\\s", "");
         return  Integer.parseInt(res.substring(0,8));
     }
 
@@ -91,17 +73,18 @@ public class Day16 {
     }
     public static void main(String[] args) {
         long t0=System.currentTimeMillis();
-        String input = new FileHelper().readFile("year2019/day16/input.txt").get(0);
-        int[] start=splitInput(input,1);
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
+        int[] start=splitInput(inputs.get(0),1);
 
         int[] result =runPhases(start,100);
         int ansA=getFirstEight(result);
 
-        int offset=Integer.parseInt(input.substring(0,7));
-        start=splitInput(input, 10000);
+        int offset=Integer.parseInt(inputs.get(0).substring(0,7));
+        start=splitInput(inputs.get(0), 10000);
         result = runPhases(start, 100, true);
 
-        String res = Arrays.toString(result).replaceAll("\\[|\\]|,|\\s", "");;
+        String res = Arrays.toString(result).replaceAll("\\[|]|,|\\s", "");
         String ansB = res.substring(offset,offset+8);
 
         System.out.println("Day16A: "+ansA);

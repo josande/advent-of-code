@@ -3,6 +3,8 @@ package year2019.day23;
 import utils.FileHelper;
 import utils.OpComputer;
 
+import java.lang.invoke.MethodHandles;
+
 public class Day23 {
 
 
@@ -15,8 +17,9 @@ public class Day23 {
     static Long ansA=null,ansB=null;
     public static void main(String[] args) {
         long t0=System.currentTimeMillis();
-        String input = new FileHelper().readFile("year2019/day23/input.txt").get(0);
-        OpComputer comp=new OpComputer(input);
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
+        OpComputer comp=new OpComputer(inputs.get(0));
         for(int i=0;i<computers.length;i++) {
             computers[i]=new OpComputer(comp);
             computers[i].addInput(i);

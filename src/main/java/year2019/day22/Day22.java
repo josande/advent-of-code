@@ -2,11 +2,11 @@ package year2019.day22;
 
 import utils.FileHelper;
 
+import java.lang.invoke.MethodHandles;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static utils.ArrayHelper.reverseArray;
 
@@ -20,10 +20,10 @@ public class Day22 {
         Action(String name) {
             this.name=name;
         }
-        String name;
+        final String name;
 
         public static Action getFromText(String text) {
-            return Arrays.stream(values()).filter(a -> text.startsWith(a.name)).findAny().get();
+            return Arrays.stream(values()).filter(a -> text.startsWith(a.name)).findAny().orElseThrow(() -> new NoSuchElementException("Value Missing!"));
         }
     }
 
@@ -81,13 +81,14 @@ public class Day22 {
     }
     public static void main(String[] args) {
         long t0=System.currentTimeMillis();
-        List<String> input = new FileHelper().readFile("year2019/day22/input.txt");
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
         setDeckSize(10007L);
         setCardToTrack(2019);
-        shuffle(input);
+        shuffle(inputs);
         System.out.println("Day22A "+ getCardPosition()); //4703
-        System.out.println("Day22B "+ seekPosition( BigInteger.valueOf(119315717514047L), BigInteger.valueOf(101741582076661L), 2020, input));
+        System.out.println("Day22B "+ seekPosition(BigInteger.valueOf(119315717514047L), BigInteger.valueOf(101741582076661L), 2020, inputs));
         System.out.println("Time: "+(System.currentTimeMillis()-t0)+" ms");
     }
 
@@ -106,21 +107,16 @@ public class Day22 {
         }
 
         public BigInteger[] execute(BigInteger[] input, BigInteger deckSize) {
-            switch(action) {
-                case DEAL_INTO_NEW_STACK: {
+            switch (action) {
+                case DEAL_INTO_NEW_STACK -> {
                     input[0] = input[0].multiply(BigInteger.valueOf(-1));
                     input[1] = input[1].add(BigInteger.valueOf(1)).multiply(BigInteger.valueOf(-1));
-                    break;
                 }
-                case CUT: {
-                    input[1] = input[1].add(BigInteger.valueOf(amount));
-                    break;
-                }
-                case DEAL_WITH_INCREMENT: {
-                    BigInteger p =  BigInteger.valueOf(amount).modPow(deckSize.subtract(BigInteger.valueOf(2)), deckSize);
+                case CUT -> input[1] = input[1].add(BigInteger.valueOf(amount));
+                case DEAL_WITH_INCREMENT -> {
+                    BigInteger p = BigInteger.valueOf(amount).modPow(deckSize.subtract(BigInteger.valueOf(2)), deckSize);
                     input[0] = input[0].multiply(p);
                     input[1] = input[1].multiply(p);
-                    break;
                 }
             }
             return input;

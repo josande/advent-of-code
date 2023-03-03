@@ -1,10 +1,8 @@
 package year2019.day04;
 
 import utils.FileHelper;
-import utils.Point;
 
-import java.util.HashMap;
-import java.util.List;
+import java.lang.invoke.MethodHandles;
 
 public class Day04 {
 
@@ -36,9 +34,11 @@ public class Day04 {
                 number5<=number6);
     }
     public static void main(String[] args){
-        String input = new FileHelper().readFile("year2019/day04/input.txt").get(0);
-        int start=Integer.parseInt(input.split("-")[0]);
-        int end  =Integer.parseInt(input.split("-")[1]);
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
+
+        int start=Integer.parseInt(inputs.get(0).split("-")[0]);
+        int end  =Integer.parseInt(inputs.get(0).split("-")[1]);
         int passwordsA=0, passwordsB=0;
 
         for (int number=start; number<=end; number++) {
@@ -47,14 +47,14 @@ public class Day04 {
             int number3=(number%10000   -number%1000)  /1000;
             int number4=(number%1000    -number%100)   /100;
             int number5=(number%100     -number%10)    /10;
-            int number6=(number%10      -number%1)     /1;
+            int number6=(number%10);
             if (!isIncreasing(number1,number2,number3,number4,number5,number6)) {continue;}
             if (testPasswordA(number1,number2,number3,number4,number5,number6))
                 passwordsA++;
             if (testPasswordB(number1,number2,number3,number4,number5,number6))
                 passwordsB++;
         }
-        System.out.println("Day04A "+passwordsA);
-        System.out.println("Day04B "+passwordsB);
+        System.out.println("Day04A "+passwordsA); // 1890
+        System.out.println("Day04B "+passwordsB); // 1277
     }
 }

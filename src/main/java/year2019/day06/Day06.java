@@ -2,7 +2,7 @@ package year2019.day06;
 
 import utils.FileHelper;
 
-import java.util.ArrayList;
+import java.lang.invoke.MethodHandles;
 import java.util.HashMap;
 import java.util.List;
 
@@ -55,11 +55,14 @@ public class Day06 {
         return orbitMap;
     }
     public static void main(String[] args) {
-        List<String> input = new FileHelper().readFile("year2019/day06/input.txt");
-        HashMap<String,String> orbitMap = makeMap(input);
 
-        System.out.println("Day06A "+calculateCheckSum(orbitMap));
-        System.out.println("Day06B "+ orbitCountBetween("SAN", "YOU", orbitMap));
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
+
+        HashMap<String,String> orbitMap = makeMap(inputs);
+
+        System.out.println("Day06A " + calculateCheckSum(orbitMap)); // 251208
+        System.out.println("Day06B " + orbitCountBetween("SAN", "YOU", orbitMap)); // 397
 
     }
 }

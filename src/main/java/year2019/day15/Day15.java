@@ -4,6 +4,7 @@ import utils.FileHelper;
 import utils.OpComputer;
 import utils.Point;
 
+import java.lang.invoke.MethodHandles;
 import java.util.*;
 
 public class Day15 {
@@ -16,7 +17,7 @@ public class Day15 {
         OpComputer computer;
         HashMap<Point, Character> map;
         Point position;
-        int steps=0;
+        int steps;
 
         public State(OpComputer computer, HashMap<Point, Character> map, Point position, int steps) {
             this.computer = new OpComputer(computer);
@@ -25,51 +26,22 @@ public class Day15 {
             this.steps = steps;
         }
 
-        void move(int direction) {
-            computer.addInput(direction);
-            computer.runUntilOutput();
-        }
         int getSteps() {
             return steps;
         }
         Point getPosition() {
             return position;
         }
-        List<State> getPossibleStates_old() {
-            //checkWalls();
+        List<State> getPossibleStates() {
             List<State> possibleStates=new ArrayList<>();
-
             Point north=position.north();
             Point south=position.south();
             Point west =position.west();
             Point east =position.east();
 
-            if('#' != map.get(north)) {
-                possibleStates.add(new State(computer, map, north, steps+1));
-            }
-            if ('#' != map.get(south) ) {
-                possibleStates.add(new State(computer, map,  south,steps+1));
-            }
-            if ('#' != map.get(west) ) {
-                possibleStates.add(new State(computer, map, west, steps+1));
-            }
-            if ('#' != map.get(east) ) {
-                possibleStates.add(new State(computer, map, east,steps+1));
-            }
-            return possibleStates;
-        }
-
-         List<State> getPossibleStates() {
-             List<State> possibleStates=new ArrayList<>();
-             Point north=position.north();
-             Point south=position.south();
-             Point west =position.west();
-             Point east =position.east();
-
 
              //Check north
-            if (!map.containsKey(north))
-            {
+            if (!map.containsKey(north)) {
                 OpComputer c = new OpComputer(computer);
                 c.addInput(1);
                 int output = c.runUntilOutput().intValue();
@@ -79,8 +51,7 @@ public class Day15 {
                 }
             }
             //Check south
-            if (!map.containsKey(position.south()))
-            {
+            if (!map.containsKey(position.south())) {
                 OpComputer c = new OpComputer(computer);
                 c.addInput(2);
                 int output = c.runUntilOutput().intValue();
@@ -90,8 +61,7 @@ public class Day15 {
                 }
             }
             //Check west
-            if (!map.containsKey(position.west()))
-            {
+            if (!map.containsKey(position.west())) {
                 OpComputer c = new OpComputer(computer);
                 c.addInput(3);
                 int output = c.runUntilOutput().intValue();
@@ -114,10 +84,13 @@ public class Day15 {
             return possibleStates;
         }
         void addToMap(Point p, int output) {
-            switch(output) {
-                case 0 : {map.put(p, '#'); break;}
-                case 1 : {map.put(p, '.'); break;}
-                case 2 : {map.put(p, 'o'); stepsToOxygenTank=Math.min(getSteps()+1, stepsToOxygenTank); break;}
+            switch (output) {
+                case 0 -> map.put(p, '#');
+                case 1 -> map.put(p, '.');
+                case 2 -> {
+                    map.put(p, 'o');
+                    stepsToOxygenTank = Math.min(getSteps() + 1, stepsToOxygenTank);
+                }
             }
         }
 
@@ -197,10 +170,11 @@ public class Day15 {
     }
 
     public static void main(String[] args) {
-        Long t0 = System.currentTimeMillis();
-        String input = new FileHelper().readFile("year2019/day15/input.txt").get(0);
+        long t0 = System.currentTimeMillis();
+        var day = MethodHandles.lookup().lookupClass().getSimpleName();
+        var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
-        OpComputer computer = new OpComputer(input);
+        OpComputer computer = new OpComputer(inputs.get(0));
         HashMap<Point, Character> map = new HashMap<>();
         Point position=new Point(0,0);
 
@@ -211,5 +185,5 @@ public class Day15 {
         System.out.println("Day15A: "+stepsToOxygenTank);
         System.out.println("Day15B: "+timeToFillWithOxygen(map));
         System.out.println("Time: "+(System.currentTimeMillis()-t0)+" ms");
-}
+    }
 }
