@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class Day20Test {
 
     @Test
-    void testSSolveA() {
+    void testSolveA() {
         String input = """
                 5-8
                 0-2

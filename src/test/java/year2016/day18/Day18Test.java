@@ -26,7 +26,7 @@ public class Day18Test {
         assertEquals("^^.^^^..^^", Day18.generateMap(".^^.^.^^^^", 10).get(9));
     }
     @Test
-    void generateCountSafeSpacess() {
+    void generateCountSafeSpaces() {
         assertEquals(38, Day18.calculateSafeSpaces(Day18.generateMap(".^^.^.^^^^", 10)));
     }
 }

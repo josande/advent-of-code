@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class Day19Test {
 
     @Test
-    void testSSolveA() {
+    void testSolveA() {
         ArrayList<Integer> values = new ArrayList<>();
         values.add(5);
         assertEquals(3, Day19.solveA(values));
     }
     @Test
-    void testSSolveB() {
+    void testSolveB() {
         ArrayList<Integer> values = new ArrayList<>();
         values.add(5);
         assertEquals(2, Day19.solveB(values));
