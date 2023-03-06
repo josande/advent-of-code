@@ -42,7 +42,6 @@ public class Day25 {
         allItems.add("easter egg");
         allItems.add("manifold");
 
-        long t0 = System.currentTimeMillis();
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
@@ -117,6 +116,5 @@ public class Day25 {
                 }
             }
         }
-        System.out.println("Time: "+(System.currentTimeMillis()-t0)+" ms");
     }
 }

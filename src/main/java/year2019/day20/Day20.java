@@ -120,14 +120,12 @@ public class Day20 {
         throw new RuntimeException("Found no Start!");
     }
     public static void main(String[] args) {
-        long t0=System.currentTimeMillis();
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
         makeMap(inputs);
 
         System.out.println("Day20A "+findShortestRoute(false));
         System.out.println("Day20B "+findShortestRoute(true));
-        System.out.print("Time: "+(System.currentTimeMillis()-t0)+" ms");
     }
 
     static void findAllPortals() {

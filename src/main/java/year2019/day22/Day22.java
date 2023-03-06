@@ -80,7 +80,6 @@ public class Day22 {
         }
     }
     public static void main(String[] args) {
-        long t0=System.currentTimeMillis();
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
@@ -89,7 +88,6 @@ public class Day22 {
         shuffle(inputs);
         System.out.println("Day22A "+ getCardPosition()); //4703
         System.out.println("Day22B "+ seekPosition(BigInteger.valueOf(119315717514047L), BigInteger.valueOf(101741582076661L), 2020, inputs));
-        System.out.println("Time: "+(System.currentTimeMillis()-t0)+" ms");
     }
 
 

@@ -6,16 +6,13 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Day05 {
 
     static String solveA(List<String> values) {
         int counter=0;
-        String password="";
+        StringBuilder password= new StringBuilder();
         for ( var value : values ) {
             while (password.length()<8) {
                 String md5="";
@@ -25,13 +22,13 @@ public class Day05 {
                     e.printStackTrace();
                 }
                 if(md5.startsWith("00000")) {
-                    password+=md5.charAt(5);
+                    password.append(md5.charAt(5));
                 }
                 counter++;
             }
         }
 
-        return password;
+        return password.toString();
     }
     static String asMD5(String data)
             throws NoSuchAlgorithmException {
@@ -55,11 +52,10 @@ public class Day05 {
                     int pos=99;
                     try {
                         pos= Integer.parseInt(""+md5.charAt(5));
-                    } catch (Exception ex) {
+                    } catch (Exception ignored) {
                     }
                     if (pos<8 && password[pos] == '*') {
                         password[pos]=md5.charAt(6);
-                        System.out.println(String.valueOf(password));
                     }
                 }
                 counter++;

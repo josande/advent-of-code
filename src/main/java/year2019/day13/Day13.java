@@ -8,7 +8,6 @@ import java.lang.invoke.MethodHandles;
 public class Day13 {
 
     public static void main(String[] args) {
-        long t0 = System.currentTimeMillis();
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
@@ -56,7 +55,6 @@ public class Day13 {
 
         System.out.println("Day13A: " + blocks);
         System.out.println("Day13B: " + score);
-        System.out.println("Time: "+(System.currentTimeMillis()-t0)+" ms");
 
     }
     private static int calculateMovement(int ballX, int ballY, int padX, int balldx) {

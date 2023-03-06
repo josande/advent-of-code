@@ -144,7 +144,7 @@ public class Day18 {
         for (Map.Entry<Point, Character> e : map.entrySet()) {
             if (e.getValue() == '@') entrances.add(e.getKey());
         }
-        return entrances.toArray(new Point[entrances.size()]);
+        return entrances.toArray(new Point[0]);
     }
 
     static int getAllKeysInCave(HashMap<Point, Character> map, Point point) {
@@ -163,7 +163,7 @@ public class Day18 {
         int fewestSteps=0;
         while (!stack.isEmpty()) {
             State current = stack.pop();
-            if (!haveBeenBetter(current, visitedStates)) {
+            if (haveNotBeenBetter(current, visitedStates)) {
 
                 if (current.getKeys().size() == maxKeysSoFar) {
                     fewestSteps = Math.min(current.getSteps(), fewestSteps);
@@ -180,26 +180,26 @@ public class Day18 {
         }
         return fewestSteps;
     }
-    static boolean haveBeenBetter(State state, HashMap<Point, HashMap<List<Integer>, Integer>> visitedStates) {
+    static boolean haveNotBeenBetter(State state, HashMap<Point, HashMap<List<Integer>, Integer>> visitedStates) {
         if (!visitedStates.containsKey(state.getPosition())) {
             HashMap<List<Integer>, Integer> record = new HashMap<>();
             record.put(state.getKeys(), state.getSteps());
             visitedStates.put(state.getPosition(), record);
-            return false;
+            return true;
         }
         HashMap<List<Integer>, Integer> previousVisitsHere = visitedStates.get(state.getPosition());
         for (Map.Entry<List<Integer>, Integer> e : previousVisitsHere.entrySet()) {
             if (new HashSet<>(e.getKey()).containsAll(state.getKeys()) && e.getValue() <= state.getSteps()) {
-                return true;
+                return false;
             }
             if (new HashSet<>(e.getKey()).containsAll(state.getKeys()) && e.getKey().size() == state.getKeys().size())  {
                 e.setValue(state.getSteps());
-                return false;
+                return true;
             }
         }
 
         previousVisitsHere.put(state.getKeys(), state.getSteps());
-        return false;
+        return true;
     }
 
     static HashMap<Point, Character> simplifyMap(HashMap<Point, Character>  map) {
@@ -223,7 +223,6 @@ public class Day18 {
                     if (blockedSides == 4) {
                         newMap.remove(e.getKey());
                         keepOn=true;
-
                     }
                 }
             }
@@ -274,7 +273,7 @@ public class Day18 {
 
             for (State current : queue ) {
                 toBeRemoved.add(current);
-                if (current.getSteps()<shortestPath && !haveBeenBetter(current, visitedStates)) {
+                if (current.getSteps()<shortestPath && haveNotBeenBetter(current, visitedStates)) {
                     HashMap<List<Integer>, Integer> previousVisitsHere = visitedStates.getOrDefault(current.getPosition(), new HashMap<>());
                     previousVisitsHere.put(current.getKeys(), current.getSteps());
                     visitedStates.put(current.getPosition(), previousVisitsHere);
@@ -299,7 +298,6 @@ public class Day18 {
         return shortestPath;
     }
     public static void main(String[] args) {
-        long t0 = System.currentTimeMillis();
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
@@ -326,6 +324,5 @@ public class Day18 {
 
         System.out.println("Day18A: "+stepsA);  //6162
         System.out.println("Day18B: "+stepsB);  //1556
-        System.out.println("time: "+(System.currentTimeMillis()-t0));
     }
 }

@@ -251,7 +251,6 @@ public class Day24 {
         return bio;
     }
     public static void main(String[] args) {
-        long t0 = System.currentTimeMillis();
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
@@ -273,9 +272,5 @@ public class Day24 {
 
         System.out.println("Day24A: "+bioDiversity);
         System.out.println("Day24B: "+getNumberOfBugs(levelMap));
-        System.out.println("Time: "+(System.currentTimeMillis()-t0)+" ms");
-
-
-
     }
 }

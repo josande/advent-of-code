@@ -1,8 +1,6 @@
 package year2016.day03;
 
 import utils.FileHelper;
-import utils.Point;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,13 +27,12 @@ public class Day03 {
         List<Integer> lengths = new ArrayList<>();
 
         for( var row : values ) {
-            Arrays.stream(row.split(" ")).filter(s->!s.isEmpty()).map(Integer::valueOf).forEach(i -> lengths.add(i));
+            Arrays.stream(row.split(" ")).filter(s->!s.isEmpty()).map(Integer::valueOf).forEach(lengths::add);
         }
 
-        System.out.println(values.size()+ " "+lengths.size());
         int l1,l2,l3;
         for(int i =0; i<lengths.size(); i=i+9) {
-            l1=lengths.get(i+0);
+            l1=lengths.get(i);
             l2=lengths.get(i+3);
             l3=lengths.get(i+6);
             if (l1+l2>l3 && l2+l3>l1 && l3+l1>l2)  valid++;

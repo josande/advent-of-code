@@ -87,7 +87,7 @@ public class Day11 {
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
-        System.out.println("Day08A: "+solveA(inputs.get(0)));
+        System.out.println("Day11A: "+solveA(inputs.get(0)));
 
         paintedAreas=new LinkedList<>();
         whiteAreas=new HashSet<>();
@@ -102,7 +102,7 @@ public class Day11 {
             turn();
             move();
         }
-        System.out.println("Day08B: ");
+        System.out.println("Day11B: ");
         Point.print(whiteAreas);
     }
 }

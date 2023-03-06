@@ -170,7 +170,6 @@ public class Day15 {
     }
 
     public static void main(String[] args) {
-        long t0 = System.currentTimeMillis();
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
@@ -184,6 +183,5 @@ public class Day15 {
 
         System.out.println("Day15A: "+stepsToOxygenTank);
         System.out.println("Day15B: "+timeToFillWithOxygen(map));
-        System.out.println("Time: "+(System.currentTimeMillis()-t0)+" ms");
     }
 }

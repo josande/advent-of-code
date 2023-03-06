@@ -72,7 +72,6 @@ public class Day16 {
         return 0;
     }
     public static void main(String[] args) {
-        long t0=System.currentTimeMillis();
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
         int[] start=splitInput(inputs.get(0),1);
@@ -89,7 +88,6 @@ public class Day16 {
 
         System.out.println("Day16A: "+ansA);
         System.out.println("Day16B: "+ansB);
-        System.out.println("time: "+(System.currentTimeMillis()-t0)+" ms");
 
     }
 }

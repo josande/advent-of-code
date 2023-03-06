@@ -16,7 +16,6 @@ public class Day23 {
 
     static Long ansA=null,ansB=null;
     public static void main(String[] args) {
-        long t0=System.currentTimeMillis();
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
         OpComputer comp=new OpComputer(inputs.get(0));
@@ -42,7 +41,6 @@ public class Day23 {
         }
         System.out.println("Day23A "+ansA);
         System.out.println("Day23B "+ansB);
-        System.out.print("Time: "+(System.currentTimeMillis()-t0)+" ms");
     }
     static int natCounter=0;
     static void handleNatValue() {

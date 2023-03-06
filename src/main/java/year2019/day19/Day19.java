@@ -7,7 +7,6 @@ import java.lang.invoke.MethodHandles;
 
 public class Day19 {
     public static void main(String[] args) {
-        long t0 = System.currentTimeMillis();
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
 
@@ -42,7 +41,6 @@ public class Day19 {
             }
         }
         System.out.println("Day19B: "+ansB); //6671097
-        System.out.println("Time: "+(System.currentTimeMillis()-t0)+" ms");
     }
     static private int getValueAt(int x, int y, OpComputer computer) {
         computer.reset();

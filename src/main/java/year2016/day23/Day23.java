@@ -1,4 +1,4 @@
-package year2016.day12;
+package year2016.day23;
 
 import utils.Assembunny;
 import utils.FileHelper;
@@ -6,42 +6,38 @@ import utils.FileHelper;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
-public class Day12 {
+public class Day23 {
 
-    static long solveA(List<String> values) {
+    static Object solveA(List<String> values) {
         Assembunny assembunny = new Assembunny();
-        for(var val:values) {
-            assembunny.addCommand(val);
-        }
+        for(String val : values) assembunny.addCommand(val);
+        assembunny.setA(7);
         assembunny.run();
         return assembunny.getA();
     }
 
-    static long solveB(List<String> values) {
+    static Object solveB(List<String> values) {
+
         Assembunny assembunny = new Assembunny();
-        for(var val:values) {
-            assembunny.addCommand(val);
-        }
-        assembunny.setC(1);
+        for(String val : values) assembunny.addCommand(val);
+        assembunny.setA(12);
         assembunny.run();
         return assembunny.getA();
     }
 
 
-
-    public static void main (String[] args){
+    public static void main(String[] args){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2016/"+day+".txt");
 
         var t0 = System.currentTimeMillis();
         var ansA = solveA(inputs);
         var t1 = System.currentTimeMillis();
-        var timePart1 = System.currentTimeMillis()-t0;
         var ansB = solveB(inputs);
+        var timePart1 = t1-t0;
         var timePart2 = System.currentTimeMillis()-t1;
 
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // 318077
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // 9227731
+        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // 11200
+        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // 479007760
     }
-
 }
