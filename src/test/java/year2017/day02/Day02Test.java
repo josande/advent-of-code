@@ -12,23 +12,27 @@ public class Day02Test {
     @Test
     void testSolveA() {
         String input = """
-
+                5 1 9  5
+                7 5 3
+                2 4 6 8
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day02().solveA(inputs));
+        assertEquals(18, new Day02().solveA(inputs));
     }
     @Test
     void testSolveB() {
         String input = """
-
+                5 9 2 8
+                9 4 7 3
+                3 8 6 5
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day02().solveB(inputs));
+        assertEquals(9, new Day02().solveB(inputs));
     }
 }
