@@ -1,14 +1,13 @@
-
-package year2018.day15;
+package year2017.day11;
 
 import utils.AdventOfCode;
 import utils.Reporter;
 
 import java.util.List;
 
-public class Day15 implements AdventOfCode {
+public class Day11 implements AdventOfCode {
     public static void main(String[] args){
-        Reporter.report(new Day15());
+        Reporter.report(new Day11());
     }
 
     @Override

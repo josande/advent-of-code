@@ -1,5 +1,5 @@
 
-package year2018.day15;
+package year2017.day15;
 
 import utils.AdventOfCode;
 import utils.Reporter;

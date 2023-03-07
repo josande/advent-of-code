@@ -26,6 +26,7 @@ import year2020.day23.Day23;
 import year2020.day24.Day24;
 import year2020.day25.Day25;
 
+@SuppressWarnings("DuplicatedCode")
 public class AllOf2020 {
     public static void main(String[] args){
         Day01.main(null);

@@ -1,4 +1,4 @@
-package year2023.day12;
+package year2017.day13;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Day122Test {
+public class Day13Test {
 
     @Test
     void testSolveA() {
@@ -19,7 +19,7 @@ public class Day122Test {
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        Assertions.assertEquals("Not yet implemented", new Day12().solveA(inputs));
+        Assertions.assertEquals("Not yet implemented", new Day13().solveA(inputs));
     }
     @Test
     void testSolveB() {
@@ -30,6 +30,6 @@ public class Day122Test {
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day12().solveB(inputs));
+        assertEquals("Not yet implemented", new Day13().solveB(inputs));
     }
 }

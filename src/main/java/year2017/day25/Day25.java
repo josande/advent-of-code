@@ -1,14 +1,14 @@
+package year2017.day25;
 
-package year2018.day15;
 
 import utils.AdventOfCode;
 import utils.Reporter;
 
 import java.util.List;
 
-public class Day15 implements AdventOfCode {
+public class Day25 implements AdventOfCode {
     public static void main(String[] args){
-        Reporter.report(new Day15());
+        Reporter.report(new Day25());
     }
 
     @Override
@@ -18,6 +18,6 @@ public class Day15 implements AdventOfCode {
 
     @Override
     public Object solveB(List<String> input) {
-        return "Not yet implemented";
+        return "Merry X-mas!";
     }
 }
