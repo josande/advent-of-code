@@ -12,11 +12,40 @@ public class Day09 implements AdventOfCode {
 
     @Override
     public Object solveA(List<String> input) {
-        return "Not yet implemented";
+        String row = input.get(0);
+        int score = 0;
+        int level = 0;
+        boolean garbage = false;
+        for(int i=0; i<row.length(); i++) {
+            char c = row.charAt(i);
+            if(c == '!') {i++;continue;}
+            if(c=='>') garbage = false;
+            if(c=='<') garbage = true;
+
+            if(!garbage) {
+                if (c == '{') {
+                    level++;
+                    score += level;
+                } else if (c == '}') level--;
+            }
+        }
+
+        return score;
     }
 
     @Override
     public Object solveB(List<String> input) {
-        return "Not yet implemented";
+        String row = input.get(0);
+        int score = 0;
+        boolean garbage = false;
+        for(int i=0; i<row.length(); i++) {
+            char c = row.charAt(i);
+            if(c == '!') {i++;continue;}
+            if(c=='>') garbage = false;
+            if(garbage) score ++;
+            if(c=='<') garbage = true;
+        }
+
+        return score;
     }
 }
