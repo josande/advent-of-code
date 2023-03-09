@@ -13,23 +13,35 @@ public class Day12Test {
     @Test
     void testSolveA() {
         String input = """
-
+                0 <-> 2
+                1 <-> 1
+                2 <-> 0, 3, 4
+                3 <-> 2, 4
+                4 <-> 2, 3, 6
+                5 <-> 6
+                6 <-> 4, 5
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        Assertions.assertEquals("Not yet implemented", new Day12().solveA(inputs));
+        Assertions.assertEquals(6, new Day12().solveA(inputs));
     }
     @Test
     void testSolveB() {
         String input = """
-
+                0 <-> 2
+                1 <-> 1
+                2 <-> 0, 3, 4
+                3 <-> 2, 4
+                4 <-> 2, 3, 6
+                5 <-> 6
+                6 <-> 4, 5
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day12().solveB(inputs));
+        assertEquals(2, new Day12().solveB(inputs));
     }
 }

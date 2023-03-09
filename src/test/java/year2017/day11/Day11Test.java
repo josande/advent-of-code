@@ -2,34 +2,22 @@ package year2017.day11;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
 
 public class Day11Test {
 
     @Test
     void testSolveA() {
-        String input = """
-
-                """;
-        var inputs = Arrays.stream(input.split("\n"))
-                .filter(s->!s.isEmpty())
-                .map(String::valueOf)
-                .collect(Collectors.toList());
-        Assertions.assertEquals("Not yet implemented", new Day11().solveA(inputs));
+        Assertions.assertEquals(3, new Day11().solveA(List.of("ne,ne,ne")));
+        Assertions.assertEquals(0, new Day11().solveA(List.of("ne,ne,sw,sw")));
+        Assertions.assertEquals(2, new Day11().solveA(List.of("ne,ne,s,s")));
+        Assertions.assertEquals(3, new Day11().solveA(List.of("se,sw,se,sw,sw")));
     }
     @Test
     void testSolveB() {
-        String input = """
-
-                """;
-        var inputs = Arrays.stream(input.split("\n"))
-                .filter(s->!s.isEmpty())
-                .map(String::valueOf)
-                .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day11().solveB(inputs));
+        Assertions.assertEquals(3, new Day11().solveB(List.of("ne,ne,ne")));
+        Assertions.assertEquals(2, new Day11().solveB(List.of("ne,ne,sw,sw")));
+        Assertions.assertEquals(2, new Day11().solveB(List.of("ne,ne,s,s")));
+        Assertions.assertEquals(3, new Day11().solveB(List.of("se,sw,se,sw,sw")));
     }
 }
