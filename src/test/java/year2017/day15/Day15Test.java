@@ -13,23 +13,25 @@ public class Day15Test {
     @Test
     void testSolveA() {
         String input = """
-
+                Generator A starts with 65
+                Generator B starts with 8921
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        Assertions.assertEquals("Not yet implemented", new Day15().solveA(inputs));
+        Assertions.assertEquals(588, new Day15().solveA(inputs));
     }
     @Test
     void testSolveB() {
         String input = """
-
+                Generator A starts with 65
+                Generator B starts with 8921
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day15().solveB(inputs));
+        assertEquals(309, new Day15().solveB(inputs));
     }
 }
