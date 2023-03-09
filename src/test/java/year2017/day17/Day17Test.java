@@ -3,33 +3,17 @@ package year2017.day17;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Day17Test {
 
     @Test
     void testSolveA() {
-        String input = """
-
-                """;
-        var inputs = Arrays.stream(input.split("\n"))
-                .filter(s->!s.isEmpty())
-                .map(String::valueOf)
-                .collect(Collectors.toList());
-        Assertions.assertEquals("Not yet implemented", new Day17().solveA(inputs));
+        Assertions.assertEquals(638, new Day17().solveA(List.of("3")));
     }
     @Test
     void testSolveB() {
-        String input = """
-
-                """;
-        var inputs = Arrays.stream(input.split("\n"))
-                .filter(s->!s.isEmpty())
-                .map(String::valueOf)
-                .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day17().solveB(inputs));
+        Assertions.assertEquals(1222153, new Day17().solveB(List.of("3")));
     }
 }
