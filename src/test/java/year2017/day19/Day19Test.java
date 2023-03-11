@@ -13,23 +13,35 @@ public class Day19Test {
     @Test
     void testSolveA() {
         String input = """
-
+                     |         \s
+                     |  +--+   \s
+                     A  |  C   \s
+                 F---|----E|--+\s
+                     |  |  |  D\s
+                     +B-+  +--+\s
+                                
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        Assertions.assertEquals("Not yet implemented", new Day19().solveA(inputs));
+        Assertions.assertEquals("ABCDEF", new Day19().solveA(inputs));
     }
     @Test
     void testSolveB() {
         String input = """
-
+                     |         \s
+                     |  +--+   \s
+                     A  |  C   \s
+                 F---|----E|--+\s
+                     |  |  |  D\s
+                     +B-+  +--+\s
+                                
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day19().solveB(inputs));
+        assertEquals(38, new Day19().solveB(inputs));
     }
 }

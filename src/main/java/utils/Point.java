@@ -268,4 +268,12 @@ public class Point {
         points.remove(this);
         return points;
     }
+    public Point add(Point other) {
+        return new Point(
+                    getX()+other.getX(),
+                    getY()+other.getY(),
+                    getZ()+other.getZ(),
+                    getW()+other.getW()
+                );
+    }
 }
