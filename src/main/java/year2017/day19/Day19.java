@@ -1,6 +1,7 @@
 package year2017.day19;
 
 import utils.AdventOfCode;
+import utils.Direction;
 import utils.Point;
 import utils.Reporter;
 
@@ -47,31 +48,6 @@ public class Day19 implements AdventOfCode {
         }
     }
 
-    enum Direction {
-        NORTH,
-        EAST,
-        SOUTH,
-        WEST;
-
-        Direction left() {
-            switch (this) {
-                case NORTH -> {return Direction.WEST; }
-                case EAST  -> {return Direction.NORTH; }
-                case SOUTH -> {return Direction.EAST; }
-                case WEST -> {return Direction.SOUTH; }
-                default -> throw new IllegalStateException("Unknown direction");
-            }
-        }
-        Direction right() {
-            switch (this) {
-                case NORTH -> {return Direction.EAST; }
-                case EAST  -> {return Direction.SOUTH; }
-                case SOUTH -> {return Direction.WEST; }
-                case WEST -> {return Direction.NORTH; }
-                default -> throw new IllegalStateException("Unknown direction");
-            }
-        }
-    }
 
     @Override
     public Object solveB(List<String> input) {
