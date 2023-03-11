@@ -244,10 +244,36 @@ public class MapUtil {
         for(Map.Entry<Point, Character> entry : map.entrySet()) {
             rotated.put(new Point(entry.getKey().getY(), maxY-entry.getKey().getX()), entry.getValue());
         }
-        // (00,00) <- (10,00)
-        // (00,10) <- (00,00)
-        // (10,0)  <- (10,10)
-        // (10,10) <- (00,10)
+        // (00,00) -> (10,00)
+        // (00,10) -> (00,00)
+        // (10,0)  -> (10,10)
+        // (10,10) -> (00,10)
         return rotated;
+    }
+    public static HashMap<Point, Character> flipHorizontal(HashMap<Point, Character> map) {
+        int maxX = getMaxX(map);
+
+        HashMap<Point, Character> flipped = new HashMap<>();
+        for(Map.Entry<Point, Character> entry : map.entrySet()) {
+            flipped.put(new Point(maxX-entry.getKey().getX(), entry.getKey().getY()), entry.getValue());
+        }
+        // (00,00) -> (00,00)
+        // (00,10) -> (01,00)
+        // (10,00) -> (00,10)
+        // (10,10) -> (10,10)
+        return flipped;
+    }
+    public static HashMap<Point, Character> flipVertical(HashMap<Point, Character> map) {
+        int maxY = getMaxY(map);
+
+        HashMap<Point, Character> flipped = new HashMap<>();
+        for(Map.Entry<Point, Character> entry : map.entrySet()) {
+            flipped.put(new Point(entry.getKey().getX(), maxY-entry.getKey().getY()), entry.getValue());
+        }
+        // (00,00) -> (10,10)
+        // (00,10) -> (10,00)
+        // (10,00) -> (00,10)
+        // (10,10) -> (00,00)
+        return flipped;
     }
 }
