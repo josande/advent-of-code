@@ -276,4 +276,13 @@ public class Point {
                     getW()+other.getW()
                 );
     }
+    public Point getNext(Direction direction) {
+        switch (direction) {
+            case NORTH -> {return north(); }
+            case EAST  -> {return east(); }
+            case SOUTH -> {return south(); }
+            case WEST -> {return west(); }
+            default -> throw new IllegalStateException("Unknown direction "+direction);
+        }
+    }
 }
