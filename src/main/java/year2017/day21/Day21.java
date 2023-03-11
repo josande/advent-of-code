@@ -5,6 +5,7 @@ import utils.MapUtil;
 import utils.Point;
 import utils.Reporter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Day21 implements AdventOfCode {
 
     @Override
     public Object solveA(List<String> input) {
-        HashMap<String, String> instructions = new HashMap<>();
+        HashMap<String, List<String>> instructions = new HashMap<>();
         for(String row : input) {
             String from = row.split(" => ")[0];
             String to = row.split(" => ")[1];
@@ -23,51 +24,42 @@ public class Day21 implements AdventOfCode {
             HashMap<Point, Character> fromMap = asMap(from);
             HashMap<Point, Character> toMap   = asMap(to);
 
-            instructions.put(asRow(fromMap), asRow(toMap));
+            instructions.put(asRow(fromMap), asRows(toMap));
 
             for(int i=0; i<4; i++) {
                 fromMap = MapUtil.rotateClockWise(fromMap);
-                instructions.put(asRow(fromMap), asRow(toMap));
+                instructions.put(asRow(fromMap), asRows(toMap));
             }
             fromMap = MapUtil.flipHorizontal(fromMap);
-            instructions.put(asRow(fromMap), asRow(toMap));
+            instructions.put(asRow(fromMap), asRows(toMap));
 
             for(int i=0; i<4; i++) {
                 fromMap = MapUtil.rotateClockWise(fromMap);
-                instructions.put(asRow(fromMap), asRow(toMap));
+                instructions.put(asRow(fromMap), asRows(toMap));
             }
         }
 
-        HashMap<Point, Character> map = asMap(".#./..#/###");
+        ArrayList<String> map = new ArrayList<>(List.of(".#.", "..#", "###"));
 
         int numberOfIterations = input.size()==2? 2 : 5;
         for(int iterations=0; iterations<numberOfIterations; iterations++) {
-            int maxX= MapUtil.getMaxX(map);
-            HashMap<Point, Character> mapAfter = new HashMap<>();
-            if (maxX % 2 == 1) {
+            int size = map.size();
+            ArrayList<String> mapAfter = new ArrayList<>();
+            if (size % 2 == 0) {
                 //split into 2*2
-                for (int y = 0; y <= maxX - 1; y += 2) {
-                    for (int x = 0; x <= maxX - 1; x += 2) {
-                        String row = "" + map.get(new Point(x, y)) + map.get(new Point(x + 1, y)) + "/" +
-                                map.get(new Point(x, y + 1)) + map.get(new Point(x + 1, y + 1));
-                        mapAfter.putAll(asMap(instructions.get(row), x/2*3, y/2*3));
-                    }
+                for (int y = 0; y <= size - 1; y += 2) {
+                    mapAfter.addAll(expand(map.get(y), map.get(y+1), instructions));
                 }
             } else {
                 //split into 3*3
-                for (int y = 0; y <= maxX - 2; y += 3) {
-                    for (int x = 0; x <= maxX - 2; x += 3) {
-                        String row = "" + map.get(new Point(x, y)) + map.get(new Point(x + 1, y)) + map.get(new Point(x + 2, y)) + "/" +
-                                map.get(new Point(x, y + 1)) + map.get(new Point(x + 1, y + 1)) + map.get(new Point(x + 2, y + 1)) + "/" +
-                                map.get(new Point(x, y + 2)) + map.get(new Point(x + 1, y + 2)) + map.get(new Point(x + 2, y + 2));
-                        mapAfter.putAll(asMap(instructions.get(row), x/3*4, y/3*4));
-                    }
+                for (int y = 0; y <= size - 2; y += 3) {
+                    mapAfter.addAll(expand(map.get(y), map.get(y+1), map.get(y+2), instructions));
                 }
             }
             map = mapAfter;
         }
 
-        return map.values().stream().filter(c->c=='#').count();
+        return map.stream().flatMap(a -> a.chars().mapToObj(c -> (char) c)).filter(c->c=='#').count();
     }
     private String asRow (HashMap<Point, Character> map) {
         StringBuilder row= new StringBuilder();
@@ -79,26 +71,43 @@ public class Day21 implements AdventOfCode {
         }
         return row.substring(0, row.length()-1);
     }
-    private HashMap<Point, Character> asMap (String row) {
-        return asMap(row, 0, 0);
+    private List<String> asRows (HashMap<Point, Character> map) {
+        List<String> rows = new ArrayList<>();
+        for(int y=0; y<=MapUtil.getMaxY(map); y++) {
+            StringBuilder row= new StringBuilder();
+            for(int x=0; x<=MapUtil.getMaxY(map); x++) {
+                row.append(map.get(new Point(x, y)));
+            }
+            rows.add(row.toString());
+        }
+        return rows;
     }
-    private HashMap<Point, Character> asMap (String row, int xOffset, int yOffset) {
+
+    private HashMap<Point, Character> asMap (String row) {
         HashMap<Point, Character> map = new HashMap<>();
 
-        int y=yOffset, x=xOffset;
+        int y=0, x=0;
 
         for(char c : row.toCharArray())  {
-            if(c == '/') {y++; x=xOffset;}
+            if(c == '/') {y++; x=0;}
             else { map.put(new Point(x,y), c); x++;}
         }
 
         return map;
     }
+    private List<String> asMap (String rowA, String rowB, HashMap<String, List<String>> instructions) {
+
+        return instructions.get(rowA+"/"+rowB);
+    }
+    private List<String> asMap (String rowA, String rowB, String rowC, HashMap<String, List<String>> instructions) {
+
+        return instructions.get(rowA+"/"+rowB+"/"+rowC);
+    }
 
 
     @Override
     public Object solveB(List<String> input) {
-        HashMap<String, String> instructions = new HashMap<>();
+        HashMap<String, List<String>> instructions = new HashMap<>();
         for(String row : input) {
             String from = row.split(" => ")[0];
             String to = row.split(" => ")[1];
@@ -106,50 +115,66 @@ public class Day21 implements AdventOfCode {
             HashMap<Point, Character> fromMap = asMap(from);
             HashMap<Point, Character> toMap   = asMap(to);
 
-            instructions.put(asRow(fromMap), asRow(toMap));
+            instructions.put(asRow(fromMap), asRows(toMap));
 
             for(int i=0; i<4; i++) {
                 fromMap = MapUtil.rotateClockWise(fromMap);
-                instructions.put(asRow(fromMap), asRow(toMap));
+                instructions.put(asRow(fromMap), asRows(toMap));
             }
             fromMap = MapUtil.flipHorizontal(fromMap);
-            instructions.put(asRow(fromMap), asRow(toMap));
+            instructions.put(asRow(fromMap), asRows(toMap));
 
             for(int i=0; i<4; i++) {
                 fromMap = MapUtil.rotateClockWise(fromMap);
-                instructions.put(asRow(fromMap), asRow(toMap));
+                instructions.put(asRow(fromMap), asRows(toMap));
             }
         }
 
-        HashMap<Point, Character> map = asMap(".#./..#/###");
+        ArrayList<String> map = new ArrayList<>(List.of(".#.", "..#", "###"));
 
         int numberOfIterations = 18;
         for(int iteration=0; iteration<numberOfIterations; iteration++) {
-            int maxX= MapUtil.getMaxX(map);
-            HashMap<Point, Character> mapAfter = new HashMap<>();
-            if (maxX % 2 == 1) {
+            int size = map.size();
+            ArrayList<String> mapAfter = new ArrayList<>();
+            if (size % 2 == 0) {
                 //split into 2*2
-                for (int y = 0; y <= maxX - 1; y += 2) {
-                    for (int x = 0; x <= maxX - 1; x += 2) {
-                        String row = "" + map.get(new Point(x, y)) + map.get(new Point(x + 1, y)) + "/" +
-                                map.get(new Point(x, y + 1)) + map.get(new Point(x + 1, y + 1));
-                        mapAfter.putAll(asMap(instructions.get(row), x/2*3, y/2*3));
-                    }
+                for (int y = 0; y <= size - 1; y += 2) {
+                    mapAfter.addAll(expand(map.get(y), map.get(y+1), instructions));
                 }
             } else {
                 //split into 3*3
-                for (int y = 0; y <= maxX - 2; y += 3) {
-                    for (int x = 0; x <= maxX - 2; x += 3) {
-                        String row = "" + map.get(new Point(x, y)) + map.get(new Point(x + 1, y)) + map.get(new Point(x + 2, y)) + "/" +
-                                map.get(new Point(x, y + 1)) + map.get(new Point(x + 1, y + 1)) + map.get(new Point(x + 2, y + 1)) + "/" +
-                                map.get(new Point(x, y + 2)) + map.get(new Point(x + 1, y + 2)) + map.get(new Point(x + 2, y + 2));
-                        mapAfter.putAll(asMap(instructions.get(row), x/3*4, y/3*4));
-                    }
+                for (int y = 0; y <= size - 2; y += 3) {
+                    mapAfter.addAll(expand(map.get(y), map.get(y+1), map.get(y+2), instructions));
                 }
             }
             map = mapAfter;
         }
-
-        return map.values().stream().filter(c->c=='#').count();
+        return map.stream().flatMap(a -> a.chars().mapToObj(c -> (char) c)).filter(c->c=='#').count();
+    }
+    List<String> expand(String a, String b, HashMap<String, List<String>> instructions) {
+        StringBuilder sbA = new StringBuilder();
+        StringBuilder sbB = new StringBuilder();
+        StringBuilder sbC = new StringBuilder();
+        for(int i=0; i<a.length(); i+=2)  {
+            List<String> results = asMap(a.substring(i,i+2), b.substring(i,i+2), instructions);
+            sbA.append(results.get(0));
+            sbB.append(results.get(1));
+            sbC.append(results.get(2));
+        }
+        return List.of(sbA.toString(), sbB.toString(), sbC.toString());
+    }
+    List<String> expand(String a, String b, String c, HashMap<String, List<String>> instructions) {
+        StringBuilder sbA = new StringBuilder();
+        StringBuilder sbB = new StringBuilder();
+        StringBuilder sbC = new StringBuilder();
+        StringBuilder sbD = new StringBuilder();
+        for(int i=0; i<a.length(); i+=3)  {
+            List<String> results = asMap(a.substring(i,i+3), b.substring(i,i+3), c.substring(i,i+3), instructions);
+            sbA.append(results.get(0));
+            sbB.append(results.get(1));
+            sbC.append(results.get(2));
+            sbD.append(results.get(3));
+        }
+        return List.of(sbA.toString(), sbB.toString(), sbC.toString(), sbD.toString());
     }
 }
