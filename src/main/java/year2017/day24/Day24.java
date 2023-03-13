@@ -5,10 +5,7 @@ import lombok.Data;
 import utils.AdventOfCode;
 import utils.Reporter;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class Day24 implements AdventOfCode {
     public static void main(String[] args){
@@ -27,8 +24,8 @@ public class Day24 implements AdventOfCode {
     @Data
     @AllArgsConstructor
     private static class State {
-        private List<Pipe> usedPipes;
-        private List<Pipe> allPipes;
+        private HashSet<Pipe> usedPipes;
+        private HashSet<Pipe> allPipes;
 
         int currentOut;
 
@@ -41,10 +38,10 @@ public class Day24 implements AdventOfCode {
         }
 
         State (State before, Pipe pipe) {
-            this.usedPipes=new ArrayList<>(before.getUsedPipes());
+            this.usedPipes=new HashSet<>(before.getUsedPipes());
             this.usedPipes.add(pipe);
             this.allPipes=before.getAllPipes();
-            this.currentOut = before.getCurrentOut() == pipe.getA() ? pipe.getB() : pipe.getA();
+            this.currentOut=before.getCurrentOut() == pipe.getA() ? pipe.getB() : pipe.getA();
         }
 
         List<State> getPossibleStates() {
@@ -52,7 +49,7 @@ public class Day24 implements AdventOfCode {
             remainingPipes.removeAll(usedPipes);
             List<State> possibleStates = new ArrayList<>();
 
-            for(Pipe  p : remainingPipes) {
+            for(Pipe p : remainingPipes) {
                 if(p.getA() == currentOut || p.getB() == currentOut) {
                     possibleStates.add(new State(this, p));
                 }
@@ -62,20 +59,22 @@ public class Day24 implements AdventOfCode {
     }
     @Override
     public Object solveA(List<String> input) {
-        List<Pipe> pipes = new ArrayList<>();
+        HashSet<Pipe> pipes = new HashSet<>();
         for(String row : input) {
             int a = Integer.parseInt(row.split("/")[0]);
             int b = Integer.parseInt(row.split("/")[1]);
             pipes.add(new Pipe(a,b));
         }
 
-        State start = new State(new ArrayList<>(), pipes, 0);
-        LinkedList<State> queue = new LinkedList<>();
+        State start = new State(new HashSet<>(), pipes, 0);
+
+        Queue<State> queue = new ArrayDeque<>();
+
         queue.add(start);
 
-        int maxScore =0;
+        int maxScore=0;
         while (!queue.isEmpty()) {
-            State current = queue.poll();
+            State current = queue.remove();
             List<State> children = current.getPossibleStates();
 
             if(children.isEmpty()) {
@@ -90,15 +89,15 @@ public class Day24 implements AdventOfCode {
 
     @Override
     public Object solveB(List<String> input) {
-        List<Pipe> pipes = new ArrayList<>();
+        HashSet<Pipe> pipes = new HashSet<>();
         for(String row : input) {
             int a = Integer.parseInt(row.split("/")[0]);
             int b = Integer.parseInt(row.split("/")[1]);
             pipes.add(new Pipe(a,b));
         }
 
-        State start = new State(new ArrayList<>(), pipes, 0);
-        Queue<State> queue = new LinkedList<>();
+        State start = new State(new HashSet<>(), pipes, 0);
+        Queue<State> queue = new ArrayDeque<>();
         queue.add(start);
         int maxLength =0;
         int maxScore =0;
@@ -117,7 +116,6 @@ public class Day24 implements AdventOfCode {
                 queue.addAll(children);
             }
         }
-
         return maxScore;
     }
 }
