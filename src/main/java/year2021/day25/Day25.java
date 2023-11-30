@@ -21,22 +21,17 @@ public class Day25 {
                 map.put(new Point(x,y), values.get(y).charAt(x));
             }
         }
-        Point.print(map);
 
-        int steps=0;
+        int steps=1;
         HashMap<Point, Character> nextMap = iterate(map,maxY,maxX);
 
         while (!map.equals(nextMap)) {
             steps++;
             map=nextMap;
             nextMap=iterate(map, maxY, maxX);
-         //   System.out.println("\nAfter "+steps+" steps\n");
-         //   Point.print(map);
-         //   System.out.println("");
         }
 
-
-        return steps+1;
+        return steps;
     }
 
     private static HashMap<Point, Character> iterate(HashMap<Point, Character> map, int maxY, int maxX) {
@@ -47,22 +42,20 @@ public class Day25 {
         }
 
         for (Map.Entry<Point, Character> e : map.entrySet()) {
-            switch (e.getValue()) {
-                case '>' -> {
-                    Point target = e.getKey().east();
-                    target.setX(target.getX()%(maxX+1));
-                    if(map.get(target) == '.') nextMap.put(target, '>'); else nextMap.put(e.getKey(), '>');
-                }
-
+            if (e.getValue() == '>')  {
+                Point target = e.getKey().east();
+                target.setX(target.getX()%(maxX+1));
+                if (map.get(target) == '.') nextMap.put(target, '>');
+                else nextMap.put(e.getKey(), '>');
             }
         }
 
         for (Map.Entry<Point, Character> e : map.entrySet()) {
-            switch (e.getValue()) {
-                case 'v' -> {
-                    Point target = e.getKey().south();
-                    target.setY(target.getY()%(maxY+1));
-                    if((nextMap.get(target) == '.') && !(map.get(target) == 'v')) nextMap.put(target, 'v'); else nextMap.put(e.getKey(), 'v');}
+            if (e.getValue() == 'v')  {
+                Point target = e.getKey().south();
+                target.setY(target.getY()%(maxY+1));
+                if ((nextMap.get(target) == '.') && !(map.get(target) == 'v')) nextMap.put(target, 'v');
+                else nextMap.put(e.getKey(), 'v');
             }
         }
 
@@ -73,13 +66,12 @@ public class Day25 {
     public static void main(String[] args){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2021/"+day+".txt");
-//        var inputs = new FileHelper().readFileAsIntegers("2021/"+day+".txt");
 
         var t0 = System.currentTimeMillis();
         var ansA = solveA(inputs);
         var t1 = System.currentTimeMillis();
         var timePart1 = t1-t0;
 
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //
+        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // 374
     }
 }
