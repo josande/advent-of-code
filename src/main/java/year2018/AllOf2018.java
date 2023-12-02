@@ -1,6 +1,7 @@
 
 package year2018;
 
+import org.apache.commons.lang3.StringUtils;
 import year2018.day01.Day01;
 import year2018.day02.Day02;
 import year2018.day03.Day03;
@@ -27,9 +28,12 @@ import year2018.day23.Day23;
 import year2018.day24.Day24;
 import year2018.day25.Day25;
 
+import java.lang.invoke.MethodHandles;
+
 @SuppressWarnings("DuplicatedCode")
 public class AllOf2018 {
     public static void main(String[] args){
+        long t0=System.currentTimeMillis();
         Day01.main(null);
         Day02.main(null);
         Day03.main(null);
@@ -55,5 +59,9 @@ public class AllOf2018 {
         Day23.main(null);
         Day24.main(null);
         Day25.main(null);
+        long t1=System.currentTimeMillis();
+        var year = MethodHandles.lookup().lookupClass().getPackageName().substring(4,8);
+        String totalTime = StringUtils.leftPad(""+(t1-t0), 5, '0');
+        System.out.println(year+":Total:  ("+totalTime+ " ms)");
     }
 }
