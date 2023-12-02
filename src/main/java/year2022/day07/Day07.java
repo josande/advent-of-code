@@ -143,8 +143,6 @@ public class Day07 {
         long freeSpace=totalSize-usedSpace;
 
         long missingSpace= neededSpace-freeSpace;
-        System.out.println("usedSpace: "+usedSpace);
-        System.out.println("needed: "+missingSpace);
 
         long smallestOK=Long.MAX_VALUE;
         for(Folder folder : allFolders) {
