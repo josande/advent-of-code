@@ -13,23 +13,41 @@ public class Day03Test {
     @Test
     void testSolveA() {
         String input = """
-
+                467..114..
+                ...*......
+                ..35..633.
+                ......#...
+                617*......
+                .....+.58.
+                ..592.....
+                ......755.
+                ...$.*....
+                .664.598..
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        Assertions.assertEquals("Not yet implemented", new Day03().solveA(inputs));
+        Assertions.assertEquals(4361, new Day03().solveA(inputs));
     }
     @Test
     void testSolveB() {
         String input = """
-
+                467..114..
+                ...*......
+                ..35..633.
+                ......#...
+                617*......
+                .....+.58.
+                ..592.....
+                ......755.
+                ...$.*....
+                .664.598..
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day03().solveB(inputs));
+        assertEquals(467835L, new Day03().solveB(inputs));
     }
 }
