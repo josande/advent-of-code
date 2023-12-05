@@ -11,7 +11,6 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Day23 {
-    static int id=0;
     @Data
     @EqualsAndHashCode
     static class Elf {
@@ -38,52 +37,52 @@ public class Day23 {
             } else {
                 switch (lookOrder) {
                     case 0 -> {
-                        if (!elves.contains(position.north().west()) && !elves.contains(position.north()) && !elves.contains(position.north().east())) {
+                        if (!elves.contains(position.northWest()) && !elves.contains(position.north()) && !elves.contains(position.northEast())) {
                             wantedTarget = position.north();
-                        } else if (!elves.contains(position.south().west()) && !elves.contains(position.south()) && !elves.contains(position.south().east())) {
+                        } else if (!elves.contains(position.southWest()) && !elves.contains(position.south()) && !elves.contains(position.southEast())) {
                             wantedTarget = position.south();
-                        } else if (!elves.contains(position.west().north()) && !elves.contains(position.west()) && !elves.contains(position.west().south())) {
+                        } else if (!elves.contains(position.northWest()) && !elves.contains(position.west()) && !elves.contains(position.southWest())) {
                             wantedTarget = position.west();
-                        } else if (!elves.contains(position.east().north()) && !elves.contains(position.east()) && !elves.contains(position.east().south())) {
+                        } else if (!elves.contains(position.northEast()) && !elves.contains(position.east()) && !elves.contains(position.southEast())) {
                             wantedTarget = position.east();
                         } else {
                             wantedTarget = position;
                         }
                     }
                     case 1 -> {
-                        if (!elves.contains(position.south().west()) && !elves.contains(position.south()) && !elves.contains(position.south().east())) {
+                        if (!elves.contains(position.southWest()) && !elves.contains(position.south()) && !elves.contains(position.southEast())) {
                             wantedTarget = position.south();
-                        } else if (!elves.contains(position.west().north()) && !elves.contains(position.west()) && !elves.contains(position.west().south())) {
+                        } else if (!elves.contains(position.northWest()) && !elves.contains(position.west()) && !elves.contains(position.southWest())) {
                             wantedTarget = position.west();
-                        } else if (!elves.contains(position.east().north()) && !elves.contains(position.east()) && !elves.contains(position.east().south())) {
+                        } else if (!elves.contains(position.northEast()) && !elves.contains(position.east()) && !elves.contains(position.southEast())) {
                             wantedTarget = position.east();
-                        } else if (!elves.contains(position.north().west()) && !elves.contains(position.north()) && !elves.contains(position.north().east())) {
+                        } else if (!elves.contains(position.northWest()) && !elves.contains(position.north()) && !elves.contains(position.northEast())) {
                             wantedTarget = position.north();
                         } else {
                             wantedTarget = position;
                         }
                     }
                     case 2 -> {
-                        if (!elves.contains(position.west().north()) && !elves.contains(position.west()) && !elves.contains(position.west().south())) {
+                        if (!elves.contains(position.northWest()) && !elves.contains(position.west()) && !elves.contains(position.southWest())) {
                             wantedTarget = position.west();
-                        } else if (!elves.contains(position.east().north()) && !elves.contains(position.east()) && !elves.contains(position.east().south())) {
+                        } else if (!elves.contains(position.northEast()) && !elves.contains(position.east()) && !elves.contains(position.southEast())) {
                             wantedTarget = position.east();
-                        } else if (!elves.contains(position.north().west()) && !elves.contains(position.north()) && !elves.contains(position.north().east())) {
+                        } else if (!elves.contains(position.northWest()) && !elves.contains(position.north()) && !elves.contains(position.northEast())) {
                             wantedTarget = position.north();
-                        } else if (!elves.contains(position.south().west()) && !elves.contains(position.south()) && !elves.contains(position.south().east())) {
+                        } else if (!elves.contains(position.southWest()) && !elves.contains(position.south()) && !elves.contains(position.southEast())) {
                             wantedTarget = position.south();
                         } else {
                             wantedTarget = position;
                         }
                     }
                     case 3 -> {
-                        if (!elves.contains(position.east().north()) && !elves.contains(position.east()) && !elves.contains(position.east().south())) {
+                        if (!elves.contains(position.northEast()) && !elves.contains(position.east()) && !elves.contains(position.southEast())) {
                             wantedTarget = position.east();
-                        } else if (!elves.contains(position.north().west()) && !elves.contains(position.north()) && !elves.contains(position.north().east())) {
+                        } else if (!elves.contains(position.northWest()) && !elves.contains(position.north()) && !elves.contains(position.northEast())) {
                             wantedTarget = position.north();
-                        } else if (!elves.contains(position.south().west()) && !elves.contains(position.south()) && !elves.contains(position.south().east())) {
+                        } else if (!elves.contains(position.southWest()) && !elves.contains(position.south()) && !elves.contains(position.southEast())) {
                             wantedTarget = position.south();
-                        } else if (!elves.contains(position.west().north()) && !elves.contains(position.west()) && !elves.contains(position.west().south())) {
+                        } else if (!elves.contains(position.northWest()) && !elves.contains(position.west()) && !elves.contains(position.southWest())) {
                             wantedTarget = position.west();
                         } else {
                             wantedTarget = position;

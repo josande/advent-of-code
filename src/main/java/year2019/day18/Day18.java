@@ -240,10 +240,10 @@ public class Day18 {
         map.put(originalEntrance.west(),'#');
         map.put(originalEntrance.east(),'#');
 
-        map.put(originalEntrance.north().east(),'@');
-        map.put(originalEntrance.north().west(),'@');
-        map.put(originalEntrance.south().east(),'@');
-        map.put(originalEntrance.south().west(),'@');
+        map.put(originalEntrance.northEast(),'@');
+        map.put(originalEntrance.northWest(),'@');
+        map.put(originalEntrance.southEast(),'@');
+        map.put(originalEntrance.southWest(),'@');
     }
 
 

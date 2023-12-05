@@ -41,10 +41,10 @@ public class Day14 {
             }
             if (!map.containsKey(sand.south())) {
                 sand = sand.south();
-            } else if(!map.containsKey(sand.south().west())) {
-                sand = sand.south().west();
-            } else if(!map.containsKey(sand.south().east())) {
-                sand = sand.south().east();
+            } else if(!map.containsKey(sand.southWest())) {
+                sand = sand.southWest();
+            } else if(!map.containsKey(sand.southEast())) {
+                sand = sand.southEast();
             } else {
                 map.put(sand, 'o');
                 sand = new Point(500,0);

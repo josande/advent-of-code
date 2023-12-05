@@ -28,10 +28,10 @@ public class Day03 implements AdventOfCode {
                         (map.containsKey(p.east())  && isSymbol(map.get(p.east())))  ||
                         (map.containsKey(p.south()) && isSymbol(map.get(p.south()))) ||
                         (map.containsKey(p.west())  && isSymbol(map.get(p.west())))  ||
-                        (map.containsKey(p.north().west()) && isSymbol(map.get(p.north().west()))) ||
-                        (map.containsKey(p.north().east()) && isSymbol(map.get(p.north().east()))) ||
-                        (map.containsKey(p.south().west()) && isSymbol(map.get(p.south().west()))) ||
-                        (map.containsKey(p.south().east()) && isSymbol(map.get(p.south().east())))) {
+                        (map.containsKey(p.northWest()) && isSymbol(map.get(p.northWest()))) ||
+                        (map.containsKey(p.northEast()) && isSymbol(map.get(p.northEast()))) ||
+                        (map.containsKey(p.southWest()) && isSymbol(map.get(p.southWest()))) ||
+                        (map.containsKey(p.southEast()) && isSymbol(map.get(p.southEast())))) {
                         partNumber=true;
                     }
                     counter*=10;
@@ -71,12 +71,12 @@ public class Day03 implements AdventOfCode {
                     if (map.containsKey(p.south()) && isDigit(map.get(p.south()))) s = true;
                     if (map.containsKey(p.west())  && isDigit(map.get(p.west())))  w = true;
                     if (!n) {
-                        if (map.containsKey(p.north().west()) && isDigit(map.get(p.north().west()))) nw = true;
-                        if (map.containsKey(p.north().east()) && isDigit(map.get(p.north().east()))) ne = true;
+                        if (map.containsKey(p.northWest()) && isDigit(map.get(p.northWest()))) nw = true;
+                        if (map.containsKey(p.northEast()) && isDigit(map.get(p.northEast()))) ne = true;
                     }
                     if (!s) {
-                        if (map.containsKey(p.south().west()) && isDigit(map.get(p.south().west()))) sw = true;
-                        if (map.containsKey(p.south().east()) && isDigit(map.get(p.south().east()))) se = true;
+                        if (map.containsKey(p.southWest()) && isDigit(map.get(p.southWest()))) sw = true;
+                        if (map.containsKey(p.southEast()) && isDigit(map.get(p.southEast()))) se = true;
                     }
                     if (Stream.of(n, s, w, e, ne, nw, se, sw).filter(b -> b).count() == 2) {
                         int product = 1;
@@ -84,10 +84,10 @@ public class Day03 implements AdventOfCode {
                         if (e)  product *= expandToNumber(p.east(),  map);
                         if (w)  product *= expandToNumber(p.west(),  map);
                         if (s)  product *= expandToNumber(p.south(), map);
-                        if (nw) product *= expandToNumber(p.north().west(), map);
-                        if (ne) product *= expandToNumber(p.north().east(), map);
-                        if (sw) product *= expandToNumber(p.south().west(), map);
-                        if (se) product *= expandToNumber(p.south().east(), map);
+                        if (nw) product *= expandToNumber(p.northWest(), map);
+                        if (ne) product *= expandToNumber(p.northEast(), map);
+                        if (sw) product *= expandToNumber(p.southWest(), map);
+                        if (se) product *= expandToNumber(p.southEast(), map);
                         result += product;
                     }
                 }
@@ -100,12 +100,12 @@ public class Day03 implements AdventOfCode {
         Point w = p.west();
         while(map.containsKey(w) && isDigit(map.get(w))) {
             result.insert(0, map.get(w));
-            w=w.west();
+            w = w.west();
         }
         Point e = p.east();
         while(map.containsKey(e) && isDigit(map.get(e))) {
             result.append(map.get(e));
-            e=e.east();
+            e = e.east();
         }
         return Integer.parseInt(result.toString());
     }

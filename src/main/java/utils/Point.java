@@ -106,6 +106,18 @@ public class Point {
     public Point west() {
         return new Point(x-1,y,z);
     }
+    public Point northWest() {
+        return new Point(x-1,y-1,z);
+    }
+    public Point northEast() {
+        return new Point(x+1,y-1,z);
+    }
+    public Point southWest() {
+        return new Point(x-1,y+1,z);
+    }
+    public Point southEast() {
+        return new Point(x+1,y+1,z);
+    }
     public Point up() {
         return new Point(x,y,z+1);
     }
