@@ -7,6 +7,26 @@
       <option name="url" value="https://repo.maven.apache.org/maven2" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="java-shared" />
+      <option name="name" value="Release repository for this project" />
+      <option name="url" value="https://p-nexus-repo.development.nl.eu.abnamro.com:8443/nexus/content/repositories/java-shared" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="central" />
+      <option name="url" value="https://p-nexus-repo.development.nl.eu.abnamro.com:8443/nexus/content/groups/java-group/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="java-releases" />
+      <option name="name" value="Release repository for this project" />
+      <option name="url" value="https://p-nexus-repo.development.nl.eu.abnamro.com:8443/nexus/content/repositories/java-releases" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="java-snapshots" />
+      <option name="name" value="Release repository for this project" />
+      <option name="url" value="https://p-nexus-repo.development.nl.eu.abnamro.com:8443/nexus/content/repositories/java-snapshots" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Maven Central repository" />
       <option name="url" value="https://repo1.maven.org/maven2" />
@@ -15,6 +35,11 @@
       <option name="id" value="jboss.community" />
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="java-group" />
+      <option name="name" value="java-group" />
+      <option name="url" value="https://p-nexus-repo.development.nl.eu.abnamro.com:8443/nexus/content/groups/java-group/" />
     </remote-repository>
   </component>
 </project>
