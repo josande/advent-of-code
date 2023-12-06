@@ -20,7 +20,7 @@ public class Day06Test {
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        Assertions.assertEquals(288, new Day06().solveA(inputs));
+        Assertions.assertEquals(288L, new Day06().solveA(inputs));
     }
     @Test
     void testSolveB() {
