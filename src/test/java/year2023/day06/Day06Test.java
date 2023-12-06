@@ -13,23 +13,25 @@ public class Day06Test {
     @Test
     void testSolveA() {
         String input = """
-
+                Time:      7  15   30
+                Distance:  9  40  200
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        Assertions.assertEquals("Not yet implemented", new Day06().solveA(inputs));
+        Assertions.assertEquals(288, new Day06().solveA(inputs));
     }
     @Test
     void testSolveB() {
         String input = """
-
+                Time:      7  15   30
+                Distance:  9  40  200
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day06().solveB(inputs));
+        assertEquals(71503L, new Day06().solveB(inputs));
     }
 }
