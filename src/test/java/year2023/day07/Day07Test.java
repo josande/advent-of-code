@@ -13,23 +13,31 @@ public class Day07Test {
     @Test
     void testSolveA() {
         String input = """
-
+                32T3K 765
+                T55J5 684
+                KK677 28
+                KTJJT 220
+                QQQJA 483
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        Assertions.assertEquals("Not yet implemented", new Day07().solveA(inputs));
+        Assertions.assertEquals(6440L, new Day07().solveA(inputs));
     }
     @Test
     void testSolveB() {
         String input = """
-
+                KTJJT 220
+                32T3K 765
+                T55J5 684
+                KK677 28
+                QQQJA 483
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day07().solveB(inputs));
+        assertEquals(5905L, new Day07().solveB(inputs));
     }
 }
