@@ -276,4 +276,14 @@ public class MapUtil {
         // (10,10) -> (00,00)
         return flipped;
     }
+
+    public static HashMap<Point, Character> getNewMap(int maxX, int maxY, Character defaultChar) {
+        HashMap<Point, Character> newMap = new HashMap<>();
+        for(int y=0; y<=maxY; y++) {
+            for(int x=0; x<=maxX; x++) {
+                newMap.put(new Point(x,y), defaultChar);
+            }
+        }
+        return newMap;
+    }
 }
