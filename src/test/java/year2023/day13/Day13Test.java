@@ -13,23 +13,49 @@ public class Day13Test {
     @Test
     void testSolveA() {
         String input = """
-
+                #.##..##.
+                ..#.##.#.
+                ##......#
+                ##......#
+                ..#.##.#.
+                ..##..##.
+                #.#.##.#.
+                
+                #...##..#
+                #....#..#
+                ..##..###
+                #####.##.
+                #####.##.
+                ..##..###
+                #....#..#
                 """;
         var inputs = Arrays.stream(input.split("\n"))
-                .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        Assertions.assertEquals("Not yet implemented", new Day13().solveA(inputs));
+        Assertions.assertEquals(405, new Day13().solveA(inputs));
     }
     @Test
     void testSolveB() {
         String input = """
-
+                #.##..##.
+                ..#.##.#.
+                ##......#
+                ##......#
+                ..#.##.#.
+                ..##..##.
+                #.#.##.#.
+                
+                #...##..#
+                #....#..#
+                ..##..###
+                #####.##.
+                #####.##.
+                ..##..###
+                #....#..#
                 """;
         var inputs = Arrays.stream(input.split("\n"))
-                .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day13().solveB(inputs));
+        assertEquals(400, new Day13().solveB(inputs));
     }
 }
