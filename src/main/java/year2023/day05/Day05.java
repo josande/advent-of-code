@@ -30,7 +30,7 @@ public class Day05 implements AdventOfCode {
                 }
             }
             else if( line.startsWith("seed-to")) {
-
+                //do nothing
             }
             else if( line.startsWith("soil")) {
                 seedToSoil.addAll(tempMap);
@@ -109,7 +109,7 @@ public class Day05 implements AdventOfCode {
                 }
             }
             else if( line.startsWith("seed-to")) {
-
+                //do nothing
             }
             else if( line.startsWith("soil")) {
                 seedToSoil.addAll(tempMap);
@@ -140,8 +140,7 @@ public class Day05 implements AdventOfCode {
         }
         ArrayList<String> humidityToLocation = new ArrayList<>(tempMap);
 
-        for (Long location =79000000L; ; location++) {
-            if(location%100000==0) System.out.println(location);
+        for (long location =79000000L; ; location++) {
             long humi = mapFrom(humidityToLocation, location);
             long temp = mapFrom(temperatureToHumidity, humi);
             long ligh = mapFrom(lightToTemperature, temp);
