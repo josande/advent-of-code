@@ -170,7 +170,7 @@ public class Day19 implements AdventOfCode {
                 String code = line.split("\\{")[1].split("}")[0];
                 workflows.put(name, new Workflow(code));
             } else {
-                String xmas[] = line.split("\\{")[1].split("}")[0].split(",");
+                String[] xmas = line.split("\\{")[1].split("}")[0].split(",");
                 xmasList.add(new Xmas(
                         Integer.parseInt(xmas[0].split("=")[1]),
                         Integer.parseInt(xmas[1].split("=")[1]),
@@ -203,7 +203,7 @@ public class Day19 implements AdventOfCode {
             Workflow wf = workflows.get(position);
             return wf.getNext(this);
         }
-    };
+    }
 
     @Override
     public Object solveB(List<String> input) {
