@@ -12,13 +12,13 @@ public class Day19 implements AdventOfCode {
 
     private record Xmas(int x, int m, int a, int s) {}
 
-    class Gate {
-        char letter;
-        boolean greaterThan;
-        int value;
-        String result;
-        HashMap<Character, HashSet<Integer>> passing = new HashMap<>();
-        HashMap<Character, HashSet<Integer>> filteredOut = new HashMap<>();
+    static class Gate {
+        final char letter;
+        final boolean greaterThan;
+        final int value;
+        final String result;
+        final HashMap<Character, HashSet<Integer>> passing = new HashMap<>();
+        final HashMap<Character, HashSet<Integer>> filteredOut = new HashMap<>();
 
         public Gate(char letter, boolean greaterThan, int value, String result) {
             this.letter = letter;
@@ -54,17 +54,6 @@ public class Day19 implements AdventOfCode {
 
         }
 
-
-        String resolve(int x, int m, int a, int s) {
-            return switch (letter) {
-                case 'x' -> x > value == greaterThan ? result : null;
-                case 'm' -> m > value == greaterThan ? result : null;
-                case 'a' -> a > value == greaterThan ? result : null;
-                case 's' -> s > value == greaterThan ? result : null;
-                default -> throw new IllegalStateException("Unexpected value: " + letter);
-            };
-        }
-
         State pass(State state) {
             HashMap<Character, HashSet<Integer>> remaining = new HashMap<>();
             for(char c : List.of('x','m','a','s')) {
@@ -85,13 +74,11 @@ public class Day19 implements AdventOfCode {
             }
             return new State(remaining, null);
         }
-    };
-    private class Workflow {
-        private String name;
-        private String code;
-        private ArrayList<Gate> gates = new ArrayList<>();
-        Workflow(String name, String code) {
-            this.name = name;
+    }
+    private static class Workflow {
+        private final String code;
+        private final ArrayList<Gate> gates = new ArrayList<>();
+        Workflow(String code) {
             this.code = code;
             setGates(code);
         }
@@ -99,8 +86,7 @@ public class Day19 implements AdventOfCode {
             List<State> states = new ArrayList<>();
             State remaining = state;
             for ( Gate gate : gates) {
-                State s1 = gate.pass(remaining);
-                states.add(s1);
+                states.add(gate.pass(remaining));
                 remaining = gate.fail(remaining);
             }
             return states;
@@ -108,18 +94,18 @@ public class Day19 implements AdventOfCode {
 
         private void setGates(String code) {
             String[] parts = code.split(",");
-            for(int i=0; i<parts.length; i++) {
-                if(!parts[i].contains(":")) {
-                    Gate gate = new Gate('x', true, -1, parts[i]);
+            for (String part : parts) {
+                if (!part.contains(":")) {
+                    Gate gate = new Gate('x', true, -1, part);
                     gates.add(gate);
                     continue;
                 }
 
-                char letter = parts[i].charAt(0);
-                char operator = parts[i].charAt(1);
-                int value = Integer.parseInt(parts[i].substring(2).split(":")[0]);
-                String target = parts[i].split(":")[1];
-                Gate gate = new Gate(letter, operator=='>', value, target);
+                char letter = part.charAt(0);
+                char operator = part.charAt(1);
+                int value = Integer.parseInt(part.substring(2).split(":")[0]);
+                String target = part.split(":")[1];
+                Gate gate = new Gate(letter, operator == '>', value, target);
                 gates.add(gate);
             }
         }
@@ -143,30 +129,26 @@ public class Day19 implements AdventOfCode {
         }
         boolean resolve(char variable, char operator, int value, Xmas xmas) {
             return switch (variable) {
-                case 'x' ->
-                    {yield switch (operator) {
-                        case '<' -> (xmas.x < value);
-                        case '>' -> (xmas.x > value);
-                        default -> throw new IllegalArgumentException();
-                    };}
-                case 'm' ->
-                    {yield switch (operator) {
-                        case '<' -> (xmas.m < value);
-                        case '>' -> (xmas.m > value);
-                        default -> throw new IllegalArgumentException();
-                    };}
-                case 'a' ->
-                    {yield switch (operator) {
-                        case '<' -> (xmas.a < value);
-                        case '>' -> (xmas.a > value);
-                        default -> throw new IllegalArgumentException();
-                    };}
-                case 's' ->
-                    {yield switch (operator) {
-                        case '<' -> (xmas.s < value);
-                        case '>' -> (xmas.s > value);
-                        default -> throw new IllegalArgumentException();
-                    };}
+                case 'x' -> switch (operator) {
+                    case '<' -> (xmas.x < value);
+                    case '>' -> (xmas.x > value);
+                    default -> throw new IllegalArgumentException();
+                };
+                case 'm' -> switch (operator) {
+                    case '<' -> (xmas.m < value);
+                    case '>' -> (xmas.m > value);
+                    default -> throw new IllegalArgumentException();
+                };
+                case 'a' -> switch (operator) {
+                    case '<' -> (xmas.a < value);
+                    case '>' -> (xmas.a > value);
+                    default -> throw new IllegalArgumentException();
+                };
+                case 's' -> switch (operator) {
+                    case '<' -> (xmas.s < value);
+                    case '>' -> (xmas.s > value);
+                    default -> throw new IllegalArgumentException();
+                };
                 default -> throw new IllegalArgumentException();
             };
         }
@@ -186,7 +168,7 @@ public class Day19 implements AdventOfCode {
             if (firstPart) {
                 String name = line.split("\\{")[0];
                 String code = line.split("\\{")[1].split("}")[0];
-                workflows.put(name, new Workflow(name, code));
+                workflows.put(name, new Workflow(code));
             } else {
                 String xmas[] = line.split("\\{")[1].split("}")[0].split(",");
                 xmasList.add(new Xmas(
@@ -212,10 +194,10 @@ public class Day19 implements AdventOfCode {
     }
     record State(HashMap<Character, HashSet<Integer>> remaining, String position){
         public long getResult() {
-            return Long.valueOf(remaining.get('x').size()) *
-                   Long.valueOf(remaining.get('m').size()) *
-                   Long.valueOf(remaining.get('a').size()) *
-                   Long.valueOf(remaining.get('s').size());
+            return (long) remaining.get('x').size() *
+                   (long) remaining.get('m').size() *
+                   (long) remaining.get('a').size() *
+                   (long) remaining.get('s').size();
         }
         List<State> getNext(HashMap<String, Workflow> workflows) {
             Workflow wf = workflows.get(position);
@@ -225,18 +207,15 @@ public class Day19 implements AdventOfCode {
 
     @Override
     public Object solveB(List<String> input) {
-        boolean firstPart = true;
         HashMap<String, Workflow> workflows = new HashMap<>();
 
         for (String line : input) {
             if (line.isEmpty()) {
                 break;
             }
-            if (firstPart) {
-                String name = line.split("\\{")[0];
-                String code = line.split("\\{")[1].split("}")[0];
-                workflows.put(name, new Workflow(name, code));
-            }
+            String name = line.split("\\{")[0];
+            String code = line.split("\\{")[1].split("}")[0];
+            workflows.put(name, new Workflow(code));
         }
 
         HashSet<Integer> x = new HashSet<>();
