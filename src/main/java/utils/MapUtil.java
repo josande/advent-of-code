@@ -1,5 +1,8 @@
 package utils;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.util.*;
 
 public class MapUtil {
@@ -84,11 +87,10 @@ public class MapUtil {
             if(maxZ>0)
                 System.out.println("z="+z);
             for (int y = minY - 1; y <= maxY; y++) {
-                System.out.print(y+"\t");
+                System.out.print(StringUtils.leftPad(""+y, 5)+"\t");
                 for (int x = minX - 1; x <= maxX; x++) {
                     if(points.contains(new Point(x,y,z))) {
                         System.out.print('#');
-
                     } else {
                         System.out.print(' ');
                     }
@@ -96,6 +98,37 @@ public class MapUtil {
                 System.out.print("\n");
             }
         }
+    }
+    public static void print(ArrayList<Pair<Point, Point>> walls) {
+        HashMap<Point, Character> map = new HashMap<>();
+        for(Pair<Point, Point> p : walls) {
+            if(p.getLeft().getX() == p.getRight().getX()) {
+                for(int y=Math.min(p.getLeft().getY(), p.getRight().getY())+1; y<Math.max(p.getLeft().getY(), p.getRight().getY()); y++) {
+                    Point newPoint = new Point(p.getLeft().getX(),y);
+                    if(map.containsKey(newPoint)) {
+                        if(map.get(newPoint) == '-')
+                            map.put(newPoint, '+' );
+                    } else {
+                        map.put(newPoint, '|');
+                    }
+                }
+            } else if (p.getLeft().getY() == p.getRight().getY()) {
+                for(int x=Math.min(p.getLeft().getX(), p.getRight().getX())+1; x<Math.max(p.getLeft().getX(), p.getRight().getX()); x++) {
+                    Point newPoint = new Point(x, p.getLeft().getY());
+                    if(map.containsKey(newPoint)) {
+                        if(map.get(newPoint) == '|')
+                           map.put(newPoint, '+' );
+                    } else {
+                        map.put(newPoint, '-');
+                    }
+                }
+            }
+            map.put(p.getLeft(), '#');
+            map.put(p.getRight(), '#');
+
+        }
+        print(map);
+
     }
     public static int getMaxX(HashMap<Point, ?> points) {
         if(points.isEmpty()) return 0;

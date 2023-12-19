@@ -32,7 +32,7 @@ public class Day18Test {
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        Assertions.assertEquals(62, new Day18().solveA(inputs));
+        Assertions.assertEquals(62L, new Day18().solveA(inputs));
     }
     @Test
     void testSolveB() {
