@@ -6,30 +6,31 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class Day21Test {
 
     @Test
     void testSolveA() {
         String input = """
-
+                ...........
+                .....###.#.
+                .###.##..#.
+                ..#.#...#..
+                ....#.#....
+                .##..S####.
+                .##..#...#.
+                .......##..
+                .##.#.####.
+                .##..##.##.
+                ...........
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        Assertions.assertEquals("Not yet implemented", new Day21().solveA(inputs));
+        Assertions.assertEquals(16, new Day21().solveA(inputs, 6));
     }
     @Test
     void testSolveB() {
-        String input = """
 
-                """;
-        var inputs = Arrays.stream(input.split("\n"))
-                .filter(s->!s.isEmpty())
-                .map(String::valueOf)
-                .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day21().solveB(inputs));
     }
 }
