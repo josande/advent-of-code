@@ -49,7 +49,7 @@ public class MapUtil {
     }
 
     public static HashMap<Point,Character> asMap(List<String> values) {
-        HashMap<Point,Character> map = new HashMap<>();
+        HashMap<Point, Character> map = new HashMap<>();
         for(int y=0; y < values.size(); y++) {
             for(int x=0; x<values.get(y).length(); x++) {
                 map.put(new Point(x, y), values.get(y).charAt(x));
