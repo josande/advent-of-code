@@ -29,7 +29,8 @@ public class Day05 implements AdventOfCode {
                     seeds.add(Long.parseLong(tmp[i]));
                 }
             }
-            else if( line.startsWith("seed-to")) {
+            else //noinspection StatementWithEmptyBody
+                if( line.startsWith("seed-to")) {
                 //do nothing
             }
             else if( line.startsWith("soil")) {
@@ -109,7 +110,8 @@ public class Day05 implements AdventOfCode {
                     seeds.add(new ImmutablePair<>(Long.parseLong(tmp[i]), Long.parseLong(tmp[i+1])));
                 }
             }
-            else if( line.startsWith("seed-to")) {
+            else //noinspection StatementWithEmptyBody
+                if( line.startsWith("seed-to")) {
                 //do nothing
             }
             else if( line.startsWith("soil")) {
