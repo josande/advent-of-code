@@ -91,6 +91,7 @@ public class Day05 implements AdventOfCode {
         return fromValue;
     }
 
+    long stepToNextLimit=1;
     @Override
     public Object solveB(List<String> input) {
         ArrayList<Pair<Long, Long>> seeds = new ArrayList<>();
@@ -140,7 +141,9 @@ public class Day05 implements AdventOfCode {
         }
         ArrayList<String> humidityToLocation = new ArrayList<>(tempMap);
 
-        for (long location =79000000L; ; location++) {
+        for (long location =0L; ; location+=stepToNextLimit) {
+            stepToNextLimit = Long.MAX_VALUE;
+
             long humi = mapFrom(humidityToLocation, location);
             long temp = mapFrom(temperatureToHumidity, humi);
             long ligh = mapFrom(lightToTemperature, temp);
@@ -149,12 +152,14 @@ public class Day05 implements AdventOfCode {
             long soil = mapFrom(soilToFertilizer, fert);
 
             long seed = mapFrom(seedToSoil, soil);
-            if (inSeeds(seeds, seed)) return location;
+            if (inSeeds(seeds, seed)) {
+                return location;
+            }
         }
     }
     boolean inSeeds(ArrayList<Pair<Long, Long>> seeds, Long value) {
         for (var seed : seeds) {
-            if (seed.getLeft()<=value && value<seed.getLeft()+seed.getRight())
+            if (value >= seed.getLeft() && value < seed.getLeft()+seed.getRight())
                 return true;
         }
         return false;
@@ -166,7 +171,11 @@ public class Day05 implements AdventOfCode {
             long from = Long.parseLong(line.split(" ")[1]);
             long range = Long.parseLong(line.split(" ")[2]);
 
+            if(fromValue < to)
+                stepToNextLimit = Math.min(stepToNextLimit, to-fromValue);
+
             if(fromValue>=to && fromValue<(to+range)) {
+                stepToNextLimit = Math.min(stepToNextLimit, to+range - fromValue);
                 return fromValue+(from-to);
             }
         }
