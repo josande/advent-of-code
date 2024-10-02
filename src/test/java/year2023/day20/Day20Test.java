@@ -40,15 +40,4 @@ public class Day20Test {
                 .collect(Collectors.toList());
         Assertions.assertEquals(11687500L, new Day20().solveA(inputs));
     }
-    @Test
-    void testSolveB() {
-        String input = """
-
-                """;
-        var inputs = Arrays.stream(input.split("\n"))
-                .filter(s->!s.isEmpty())
-                .map(String::valueOf)
-                .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day20().solveB(inputs));
-    }
 }
