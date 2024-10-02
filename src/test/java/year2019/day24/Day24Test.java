@@ -43,11 +43,11 @@ class Day24Test {
                 #..#.
                 #.?##
                 ..#..
-                #....        
+                #....
                 """;
         List<String> input = Arrays.asList(inputStr.split("\n"));
         HashMap<Point, Character> map = makeMap(input);
-        Point.print(map);HashMap<Integer, HashMap<Point, Character>> levelMap=new HashMap<>();
+        HashMap<Integer, HashMap<Point, Character>> levelMap=new HashMap<>();
         levelMap.put(0, map);
 
 
