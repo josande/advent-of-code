@@ -55,6 +55,6 @@ class Day15Test {
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(56000011, Day15.solveB(values, 20));
+        assertEquals(56000011L, Day15.solveB(values, 20));
     }
 }
