@@ -30,6 +30,6 @@ class Day25Test {
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(-1, Day25.solveA(values));
+        assertEquals("2=-1=0", Day25.solveA(values));
     }
 }
