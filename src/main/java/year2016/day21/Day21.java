@@ -4,8 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import utils.FileHelper;
 
 import java.lang.invoke.MethodHandles;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Day21 {
 
@@ -149,13 +148,41 @@ public class Day21 {
     }
 
     static Object solveB(String input, List<String> values) {
-        String password=input;
-        Collections.reverse(values);
-        for(String operation : values) {
-            password=unscramble(password, operation);
+        for(String password : getAllUniquePermutations(input)) {
+            if(input.equals(solveA(password, values)))
+                return password;
         }
 
-        return password;
+        return "No matching password found!";
+    }
+
+    public static HashSet<String> getAllUniquePermutations(String input) {
+        HashSet<String> permutations = new HashSet<>();
+        var chars = input.toCharArray();
+
+        Stack<List<Integer>> candidates = new Stack<>();
+        for(int i=0; i<chars.length; i++) {
+            candidates.add(List.of(i));
+        }
+
+        while(!candidates.isEmpty()) {
+            List<Integer> candidate = candidates.pop();
+            for(int i=0; i<chars.length; i++) {
+                if (!candidate.contains(i)) {
+                    List<Integer> newCandidate = new ArrayList<>(candidate);
+                    newCandidate.add(i);
+                    if (newCandidate.size() == input.length()) {
+                        StringBuilder perm = new StringBuilder();
+                        for (Integer integer : newCandidate) {
+                            perm.append(chars[integer]);
+                        }
+                        permutations.add(perm.toString());
+                    } else
+                        candidates.add(newCandidate);
+                }
+            }
+        }
+        return permutations;
     }
 
 

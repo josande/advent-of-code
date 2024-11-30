@@ -13,14 +13,17 @@ public class Day05 {
     static String solveA(List<String> values) {
         int counter=0;
         StringBuilder password= new StringBuilder();
+        MessageDigest messageDigest = null;
+        try {
+            messageDigest = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
         for ( var value : values ) {
             while (password.length()<8) {
                 String md5="";
-                try {
-                    md5 = asMD5(value+counter);
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                }
+                md5 = asMD5(value+counter, messageDigest);
+
                 if(md5.startsWith("00000")) {
                     password.append(md5.charAt(5));
                 }
@@ -30,24 +33,27 @@ public class Day05 {
 
         return password.toString();
     }
-    static String asMD5(String data)
-            throws NoSuchAlgorithmException {
-        MessageDigest md5 = MessageDigest.getInstance("MD5");
-        byte[] digest = md5.digest(data.getBytes(StandardCharsets.UTF_8));
+
+    static String asMD5(String data, MessageDigest messageDigest) {
+       // messageDigest.update(data.getBytes());
+        byte[] digest = messageDigest.digest(data.getBytes(StandardCharsets.UTF_8));
         return String.format("%032x", new BigInteger(1, digest));
     }
 
     static String solveB(List<String> values) {
         int counter=0;
+        MessageDigest messageDigest = null;
+        try {
+            messageDigest = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
         char[] password = "********".toCharArray();
         for ( var value : values ) {
             while (String.valueOf(password).contains("*")) {
                 String md5="";
-                try {
-                    md5 = asMD5(value+counter);
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                }
+                md5 = asMD5(value+counter, messageDigest);
+
                 if(md5.startsWith("00000")) {
                     int pos=99;
                     try {
@@ -77,7 +83,7 @@ public class Day05 {
         var timePart1 = System.currentTimeMillis()-t0;
         var timePart2 = System.currentTimeMillis()-t1;
 
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //
+        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // f97c354d
+        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // 863dde27
     }
 }

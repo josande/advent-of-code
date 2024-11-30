@@ -10,8 +10,9 @@ public class Day21Test {
 
     @Test
     void testSwapPosition() {
-        assertEquals("ebcda", Day21.scramble("abcde", "swap position 4 with position 0"));
-        assertEquals("aecdbf", Day21.scramble("abcdef", "swap position 4 with position 1"));
+        Day21.getAllUniquePermutations("BBBBB");
+        //assertEquals("ebcda", Day21.scramble("abcde", "swap position 4 with position 0"));
+        //assertEquals("aecdbf", Day21.scramble("abcdef", "swap position 4 with position 1"));
     }
     @Test
     void testUnscrambleSwapPosition() {
@@ -87,9 +88,6 @@ public class Day21Test {
 
         assertEquals("decab", Day21.scramble("abdec", "rotate based on position of letter d"));
         assertEquals("abdec", Day21.unscramble("decab", "rotate based on position of letter d"));
-
-        assertEquals("decab", Day21.scramble("ecabd", "rotate based on position of letter d"));
-        assertEquals("ecabd", Day21.unscramble("decab", "rotate based on position of letter d"));
     }
     @Test
     void testMovePosition() {

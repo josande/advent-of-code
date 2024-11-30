@@ -2,6 +2,7 @@ package year2021.day23;
 
 import lombok.Data;
 import utils.FileHelper;
+import utils.MapUtil;
 import utils.Point;
 
 import java.lang.invoke.MethodHandles;
@@ -13,12 +14,7 @@ public class Day23 {
         return solvePuzzle(values);
     }
     static int solvePuzzle(List<String> values) {
-        HashMap<Point, Character> map = new HashMap<>();
-        for(int y=0;y<values.size();y++){
-            for(int x=0;x<values.get(y).length();x++){
-                map.put(new Point(x,y), values.get(y).charAt(x));
-            }
-        }
+        HashMap<Point, Character> map = MapUtil.asMap(values);
         //  Point.print(map);
 
         State startState = new State(map, 0);
@@ -26,7 +22,7 @@ public class Day23 {
         HashMap<HashMap<Point, Character>, Integer> testedStates= new HashMap<>();
         Queue<State> toDo = new ArrayDeque<>();
         toDo.add(startState);
-        int lowestEnergyUsageFound= Integer.MAX_VALUE;
+        int lowestEnergyUsageFound = Integer.MAX_VALUE;
        // State lowestSolution=null;
         while(!toDo.isEmpty()) {
 
@@ -44,8 +40,7 @@ public class Day23 {
             if(current.isWon()) {
                 lowestEnergyUsageFound = current.getEnergy();
             }
-            var statesAfter = current.getAllStates();
-            toDo.addAll(statesAfter);
+            toDo.addAll(current.getAllStates());
         }
 
         return lowestEnergyUsageFound;
@@ -75,7 +70,7 @@ public class Day23 {
                 }
 
 
-                List<Point> freePoints = getAllFreePoints(entry.getKey(), map);
+                HashSet<Point> freePoints = getAllFreePoints(entry.getKey(), map);
                 freePoints.remove(entry.getKey());
                 for (Point point : freePoints) {
                     if(isLegalMove(entry.getKey(), point, map)) {
@@ -150,21 +145,30 @@ public class Day23 {
             throw new IllegalArgumentException("Bad value to move:'"+value+"'.");
         }
 
-        private List<Point> getAllFreePoints(Point start, HashMap<Point, Character> map) {
+        private HashSet<Point> getAllFreePoints(Point start, HashMap<Point, Character> map) {
          //   Point.print(map);
             HashMap<Point, Character> newMap = new HashMap<>(map);
             char free = '.';
             newMap.remove(start);
-            List<Point> points =new ArrayList<>();
+            HashSet<Point> points = new HashSet<>();
             points.add(start);
             if(free == newMap.getOrDefault(start.north(),' ')) {
                 points.addAll(getAllFreePoints(start.north(), newMap));
             }
+            for(Point point : points) {
+                newMap.remove(point);
+            }
             if(free == newMap.getOrDefault(start.west(),' ')) {
                 points.addAll(getAllFreePoints(start.west(), newMap));
             }
+            for(Point point : points) {
+                newMap.remove(point);
+            }
             if(free == newMap.getOrDefault(start.east(),' ')) {
                 points.addAll(getAllFreePoints(start.east(), newMap));
+            }
+            for(Point point : points) {
+                newMap.remove(point);
             }
             if(free == newMap.getOrDefault(start.south(),' ')) {
                 points.addAll(getAllFreePoints(start.south(), newMap));

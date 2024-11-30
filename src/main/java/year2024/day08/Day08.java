@@ -1,5 +1,6 @@
 package year2024.day08;
 
+
 import utils.AdventOfCode;
 import utils.Reporter;
 
@@ -9,7 +10,6 @@ public class Day08 implements AdventOfCode {
     public static void main(String[] args){
         Reporter.report(new Day08());
     }
-
     @Override
     public Object solveA(List<String> input) {
         return "Not yet implemented";

@@ -43,28 +43,31 @@ public class Day19 {
                     state.endOfTurn();
                     outcomes.add(state);
                 }
-                if (ore >= blueprint.oreBotOreCost && oreBot < highestOreCost) {
+                if (ore >= blueprint.oreBotOreCost
+                        && oreBot < highestOreCost) {
                     State state = new State(round, ore - blueprint.oreBotOreCost, clay, obsidian, geode, oreBot + 1, clayBot, obsidianBot, geodeBot);
                     state.endOfTurn();
                     state.ore--;
                     outcomes.add(state);
                 }
 
-                if (ore >= blueprint.clayBotOreCost && clayBot < blueprint.obsidianBotClayCost) {
+                if (ore >= blueprint.clayBotOreCost
+                        && clayBot < blueprint.obsidianBotClayCost) {
                     State state = new State(round, ore - blueprint.clayBotOreCost, clay, obsidian, geode, oreBot, clayBot + 1, obsidianBot, geodeBot);
                     state.endOfTurn();
                     state.clay--;
                     outcomes.add(state);
                 }
 
-                if (ore >= blueprint.obsidianBotOreCost && clay >= blueprint.obsidianBotClayCost && obsidianBot < blueprint.geodeBotObsidianCost) {
+                if (ore >= blueprint.obsidianBotOreCost
+                        && clay >= blueprint.obsidianBotClayCost
+                        && obsidianBot < blueprint.geodeBotObsidianCost) {
                     State state = new State(round, ore - blueprint.obsidianBotOreCost, clay - blueprint.obsidianBotClayCost, obsidian, geode, oreBot, clayBot, obsidianBot + 1, geodeBot);
                     state.endOfTurn();
                     state.obsidian--;
                     outcomes.add(state);
                 }
             }
-
             return outcomes;
         }
 
@@ -107,30 +110,41 @@ public class Day19 {
 
     static Object solveA(List<String> values) {
 
-        int result=0;
+        int result = 0;
+        int numberOfTurns = 24;
         for(String value : values) {
-
             Blueprint blueprint = new Blueprint(value);
             State startState = new State(0,0,0,0,0,1,0,0,0);
-
-            int bestScore=0;
+            int bestScore = 0;
             HashMap<Integer, Integer> bestRounds = new HashMap<>();
             final Set<State> visited = new HashSet<>();
             Stack<State> queue = new Stack<>();
             queue.add(startState);
             while(!queue.isEmpty()) {
                State current = queue.pop();
-               if(visited.contains(current))
-                   continue;
-                visited.add(current);
-                if(bestRounds.containsKey(current.getRound())) {
-                    int previousBest=bestRounds.get(current.getRound());
-                    if((current.getGeode()) < previousBest) {
-                        continue;
-                    }
+
+
+               int bestThisRound = bestRounds.getOrDefault(current.getRound(), 0);
+
+                if(current.getGeode() < bestThisRound) {
+                    continue;
                 }
-                if(current.getGeode()>0)
-                    bestRounds.put(current.getRound(), current.getGeode());
+
+                if(!visited.add(current))
+                    continue;
+
+                bestRounds.put(current.getRound(), current.getGeode());
+
+                int turnsLeft = numberOfTurns - current.getRound();
+                int theoreticalBest =
+                        current.geode
+                        + current.geodeBot * turnsLeft
+                        + turnsLeft*turnsLeft / 2;
+
+
+
+                if(theoreticalBest < bestScore)
+                    continue;
 
                 if(current.getRound()==24) {
                     bestScore = Math.max(bestScore, current.getGeode());
