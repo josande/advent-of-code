@@ -57,6 +57,17 @@ public class MapUtil {
         }
         return map;
     }
+    public static HashMap<Point,Character> asMapFiltered(List<String> values, List<Character> allowed) {
+        HashMap<Point, Character> map = new HashMap<>();
+        for(int y=0; y < values.size(); y++) {
+            for(int x=0; x<values.get(y).length(); x++) {
+                char c = values.get(y).charAt(x);
+                if(allowed.contains(c))
+                    map.put(new Point(x, y), c);
+            }
+        }
+        return map;
+    }
     public static void print(HashMap<Point, Character> points) {
         int minX = getMinX(points);
         int maxX = getMaxX(points);

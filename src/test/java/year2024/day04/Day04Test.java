@@ -12,22 +12,42 @@ public class Day04Test {
     @Test
     void testSolveA() {
         String input = """
+                MMMSXXMASM
+                MSAMXMSMSA
+                AMXSXMAAMM
+                MSAMASMSMX
+                XMASAMXAMM
+                XXAMMXXAMA
+                SMSMSASXSS
+                SAXAMASAAA
+                MAMMMXMMMM
+                MXMXAXMASX
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
 
-        assertEquals("Not yet implemented", new Day04().solveA(inputs));
+        assertEquals(18, new Day04().solveA(inputs));
     }
     @Test
     void testSolveB() {
         String input = """
+                MMMSXXMASM
+                MSAMXMSMSA
+                AMXSXMAAMM
+                MSAMASMSMX
+                XMASAMXAMM
+                XXAMMXXAMA
+                SMSMSASXSS
+                SAXAMASAAA
+                MAMMMXMMMM
+                MXMXAXMASX
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day04().solveB(inputs));
+        assertEquals(9, new Day04().solveB(inputs));
     }
 }
