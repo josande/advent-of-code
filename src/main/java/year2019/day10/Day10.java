@@ -1,6 +1,7 @@
 package year2019.day10;
 
 import utils.FileHelper;
+import utils.MathTools;
 import utils.Point;
 
 import java.lang.invoke.MethodHandles;
@@ -40,7 +41,7 @@ public class Day10 {
                 deltaX=deltaX/Math.abs(deltaX);
                 deltaY=deltaY/Math.abs(deltaY);
             }
-            int gcd = getGcd(deltaX, deltaY) ;
+            int gcd = MathTools.getGcd(deltaX, deltaY) ;
             deltaX/=gcd;
             deltaY/=gcd;
                 //hitta gcd
@@ -55,25 +56,12 @@ public class Day10 {
         visiblePoints.removeAll(blockedPoints);
         visiblePoints.remove(p);
         return visiblePoints;
+    }
 
-    }
-    static  int getGcd(int n1, int n2) {
-        if (n1==0 || n2==0) return 1;
-        n1 = ( n1 > 0) ? n1 : -n1;
-        n2 = ( n2 > 0) ? n2 : -n2;
-        while(n1 != n2)
-        {
-            if(n1 > n2)
-                n1 -= n2;
-            else
-                n2 -= n1;
-        }
-        return n1;
-    }
     static Point getNextAsteroidToBlast(Point p, List<Point> remainingAsteroids) {
         //for top-right side:
         //find anyone Directly above
-        //if more then one, take closest
+        //if more than one, take closest
 
         remainingAsteroids.remove(p);
         Point nextTarget = null;
