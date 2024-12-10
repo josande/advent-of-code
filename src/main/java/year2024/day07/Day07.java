@@ -68,7 +68,7 @@ public class Day07 implements AdventOfCode {
                 current = getResults(current, value, true, target);
             if(current.contains(target))
                 result += target;
-
         }
-        return result;    }
+        return result;
+    }
 }
