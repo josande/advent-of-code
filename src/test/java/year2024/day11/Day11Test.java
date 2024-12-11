@@ -11,22 +11,24 @@ public class Day11Test {
     @Test
     void testSolveA() {
         String input = """
+                125 17
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
 
-        assertEquals("Not yet implemented", new Day11().solveA(inputs));
+        assertEquals(55312L, new Day11().solveA(inputs));
     }
     @Test
     void testSolveB() {
         String input = """
+                125 17
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day11().solveB(inputs));
+        assertEquals(65601038650482L, new Day11().solveB(inputs));
     }
 }
