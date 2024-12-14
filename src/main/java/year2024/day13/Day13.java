@@ -15,9 +15,7 @@ public class Day13 implements AdventOfCode {
             double goalY = prizeY+offset;
             double aX =  ax;
             double aY =  ay;
-            double bX =  bx;
-            double bY =  by;
-            double b = ((goalY/aY)-(goalX/aX))/((bY/aY)-(bX/aX));
+            double b = ((goalY/aY)-(goalX/aX))/((by/aY)-(bx/aX));
             long bClick = (long) (b+0.5d);
             long xRest = (long) (goalX-bClick*bx);
             long aClick = xRest/ax;
