@@ -14,7 +14,7 @@ public class Day13Test {
                 Button A: X+94, Y+34
                 Button B: X+22, Y+67
                 Prize: X=8400, Y=5400
-                                
+                
                 Button A: X+26, Y+66
                 Button B: X+67, Y+21
                 Prize: X=12748, Y=12176
@@ -39,7 +39,7 @@ public class Day13Test {
                 Button A: X+94, Y+34
                 Button B: X+22, Y+67
                 Prize: X=8400, Y=5400
-                                
+                
                 Button A: X+26, Y+66
                 Button B: X+67, Y+21
                 Prize: X=12748, Y=12176

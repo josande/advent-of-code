@@ -1,26 +1,17 @@
 package year2024.day14;
 
+import lombok.Setter;
 import utils.AdventOfCode;
-import utils.MapUtil;
 import utils.Point;
 import utils.Reporter;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+@Setter
 public class Day14 implements AdventOfCode {
     public static void main(String[] args){
         Reporter.report(new Day14());
-    }
-
-    public void setRoomHeight(int roomHeight) {
-        this.roomHeight = roomHeight;
-    }
-
-    public void setRoomWidth(int roomWidth) {
-        this.roomWidth = roomWidth;
     }
 
     private record Robot(int x, int y, int vx, int vy){
