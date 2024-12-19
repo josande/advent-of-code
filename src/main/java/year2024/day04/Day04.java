@@ -16,118 +16,79 @@ public class Day04 implements AdventOfCode {
 
         int matches=0;
 
-        for(int row=0;row<=MapUtil.getMaxY(map);row++){
-            for(int col=0;col<=MapUtil.getMaxX(map);col++){
-                Point p = new Point(row,col);
-                matches+= findMatches(p, map);
+        char[][] letters = new char[input.size()][input.get(0).length()];
+        for(int y=0;y<input.size();y++){
+            char[] chars = input.get(y).toCharArray();
+            for(int x=0;x<chars.length;x++){
+                letters[y][x] = chars[x];
             }
         }
-
+        for(int y=0;y<letters.length;y++){
+            for(int x=0;x<letters[y].length;x++){
+                matches+=findMatches(y,x, letters);
+            }
+        }
         return matches;
     }
 
-    private Integer findMatches(Point p, HashMap<Point, Character> map) {
+    private Integer findMatches(int y, int x, char[][] letters) {
         int matches = 0;
 
-        matches+=check(p, map, "n")?1:0;
-        matches+=check(p, map, "w")?1:0;
-        matches+=check(p, map, "s")?1:0;
-        matches+=check(p, map, "e")?1:0;
-        matches+=check(p, map, "nw")?1:0;
-        matches+=check(p, map, "ne")?1:0;
-        matches+=check(p, map, "sw")?1:0;
-        matches+=check(p, map, "se")?1:0;
+        matches+=check(x,y, -1,-1, letters)?1:0;
+        matches+=check(x,y,-1,0, letters)?1:0;
+        matches+=check(x,y, -1,1, letters)?1:0;
+
+        matches+=check(x,y,0, -1, letters)?1:0;
+        matches+=check(x,y, 0,1, letters)?1:0;
+
+        matches+=check(x,y, 1,-1, letters)?1:0;
+        matches+=check(x,y, 1,0, letters)?1:0;
+        matches+=check(x,y, 1,1, letters)?1:0;
 
         return matches;
     }
 
-    private boolean check(Point p, HashMap<Point, Character> map, String direction) {
-        String searchFor = "XMAS";
-        Point searchAt  = new Point(p);
-        for (char c : searchFor.toCharArray()) {
-            if(!map.containsKey(searchAt))
-                return false;
-            if(map.get(searchAt) != c)
-                return false;
-            searchAt = switch (direction) {
-                case "n" -> searchAt.north();
-                case "w" -> searchAt.west();
-                case "s" -> searchAt.south();
-                case "e" -> searchAt.east();
-                case "nw" -> searchAt.northWest();
-                case "sw" -> searchAt.southWest();
-                case "ne" -> searchAt.northEast();
-                case "se" -> searchAt.southEast();
-                default -> throw new IllegalStateException("Unexpected value: " + c);
-            };
+    private boolean check(int x, int y, int dx, int dy, char[][] letters) {
+        char[] searchFor = "XMAS".toCharArray();
+
+        for (char c : searchFor) {
+            if(x<0 || x>=letters[0].length || y<0 || y>=letters.length || letters[y][x] != c) return false;
+            x+=dx;
+            y+=dy;
         }
         return true;
     }
 
+
+
     @Override
     public Object solveB(List<String> input) {
-        HashMap<Point,Character> map =  MapUtil.asMap(input);
-        //HashMap<Point,Character> map =  MapUtil.asMapFiltered(input, List.of('M','A','S'));
         int matches=0;
-        for(int row=0;row<=MapUtil.getMaxY(map);row++){
-            for(int col=0;col<=MapUtil.getMaxX(map);col++){
-                Point p = new Point(row,col);
-                matches+= findMatchesCross(p, map);
+
+        char[][] letters = new char[input.size()][input.get(0).length()];
+        for(int y=0;y<input.size();y++){
+            char[] chars = input.get(y).toCharArray();
+            for(int x=0;x<chars.length;x++){
+                letters[y][x] = chars[x];
             }
         }
-
+        for(int y=0;y<letters.length;y++){
+            for(int x=0;x<letters[y].length;x++){
+                matches+=isMasCross(y,x, letters)?1:0;
+            }
+        }
         return matches;
     }
-    private Integer findMatchesCross(Point p, HashMap<Point, Character> map) {
-        int matches = 0;
+    private boolean isMasCross(int x, int y, char[][] strings) {
+        if(x<1 || x>=strings[0].length-1 || y<1 || y>=strings.length-1 || strings[y][x] != 'A') return false;
+        char nw = strings[y-1][x-1];
+        char ne = strings[y-1][x+1];
+        char sw = strings[y+1][x-1];
+        char se = strings[y+1][x+1];
 
-        if(!map.containsKey(p)) return matches;
-        if(map.get(p) != 'A') return matches;
-
-        matches+=checkCross(p, map, "n")?1:0;
-        matches+=checkCross(p, map, "w")?1:0;
-        matches+=checkCross(p, map, "s")?1:0;
-        matches+=checkCross(p, map, "e")?1:0;
-
-        return matches;
+        if(nw == 'M' && ne == 'M' && sw == 'S' && se == 'S') return true;
+        if(ne == 'M' && se == 'M' && nw == 'S' && sw == 'S') return true;
+        if(sw == 'M' && se == 'M' && nw == 'S' && ne == 'S') return true;
+        return (nw == 'M' && sw == 'M' && ne == 'S' && se == 'S');
     }
-
-    private boolean checkCross(Point p, HashMap<Point, Character> map, String direction) {
-
-        Point m1, m2, s1,s2;
-        switch (direction) {
-            case "n" -> {
-                m1 = p.northEast();
-                m2 = p.northWest();
-                s1 = p.southEast();
-                s2 = p.southWest();
-            }
-            case "s" -> {
-                m1 = p.southEast();
-                m2 = p.southWest();
-                s1 = p.northEast();
-                s2 = p.northWest();
-            }
-            case "w" -> {
-                m1 = p.northWest();
-                m2 = p.southWest();
-                s1 = p.northEast();
-                s2 = p.southEast();
-            }
-            case "e" -> {
-                m1 = p.northEast();
-                m2 = p.southEast();
-                s1 = p.northWest();
-                s2 = p.southWest();
-            }
-                default -> throw new IllegalStateException("Unexpected value: " + direction);
-            }
-            if(!map.containsKey(m1)) return false;
-            if(!map.containsKey(m2)) return false;
-            if(!map.containsKey(s1)) return false;
-            if(!map.containsKey(s2)) return false;
-            return map.get(m1) == 'M' && map.get(m2) == 'M' &&
-                    map.get(s1) == 'S' && map.get(s2) == 'S';
-
-         }
 }
