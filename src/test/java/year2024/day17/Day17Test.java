@@ -12,22 +12,31 @@ public class Day17Test {
     @Test
     void testSolveA() {
         String input = """
+                Register A: 729
+                Register B: 0
+                Register C: 0
+                
+                Program: 0,1,5,4,3,0
                 """;
         var inputs = Arrays.stream(input.split("\n"))
-                .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
 
-        assertEquals("Not yet implemented", new Day17().solveA(inputs));
+        assertEquals("4,6,3,5,6,3,5,2,1,0", new Day17().solveA(inputs));
     }
+
     @Test
     void testSolveB() {
         String input = """
+                Register A: 2024
+                Register B: 0
+                Register C: 0
+                
+                Program: 0,3,5,4,3,0
                 """;
         var inputs = Arrays.stream(input.split("\n"))
-                .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day17().solveB(inputs));
+        assertEquals(117440, new Day17().solveB(inputs));
     }
 }

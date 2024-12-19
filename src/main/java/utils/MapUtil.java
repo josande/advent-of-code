@@ -330,4 +330,55 @@ public class MapUtil {
         }
         return newMap;
     }
+
+    public static ArrayList<Point> getShortestPath2D(HashMap<Point, Character> map, Point start, Point end){
+        Queue<State> queue = new LinkedList<>();
+        queue.add(new State(start, new ArrayList<>()));
+        HashSet<Point> visited = new HashSet<>();
+        while(!queue.isEmpty()){
+            State curr = queue.poll();
+            curr.visited.add(curr.position);
+            if (visited.contains(curr.position)) {
+                continue;
+            }
+            visited.add(curr.position);
+            if(curr.position.equals(end)) {
+                return curr.visited;
+            }
+            ArrayList<State> nextState = new ArrayList<>();
+            for(Point n : curr.position.getOrthogonalNeighbours2d()) {
+                if(!visited.contains(n)) {
+                    if(map.getOrDefault(n, '#')!='#')
+                        nextState.add(new State(n, new ArrayList<>(curr.visited)));
+                }
+            }
+            queue.addAll(nextState);
+        }
+        throw new IllegalStateException("Could not find path!");
+    }
+    public static List<ArrayList<Point>> getAllPaths(HashMap<Point, Character> map, Point start, Point end){
+        Stack<State> stack = new Stack<>();
+        stack.add(new State(start, new ArrayList<>()));
+        List<ArrayList<Point>> possiblePaths = new ArrayList<>();
+        while(!stack.isEmpty()){
+            State curr = stack.pop();
+            curr.visited.add(curr.position);
+
+            if(curr.position.equals(end)) {
+                possiblePaths.add(curr.visited);
+                continue;
+            }
+            ArrayList<State> nextState = new ArrayList<>();
+            for(Point n : curr.position.getOrthogonalNeighbours2d()) {
+                if(!curr.visited.contains(n)) {
+                    if(map.getOrDefault(n, '#')!='#')
+                        nextState.add(new State(n, new ArrayList<>(curr.visited)));
+                }
+            }
+            stack.addAll(nextState);
+        }
+        return possiblePaths;
+    }
+    private record State(Point position, ArrayList<Point> visited) {}
+
 }
