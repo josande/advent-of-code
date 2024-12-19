@@ -50,4 +50,4 @@ public class Day06Test {
                 .collect(Collectors.toList());
         assertEquals(6, new Day06().solveB(inputs));
     }
-}//3,6<   6,7  7,7   1,8<  3,8<  7,9<
+}

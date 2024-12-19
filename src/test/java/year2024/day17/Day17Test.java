@@ -37,6 +37,6 @@ public class Day17Test {
         var inputs = Arrays.stream(input.split("\n"))
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(117440, new Day17().solveB(inputs));
+        assertEquals(117440L, new Day17().solveB(inputs));
     }
 }

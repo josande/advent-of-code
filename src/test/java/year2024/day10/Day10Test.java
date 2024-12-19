@@ -26,7 +26,7 @@ public class Day10Test {
                 .map(String::valueOf)
                 .collect(Collectors.toList());
 
-        assertEquals(55312, new Day10().solveA(inputs));
+        assertEquals(36, new Day10().solveA(inputs));
     }
     @Test
     void testSolveB() {

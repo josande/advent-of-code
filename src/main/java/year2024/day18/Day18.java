@@ -50,6 +50,9 @@ public class Day18 implements AdventOfCode {
                 map.put(new Point(x, y), '.');
             }
         }
+        for(int i=0; i<steps; i++){
+            map.put(new Point(input.get(i)), '#');
+        }
         var path = MapUtil.getShortestPath2D(map, start, end);
         for (int step = steps;  ; step++) {
             Point nextpoint = new Point(input.get(step));

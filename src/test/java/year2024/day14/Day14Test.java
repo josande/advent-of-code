@@ -34,14 +34,5 @@ public class Day14Test {
         day14.setRoomWidth(11);
         assertEquals(12, day14.solveA(inputs));
     }
-    @Test
-    void testSolveB() {
-        String input = """
-                """;
-        var inputs = Arrays.stream(input.split("\n"))
-                .filter(s->!s.isEmpty())
-                .map(String::valueOf)
-                .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day14().solveB(inputs));
-    }
+
 }
