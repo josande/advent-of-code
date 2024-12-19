@@ -42,4 +42,13 @@ public enum Direction {
             default -> throw new IllegalStateException("Unknown direction");
         }
     }
+    public static Direction of(Character c) {
+        return switch (c) {
+            case '^', 'U', 'u', 'N', 'n' -> Direction.NORTH;
+            case '>', 'R', 'r', 'E', 'e' -> Direction.EAST;
+            case 'v', 'D', 'd', 'S', 's' -> Direction.SOUTH;
+            case '<', 'L', 'l', 'W', 'w' -> Direction.WEST;
+            default -> throw new IllegalStateException("Unknown character for direction!");
+        };
+    }
 }

@@ -11,22 +11,80 @@ public class Day16Test {
     @Test
     void testSolveA() {
         String input = """
+                ###############
+                #.......#....E#
+                #.#.###.#.###.#
+                #.....#.#...#.#
+                #.###.#####.#.#
+                #.#.#.......#.#
+                #.#.#####.###.#
+                #...........#.#
+                ###.#.#####.#.#
+                #...#.....#.#.#
+                #.#.#.###.#.#.#
+                #.....#...#.#.#
+                #.###.#.#.#.#.#
+                #S..#.....#...#
+                ###############
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
 
-        assertEquals("Not yet implemented", new Day16().solveA(inputs));
+        assertEquals(7036, new Day16().solveA(inputs));
     }
     @Test
-    void testSolveB() {
+    void testSolveA2() {
         String input = """
+                #################
+                #...#...#...#..E#
+                #.#.#.#.#.#.#.#.#
+                #.#.#.#...#...#.#
+                #.#.#.#.###.#.#.#
+                #...#.#.#.....#.#
+                #.#.#.#.#.#####.#
+                #.#...#.#.#.....#
+                #.#.#####.#.###.#
+                #.#.#.......#...#
+                #.#.###.#####.###
+                #.#.#...#.....#.#
+                #.#.#.#####.###.#
+                #.#.#.........#.#
+                #.#.#.#########.#
+                #S#.............#
+                #################
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day16().solveB(inputs));
+
+        assertEquals(11048, new Day16().solveA(inputs));
+    }
+    @Test
+    void testSolveB() {
+        String input = """
+                ###############
+                #.......#....E#
+                #.#.###.#.###.#
+                #.....#.#...#.#
+                #.###.#####.#.#
+                #.#.#.......#.#
+                #.#.#####.###.#
+                #...........#.#
+                ###.#.#####.#.#
+                #...#.....#.#.#
+                #.#.#.###.#.#.#
+                #.....#...#.#.#
+                #.###.#.#.#.#.#
+                #S..#.....#...#
+                ###############
+                """;
+        var inputs = Arrays.stream(input.split("\n"))
+                .filter(s->!s.isEmpty())
+                .map(String::valueOf)
+                .collect(Collectors.toList());
+        assertEquals(45, new Day16().solveB(inputs));
     }
 }

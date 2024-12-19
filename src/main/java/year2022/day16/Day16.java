@@ -2,10 +2,12 @@ package year2022.day16;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 import utils.FileHelper;
 
 import java.lang.invoke.MethodHandles;
 import java.util.*;
+
 
 public class Day16 {
 
@@ -24,220 +26,24 @@ public class Day16 {
             this.flow = Integer.parseInt(parts[4].substring(5, parts[4].length() - 1));
             this.open = false;
         }
-
-        public void setOtherValves(Collection<Valve> otherValves) {
-            for(Valve otherValve : otherValves) {
-                if(otherValve.getName().equals(this.name)) continue;
-                connectedValves.put(otherValve.getName(), Integer.MAX_VALUE);
-            }
-            calculateCosts();
-        }
-        public void calculateCosts() {
-            Queue<StateA> queue = new ArrayDeque<>();
-            queue.add(new StateA(this.getName(), new ArrayList<>()));
-            while (connectedValves.containsValue(Integer.MAX_VALUE) && !queue.isEmpty()) {
-                StateA state = queue.poll();
-                if(connectedValves.containsKey(state.getName())) {
-                    connectedValves.put(state.getName(), Math.min(state.visited.size()+1, connectedValves.get(state.getName())));
-                }
-                ArrayList<String> visitedSoFar=new ArrayList<>(state.getVisited());
-                visitedSoFar.add(state.getName());
-                for(String s : allConnections.get(state.getName())) {
-                    if(visitedSoFar.contains(s)) continue;
-                    queue.add(new StateA(s, visitedSoFar));
-                }
-            }
-        }
     }
+
     @AllArgsConstructor
     @Data
     static class StateA {
         String name;
         ArrayList<String> visited;
     }
+
     @AllArgsConstructor
     @Data
     static class State {
         int time;
         Valve valve;
         HashMap<Valve, Integer> openedValves;
-
-        public int getScore(int timeLimit) {
-            int score = 0;
-            for (Map.Entry<Valve, Integer> e : openedValves.entrySet()) {
-                if (e.getValue() > timeLimit) continue;
-                int flow = e.getKey().getFlow();
-                int timeLeft = timeLimit - e.getValue();
-                score+=flow*timeLeft;
-            }
-            return score;
-        }
     }
 
-    static HashMap<String, Valve> allValves = new HashMap<>();
-    static HashMap<String, List<String>> allConnections = new HashMap<>();
 
-    static Object solveA(List<String> values) {
-        for(String row : values) {
-            Valve room = new Valve(row);
-            if(room.getFlow()>0) {
-                allValves.put(room.getName(), room);
-            }
-            String nameFrom=row.split(" ")[1];
-            ArrayList<String> nameTo=new ArrayList<>();
-            if(nameFrom.equals("AA")) {
-                allValves.put(room.getName(), room);
-            }
-            for(int i=9; i<row.split(" ").length; i++) {
-                nameTo.add(row.split(" ")[i].replace(",", ""));
-            }
-            allConnections.put(nameFrom, nameTo);
-        }
-        Valve start = allValves.get("AA");
-
-        for(Valve v : allValves.values()) {
-            v.setOtherValves(allValves.values());
-        }
-
-        Stack<State> stack = new Stack<>();
-        stack.add(new State(0, start, new HashMap<>()));
-
-        int bestScore=0;
-        while(!stack.isEmpty()) {
-
-            State state = stack.pop();
-            if(state.getTime()>=30 || state.getOpenedValves().size() == allValves.size())  {
-               int score = 0;
-                for(Map.Entry<Valve, Integer> e : state.getOpenedValves().entrySet()) {
-                    if (e.getValue()>30) continue;
-                    int flow = e.getKey().getFlow();
-                    int timeLeft=30-e.getValue();
-                    score+=flow*timeLeft;
-                }
-
-                bestScore=Math.max(score, bestScore);
-
-            } else {
-                for(Map.Entry<String, Integer> valve : state.getValve().getConnectedValves().entrySet()) {
-                    Valve v = allValves.get(valve.getKey());
-                    if(state.getOpenedValves().containsKey(v)) continue;
-                    HashMap<Valve, Integer> openedValves =  new HashMap<>(state.getOpenedValves());
-                    openedValves.put(v, state.getTime()+valve.getValue());
-                    State newState = new State(state.getTime()+valve.getValue(),v, openedValves);
-                    stack.add(newState);
-                }
-            }
-        }
-
-        return bestScore;
-    }
-    static Object solveB(List<String> values) {
-        for(String row : values) {
-            Valve room = new Valve(row);
-            if(room.getFlow()>0) {
-                allValves.put(room.getName(), room);
-            }
-            String nameFrom=row.split(" ")[1];
-            ArrayList<String> nameTo=new ArrayList<>();
-            if(nameFrom.equals("AA")) {
-                allValves.put(room.getName(), room);
-            }
-            for(int i=9; i<row.split(" ").length; i++) {
-                nameTo.add(row.split(" ")[i].replace(",", ""));
-            }
-            allConnections.put(nameFrom, nameTo);
-        }
-        Valve start = allValves.get("AA");
-
-        for(Valve v : allValves.values()) {
-            v.setOtherValves(allValves.values());
-        }
-        Stack<State> stack = new Stack<>();
-        stack.add(new State(0, start, new HashMap<>()));
-
-        int bestScore=0;
-        HashMap<Collection<Valve>, Integer> testedStates = new HashMap<>();
-
-        while(!stack.isEmpty()) {
-
-            State state = stack.pop();
-            if(state.getTime()>=26)  {
-                boolean hasSeenBetter=false;
-                for(Map.Entry<Collection<Valve>, Integer> ee : testedStates.entrySet()) {
-                    if (ee.getKey().containsAll(state.getOpenedValves().keySet()) &&
-                            ee.getKey().size() == state.getOpenedValves().keySet().size() &&
-                            ee.getValue() >= state.getScore(26)) {
-                        hasSeenBetter=true;
-                        break;
-                    }
-                }
-                if(hasSeenBetter) {
-                    continue;
-                }
-                testedStates.put(state.getOpenedValves().keySet(), state.getScore(26));
-                //Elephant time!
-                Stack<State> stack2 = new Stack<>();
-
-                HashMap<Valve, Integer> map = new HashMap<>();
-                for(Map.Entry<Valve, Integer> e : state.openedValves.entrySet() ) {
-                    if (e.getValue() > 26) continue;
-                    map.put(e.getKey(), e.getValue());
-                }
-
-                stack2.add(new State(0, start, map ));
-                HashMap<Collection<Valve>, Integer> testedStatesElephant = new HashMap<>();
-
-                while(!stack2.isEmpty()) {
-                    State state2 = stack2.pop();
-                    if(state2.getTime() >= 26) {
-                        boolean hasSeenBetterElephant=false;
-                        for(Map.Entry<Collection<Valve>, Integer> ee : testedStatesElephant.entrySet()) {
-                            if (ee.getKey().containsAll(state2.getOpenedValves().keySet()) &&
-                                    ee.getKey().size() == state2.getOpenedValves().keySet().size() &&
-                                    ee.getValue() >= state2.getScore(26)) {
-                                hasSeenBetterElephant=true;
-                                break;
-                            }
-                        }
-                        if(hasSeenBetterElephant) {
-                            continue;
-                        }
-                        testedStatesElephant.put(state2.getOpenedValves().keySet(), state2.getScore(26));
-
-                        int score = 0;
-                        for (Map.Entry<Valve, Integer> e : state2.getOpenedValves().entrySet()) {
-                            if (e.getValue() > 26) continue;
-                            int flow = e.getKey().getFlow();
-                            int timeLeft = 26 - e.getValue();
-                            score += flow * timeLeft;
-                        }
-                        bestScore = Math.max(score, bestScore);
-                    } else {
-                        for(Map.Entry<String, Integer> valve : state2.getValve().getConnectedValves().entrySet()) {
-                            Valve v = allValves.get(valve.getKey());
-                            if(state2.getOpenedValves().containsKey(v)) continue;
-                            if(v.getName().equals(start.getName())) continue;
-                            HashMap<Valve, Integer> openedValves = new HashMap<>(state2.getOpenedValves());
-                            openedValves.put(v, state2.getTime()+valve.getValue());
-                            stack2.add( new State(state2.getTime()+valve.getValue(), v, openedValves));
-                        }
-                        stack2.add(new State(26, state2.getValve(), state2.getOpenedValves()));
-                    }
-                }
-            } else {
-                for(Map.Entry<String, Integer> valve : state.getValve().getConnectedValves().entrySet()) {
-                    Valve v = allValves.get(valve.getKey());
-                    if(state.getOpenedValves().containsKey(v)) continue;
-                    if(v.getName().equals(start.getName())) continue;
-                    HashMap<Valve, Integer> openedValves = new HashMap<>(state.getOpenedValves());
-                    openedValves.put(v, state.getTime()+valve.getValue());
-                    stack.add(new State(state.getTime()+valve.getValue(), v, openedValves));
-                }
-                stack.add(new State(26, state.getValve(), state.getOpenedValves()));
-            }
-        }
-        return bestScore;
-    }
     public static void main(String[] args){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2022/"+day+".txt");
@@ -251,5 +57,202 @@ public class Day16 {
 
         System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // 1767
         System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // 2528
+    }
+
+    static Object solveA(List<String> values) {
+        HashMap<String, HashMap<String, Integer>> connectionCost = new HashMap<>();
+        HashMap<String, Integer> valves = new HashMap<>();
+        for (String row : values) {
+
+            String name = row.split(" ")[1];
+            int flow = Integer.parseInt(row.split("=")[1].split(";")[0]);
+            String[] tunnelsTo = row.split("valve |valves ")[1].split(", ");
+
+            valves.put(name, flow);
+
+            HashMap<String, Integer> connections = new HashMap<>();
+            for(String to : tunnelsTo) {
+                connections.put(to, 1);
+            }
+            connectionCost.put(name, connections);
+        }
+
+        for(String name : connectionCost.keySet()) {
+            fillPaths(name, connectionCost);
+        }
+
+        int maxTime=30;
+
+        Queue<NewState> stack = new LinkedList<>();
+
+        HashMap<String, Integer> openAtStart = new HashMap<>();
+        for(var e : valves.entrySet()) {
+            if(e.getValue()==0) {
+                openAtStart.put(e.getKey(),0);
+            }
+        }
+        stack.add(new NewState("AA", openAtStart, connectionCost.keySet(), connectionCost, 0));
+
+        HashMap<Position, Integer> bestScoresMidRun = new HashMap<>();
+
+        while(!stack.isEmpty()) {
+            NewState state = stack.poll();
+            int score = getScore(state.valvesOpenedAt, valves, maxTime);
+            if(score > bestScoresMidRun.getOrDefault(state.asPosition(), -1)) {
+                bestScoresMidRun.put(state.asPosition(), score);
+
+                if (state.time < maxTime) {
+                    stack.addAll(state.getNextStates());
+                }
+            }
+        }
+
+        return bestScoresMidRun.values().stream().mapToInt(i -> i).max().getAsInt();
+    }
+
+    private record Connection(String name, Integer cost) {}
+    private static void fillPaths(String name, HashMap<String, HashMap<String, Integer>> connectionCost) {
+        HashMap<String, Integer> seen = new HashMap<>();
+        Stack<Connection> stack = new Stack<>();
+        for(var e : connectionCost.get(name).entrySet()) {
+            stack.add(new Connection(e.getKey(), e.getValue()));
+        }
+        while(!stack.isEmpty()) {
+            Connection conn = stack.pop();
+            if(seen.containsKey(conn.name) && seen.get(conn.name) < conn.cost)
+                continue;
+            seen.put(conn.name, conn.cost);
+            for(var e : connectionCost.get(conn.name).entrySet()) {
+                stack.add(new Connection(e.getKey(), e.getValue()+conn.cost));
+            }
+        }
+        connectionCost.put(name, seen);
+    }
+
+    static Object solveB(List<String> values) {
+        HashMap<String, HashMap<String, Integer>> connectionCost = new HashMap<>();
+        HashMap<String, Integer> valves = new HashMap<>();
+        for (String row : values) {
+
+            String name = row.split(" ")[1];
+            int flow = Integer.parseInt(row.split("=")[1].split(";")[0]);
+            String[] tunnelsTo = row.split("valve |valves ")[1].split(", ");
+
+            valves.put(name, flow);
+
+            HashMap<String, Integer> connections = new HashMap<>();
+            for(String to : tunnelsTo) {
+                connections.put(to, 1);
+            }
+            connectionCost.put(name, connections);
+        }
+
+        for(String name : connectionCost.keySet()) {
+            fillPaths(name, connectionCost);
+        }
+
+        int maxTime=26;
+        Queue<NewState> stack = new LinkedList<>();
+
+        HashSet<HashSet<String>> allValveOptions = new HashSet<>();
+
+        HashMap<String, Integer> temp = new HashMap<>();
+        for(var valve : valves.entrySet()) {
+            if(valve.getValue()>0)
+                temp.put(valve.getKey(), valve.getValue());
+        }
+        valves = temp;
+        ArrayList<String> selectableValves = new ArrayList<>(valves.keySet());
+
+        for(int i=0; i<Math.pow(2, valves.keySet().size()); i++) {
+            HashSet<String> selection = new HashSet<>();
+            String asBinary = StringUtils.leftPad(Integer.toBinaryString(i), valves.keySet().size() , '0');
+
+            for(int pos=0; pos<valves.keySet().size(); pos++) {
+                if(asBinary.charAt(pos)=='1') {
+                    selection.add(selectableValves.get(pos));
+                }
+            }
+            allValveOptions.add(selection);
+        }
+
+        int totalScore=0;
+        ArrayList<HashSet<String>> valvesOptions = new ArrayList<>(allValveOptions);
+
+        for(int i=0; i<(valvesOptions.size()+1)/2; i++) {
+            var selection = valvesOptions.get(i);
+            int humanScore=0;
+            int elephantScore=0;
+            {
+                stack.add(new NewState("AA", new HashMap<>(), selection, connectionCost, 0));
+
+                while (!stack.isEmpty()) {
+                    NewState state = stack.poll();
+                    int score = getScore(state.valvesOpenedAt, valves, maxTime);
+                    elephantScore= Math.max(elephantScore, score);
+
+                    if (state.time < maxTime) {
+                        stack.addAll(state.getNextStates());
+                    }
+                }
+            }
+            {
+                HashSet<String> remaining = new HashSet<>(valves.keySet());
+                remaining.removeAll(selection);
+                stack.add(new NewState("AA", new HashMap<>(), remaining, connectionCost, 0));
+
+                while (!stack.isEmpty()) {
+                    NewState state = stack.poll();
+                    int score = getScore(state.valvesOpenedAt, valves, maxTime);
+                    humanScore= Math.max(humanScore, score);
+
+                    if (state.time < maxTime) {
+                        stack.addAll(state.getNextStates());
+                    }
+                }
+            }
+            totalScore = Math.max(totalScore, humanScore+elephantScore);
+        }
+
+        return totalScore;
+    }
+
+
+    private static int getScore(HashMap<String, Integer> valvesOpenedAt, HashMap<String, Integer> valves, int maxTime) {
+        int score=0;
+        for(var e : valvesOpenedAt.entrySet()) {
+            score += Math.max(0, maxTime - e.getValue() ) * valves.get(e.getKey());
+        }
+        return score;
+    }
+    private record Position(HashSet<String> positions, HashSet<String> openValves){}
+
+    private record NewState(String pos,
+                            HashMap<String, Integer> valvesOpenedAt,
+                            Set<String> availableValves,
+                            HashMap<String, HashMap<String, Integer>> connectionCosts,
+                            int time){
+        Position asPosition() {
+            HashSet<String> placements = new HashSet<>();
+            if(pos != null) placements.add(pos);
+            return new Position(placements, new HashSet<>(valvesOpenedAt.keySet()));
+        }
+        List<NewState> getNextStates() {
+            ArrayList<NewState> nextStates = new ArrayList<>();
+            if(availableValves.contains(pos) && !valvesOpenedAt.containsKey(pos)) {
+                var newSet = new HashMap<>(valvesOpenedAt);
+                newSet.put(pos, time+1);
+                nextStates.add(new NewState(pos, newSet, availableValves,connectionCosts,  time+1));
+                return nextStates;
+            }
+            for(var newPos : availableValves) {
+                if(pos.equals(newPos))
+                    continue;
+                if(valvesOpenedAt.containsKey(newPos))
+                    continue;
+                nextStates.add(new NewState(newPos, valvesOpenedAt, availableValves, connectionCosts, time + connectionCosts.get(pos).get(newPos)));
+            }
+            return nextStates;
+        }
     }
 }
