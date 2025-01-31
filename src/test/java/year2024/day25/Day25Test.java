@@ -13,12 +13,51 @@ public class Day25Test {
     @Test
     void testSolveA() {
         String input = """
+                #####
+                .####
+                .####
+                .####
+                .#.#.
+                .#...
+                .....
+                                
+                #####
+                ##.##
+                .#.##
+                ...##
+                ...#.
+                ...#.
+                .....
+                                
+                .....
+                #....
+                #....
+                #...#
+                #.#.#
+                #.###
+                #####
+                                
+                .....
+                .....
+                #.#..
+                ###..
+                ###.#
+                ###.#
+                #####
+                                
+                .....
+                .....
+                .....
+                #....
+                #.#..
+                #.#.#
+                #####
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        Assertions.assertEquals("Not yet implemented", new Day25().solveA(inputs));
+        Assertions.assertEquals(3, new Day25().solveA(inputs));
     }
     @Test
     void testSolveB() {
