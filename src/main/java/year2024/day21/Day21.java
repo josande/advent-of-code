@@ -16,8 +16,8 @@ public class Day21 implements AdventOfCode {
         Reporter.report(new Day21());
     }
 
-    HashMap<Character, HashMap<Character, List<String>>> numpadFromTo = new HashMap<>();
-    HashMap<Character, HashMap<Character, Set<String>>> dpadFromTo = new HashMap<>();
+    final HashMap<Character, HashMap<Character, List<String>>> numpadFromTo = new HashMap<>();
+    final HashMap<Character, HashMap<Character, Set<String>>> dpadFromTo = new HashMap<>();
 
     @Override
     public Object solveA(List<String> input) {
@@ -51,8 +51,7 @@ public class Day21 implements AdventOfCode {
         for(char from : numpadValues.toCharArray()) {
             var targets =  new HashMap<Character, List<String>>();
             for (char to : numpadValues.toCharArray()) {
-                List<String> paths = new ArrayList<>();
-                paths.addAll(getShortPaths(from, to, numPadLayout));
+                List<String> paths = new ArrayList<>(getShortPaths(from, to, numPadLayout));
                 targets.put(to, paths);
             }
             numpadFromTo.put(from, targets);
@@ -95,19 +94,7 @@ public class Day21 implements AdventOfCode {
             }
             complexity+= (Long.parseLong(line.substring(0,3))*shortestPath);
         }
-
-
-
-
         return complexity;
-    }
-
-    private int getPaths(String path, int level) {
-        if (level == 0) return path.length();
-
-
-
-        return 0;
     }
 
     private long getLength(String string, int level, int maxDepth, HashMap<Pair<String, Integer>, Long> cache) {
@@ -130,41 +117,23 @@ public class Day21 implements AdventOfCode {
     }
 
     private Set<String> getShortPaths (char from, char to, HashMap<Point, Character> map){
-        Point startPoint = map.entrySet().stream().filter(e ->e.getValue()==from).findAny().map(e->e.getKey()).orElseThrow();
-        Point endPoint = map.entrySet().stream().filter(e ->e.getValue()==to).findAny().map(e->e.getKey()).orElseThrow();
+        Point startPoint = map.entrySet().stream().filter(e ->e.getValue()==from).findAny().map(Map.Entry::getKey).orElseThrow();
+        Point endPoint = map.entrySet().stream().filter(e ->e.getValue()==to).findAny().map(Map.Entry::getKey).orElseThrow();
 
-        String hotizontal ="";
-        String vertical ="";
+        StringBuilder horizontal = new StringBuilder();
+        StringBuilder vertical = new StringBuilder();
 
+        vertical.append(">".repeat(Math.max(0, endPoint.getX() - startPoint.getX())));
+        vertical.append("<".repeat(Math.max(0, startPoint.getX() - endPoint.getX())));
+        horizontal.append("v".repeat(Math.max(0, endPoint.getY() - startPoint.getY())));
+        horizontal.append("^".repeat(Math.max(0, startPoint.getY() - endPoint.getY())));
 
-        if(startPoint.getX()<endPoint.getX()) {
-            for(int x = startPoint.getX(); x<endPoint.getX(); x++) {
-                vertical+=">";
-            }
-        }
-        if(startPoint.getX()>endPoint.getX()) {
-            for(int x = startPoint.getX(); x>endPoint.getX(); x--) {
-                vertical+="<";
-            }
-        }
-        if(startPoint.getY()<endPoint.getY()) {
-            for(int y = startPoint.getY(); y<endPoint.getY(); y++) {
-                hotizontal+="v";
-            }
-        }
-        if(startPoint.getY()>endPoint.getY()) {
-            for(int y = startPoint.getY(); y>endPoint.getY(); y--) {
-                hotizontal+="^";
-            }
-        }
         HashSet<String> paths = new HashSet<>();
-        String p1 = vertical+hotizontal+"A";
-        String p2 = hotizontal+vertical+"A";
+        String p1 = vertical.toString() +horizontal+"A";
+        String p2 = horizontal+ vertical.toString() +"A";
 
-        if(testWalk(startPoint, endPoint, p1, map))
-            paths.add(vertical+hotizontal+"A");
-        if(testWalk(startPoint, endPoint, p2, map))
-            paths.add(hotizontal + vertical + "A");
+        if(testWalk(startPoint, endPoint, p1, map)) paths.add(vertical.toString() + horizontal + "A");
+        if(testWalk(startPoint, endPoint, p2, map)) paths.add(horizontal + vertical.toString() + "A");
         return paths;
     }
     private boolean testWalk(Point startPoint, Point endPoint, String path, HashMap<Point, Character> map) {
@@ -216,8 +185,7 @@ public class Day21 implements AdventOfCode {
         for(char from : numpadValues.toCharArray()) {
             var targets =  new HashMap<Character, List<String>>();
             for (char to : numpadValues.toCharArray()) {
-                List<String> paths = new ArrayList<>();
-                paths.addAll(getShortPaths(from, to, numPadLayout));
+                List<String> paths = new ArrayList<>(getShortPaths(from, to, numPadLayout));
                 targets.put(to, paths);
             }
             numpadFromTo.put(from, targets);

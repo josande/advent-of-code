@@ -4,7 +4,6 @@ import utils.AdventOfCode;
 import utils.Reporter;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Day23 implements AdventOfCode {
     public static void main(String[] args){
@@ -63,7 +62,7 @@ public class Day23 implements AdventOfCode {
         return findLargestGroup(connections);
     }
     String findLargestGroup(HashMap<String, HashSet<String>> connections) {
-        List<String> bestSoFar = null;
+        List<String> bestSoFar = new ArrayList<>();
         HashSet<HashSet<String>> seen = new HashSet<>();
         int maxLength = 0;
 
@@ -93,6 +92,6 @@ public class Day23 implements AdventOfCode {
             }
         }
         Collections.sort(bestSoFar);
-        return bestSoFar.stream().collect(Collectors.joining(","));
+        return String.join(",", bestSoFar);
     }
 }

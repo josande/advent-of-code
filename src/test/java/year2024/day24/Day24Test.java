@@ -19,7 +19,7 @@ public class Day24Test {
                 y00: 0
                 y01: 1
                 y02: 0
-                                
+                
                 x00 AND y00 -> z00
                 x01 XOR y01 -> z01
                 x02 OR y02 -> z02
@@ -44,7 +44,7 @@ public class Day24Test {
                 y02: 1
                 y03: 1
                 y04: 1
-                                
+                
                 ntg XOR fgs -> mjb
                 y02 OR x01 -> tnw
                 kwq OR kpj -> z05
@@ -128,7 +128,7 @@ public class Day24Test {
                 y03: 1
                 y04: 0
                 y05: 1
-                                
+                
                 x00 AND y00 -> z05
                 x01 AND y01 -> z02
                 x02 AND y02 -> z01

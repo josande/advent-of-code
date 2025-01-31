@@ -31,7 +31,7 @@ public class Day22 implements AdventOfCode {
         return result;
     }
 
-    private long  mix(long value, long secret){
+    private long mix(long value, long secret){
         return value^secret;
     }
     private long prune(long value) {
@@ -41,7 +41,6 @@ public class Day22 implements AdventOfCode {
     @Override
     public Object solveB(List<String> input) {
 
-        HashSet<List<Integer>> allSeries = new HashSet<>();
         HashMap<List<Integer>, Integer> allBuyers = new HashMap<>();
 
         for(String line : input){
@@ -69,22 +68,15 @@ public class Day22 implements AdventOfCode {
             for(int a =4; a<differences.size(); a++) {
                 List<Integer> deltas = differences.subList(a-4, a);
                 int value = lastValues.get(a);
-                if(currentBuyerMap.containsKey(deltas)) {
-                    int valBeforeThisRun = currentBuyerMap.get(deltas);
-                    if(valBeforeThisRun<valBeforeThisRun) {
-                        allBuyers.put(deltas, value - valBeforeThisRun+ value);
-                        currentBuyerMap.put(deltas, value);
-                    }
-                } else {
+                if(!currentBuyerMap.containsKey(deltas)) {
                     currentBuyerMap.put(deltas, value);
                     int valBefore = allBuyers.getOrDefault(deltas, 0);
                     allBuyers.put(deltas, value+valBefore);
                     currentBuyerMap.put(deltas, value);
-                    allSeries.add(deltas);
                 }
             }
         }
-        return allBuyers.values().stream().mapToInt(i->i).max().getAsInt();
+        return allBuyers.values().stream().mapToInt(i->i).max().orElse(0);
 
     }
 }
