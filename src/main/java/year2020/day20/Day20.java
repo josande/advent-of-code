@@ -330,7 +330,7 @@ public class Day20 {
                 String row1=photo.getContent().get(row+1);
                 String row2=photo.getContent().get(row+2);
                 if(row0.charAt(index+18)=='#') {
-                    if(row1.charAt(index+0)=='#' &&
+                    if(row1.charAt(index)=='#' &&
                             row1.charAt(index+5)=='#' &&
                             row1.charAt(index+6)=='#' &&
                             row1.charAt(index+11)=='#' &&
@@ -361,7 +361,7 @@ public class Day20 {
     }
 
 
-    public static void main (String[] args){
+    public static void main(){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2020/"+day+".txt");
 

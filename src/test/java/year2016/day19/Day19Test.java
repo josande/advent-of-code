@@ -10,14 +10,14 @@ public class Day19Test {
 
     @Test
     void testSolveA() {
-        ArrayList<Integer> values = new ArrayList<>();
-        values.add(5);
-        assertEquals(3, Day19.solveA(values));
+        ArrayList<String> values = new ArrayList<>();
+        values.add("" + 5);
+        assertEquals(3, new Day19().solveA(values));
     }
     @Test
     void testSolveB() {
-        ArrayList<Integer> values = new ArrayList<>();
-        values.add(5);
-        assertEquals(2, Day19.solveB(values));
+        ArrayList<String> values = new ArrayList<>();
+        values.add("" + 5);
+        assertEquals(2, new Day19().solveB(values));
     }
 }

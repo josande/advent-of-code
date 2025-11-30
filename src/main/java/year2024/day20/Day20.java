@@ -9,7 +9,7 @@ import java.util.*;
 
 @Data
 public class Day20 implements AdventOfCode {
-    public static void main(String[] args){
+    public static void main(){
         Reporter.report(new Day20());
     }
     private int timeLimit = 100;

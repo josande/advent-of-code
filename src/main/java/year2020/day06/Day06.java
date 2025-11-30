@@ -48,7 +48,7 @@ public class Day06 {
         return total;
     }
 
-    public static void main(String[] args){
+    public static void main(){
         var day = "Day06";
 
         var inputs = new FileHelper().readFile("2020/"+day+".txt");

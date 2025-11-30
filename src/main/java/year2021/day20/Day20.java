@@ -130,7 +130,7 @@ public class Day20 {
         return image.values().stream().filter(c->c!=null && c=='#').count();
     }
 
-    public static void main(String[] args){
+    public static void main(){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2021/"+day+".txt");
 //        var inputs = new FileHelper().readFileAsIntegers("2021/"+day+".txt");

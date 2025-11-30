@@ -142,7 +142,7 @@ public class Day19 {
     }
 
 
-    public static void main (String[] args){
+    public static void main(){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2020/"+day+".txt");
 

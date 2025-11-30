@@ -1,27 +1,15 @@
 package year2016.day24;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import utils.FileHelper;
-import utils.MapUtil;
-import utils.Point;
+import utils.*;
 
-import java.lang.invoke.MethodHandles;
 import java.util.*;
 
-public class Day24 {
+public class Day24 implements AdventOfCode {
 
-    @Data
-    @AllArgsConstructor
-    public static class Location {
-
-        Integer id;
-        Point location;
-        HashMap<Integer, Integer> distances;
-    }
-    static Object solveA(List<String> values) {
+    @Override
+    public Object solveA(List<String> values) {
         HashMap<Point,Character> map = MapUtil.asMap(values);
 
         HashMap<Pair<Integer, Integer>, Integer> distances =getDistances(0, map);
@@ -86,7 +74,8 @@ public class Day24 {
         return distances;
     }
 
-    static Object solveB(List<String> values) {
+    @Override
+    public Object solveB(List<String> values) {
         HashMap<Point,Character> map = MapUtil.asMap(values);
 
         HashMap<Pair<Integer, Integer>, Integer> distances =getDistances(0, map);
@@ -119,18 +108,7 @@ public class Day24 {
     }
 
 
-    public static void main(String[] args){
-        var day = MethodHandles.lookup().lookupClass().getSimpleName();
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs);
-        var timePart1 = t1-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // 490
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // 744
+    public static void main(){
+        Reporter.report(new Day24());
     }
 }

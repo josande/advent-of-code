@@ -133,7 +133,7 @@ public class Day11 {
 
         return (long) timesCounted.get(timesCounted.size() - 1) *timesCounted.get(timesCounted.size()-2);
     }
-    public static void main(String[] args){
+    public static void main(){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2022/"+day+".txt");
 

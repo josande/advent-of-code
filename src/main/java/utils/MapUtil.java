@@ -255,14 +255,18 @@ public class MapUtil {
         HashSet<Point> points = new HashSet<>();
 
         for(int i=0; i<=distance; i++) {
-            if(p.getX()-distance+i >=minX && p.getX()-distance+i <=maxX && p.getY()+i >= minY && p.getY()+i <= maxY)
-                points.add(new Point(p.getX()-distance+i, p.getY()+i));
-            if(p.getX()-distance+i >=minX && p.getX()-distance+i <=maxX && p.getY()-i >= minY && p.getY()-i <= maxY)
-                points.add(new Point(p.getX()-distance+i, p.getY()-i));
-            if(p.getX()+distance-i >=minX && p.getX()+distance-i <=maxX && p.getY()+i >= minY && p.getY()+i <= maxY)
-                points.add(new Point(p.getX()+distance-i, p.getY()+i));
-            if(p.getX()+distance-i >=minX && p.getX()-distance+i <=maxX && p.getY()-i >= minY && p.getY()-i <= maxY)
-                points.add(new Point(p.getX()+distance-i, p.getY()-i));
+            if(p.getX()-distance+i >=minX && p.getX()-distance+i <=maxX && p.getY()+i >= minY && p.getY()+i <= maxY) {
+                points.add(new Point(p.getX() - distance + i, p.getY() + i));
+            }
+            if(p.getX()-distance+i >=minX && p.getX()-distance+i <=maxX && p.getY()-i >= minY && p.getY()-i <= maxY) {
+                points.add(new Point(p.getX() - distance + i, p.getY() - i));
+            }
+            if(p.getX()+distance-i >=minX && p.getX()+distance-i <=maxX && p.getY()+i >= minY && p.getY()+i <= maxY) {
+                points.add(new Point(p.getX() + distance - i, p.getY() + i));
+            }
+            if(p.getX()+distance-i >=minX && p.getX()+distance-i <=maxX && p.getY()-i >= minY && p.getY()-i <= maxY) {
+                points.add(new Point(p.getX() + distance - i, p.getY() - i));
+            }
         }
         return points;
 

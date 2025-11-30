@@ -45,7 +45,7 @@ public class Day02 {
         }
         return validPasswords;
     }
-    public static void main(String[] args){
+    public static void main(){
         String day = "Day02";
 
         List<String> inputs = new FileHelper().readFile("2020/"+day+".txt");

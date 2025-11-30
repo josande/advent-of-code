@@ -60,7 +60,7 @@ public class Day02 {
         }
         return -1;
     }
-    public static void main(String[] args){
+    public static void main(){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
         System.out.println("Day02A "+runProgram(12,2, inputs.get(0))); // 2890696

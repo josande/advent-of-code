@@ -1,12 +1,8 @@
 package year2020.day03;
 
 import org.junit.jupiter.api.Test;
-import utils.Point;
-import year2020.day01.Day01;
-import year2020.day02.Day02;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 

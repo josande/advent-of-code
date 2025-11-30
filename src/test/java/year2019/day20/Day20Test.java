@@ -1,12 +1,12 @@
 package year2019.day20;
 
 import org.junit.jupiter.api.Test;
-import utils.Point;
 
 import java.util.*;
 
-import static year2019.day20.Day20.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static year2019.day20.Day20.findShortestRoute;
+import static year2019.day20.Day20.makeMap;
 
 class Day20Test {
 

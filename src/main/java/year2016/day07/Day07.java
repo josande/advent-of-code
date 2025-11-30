@@ -1,13 +1,16 @@
 package year2016.day07;
 
+import utils.AdventOfCode;
 import utils.FileHelper;
+import utils.Reporter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Day07 {
+public class Day07 implements AdventOfCode {
 
-    static int solveA(List<String> values) {
+    @Override
+    public Object solveA(List<String> values) {
         int valid=0;
         for ( var value : values ){
             if(supportsTLS(value))
@@ -48,7 +51,8 @@ public class Day07 {
         return false;
     }
 
-    static int solveB(List<String> values) {
+    @Override
+    public Object solveB(List<String> values) {
         int valid=0;
         for ( var value : values ){
             if(supportsSSL(value)) {
@@ -97,19 +101,7 @@ public class Day07 {
         return false;
     }
 
-    public static void main(String[] args){
-        var day = "Day07";
-
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs);
-        var timePart1 = System.currentTimeMillis()-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //110
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //242
+    public static void main(){
+        Reporter.report(new Day07());
     }
 }

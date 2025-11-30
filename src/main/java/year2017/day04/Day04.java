@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Day04 implements AdventOfCode {
-    public static void main(String[] args){
+    public static void main(){
         Reporter.report(new Day04());
     }
 

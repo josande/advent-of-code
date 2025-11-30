@@ -62,7 +62,7 @@ public class Day12 {
                     int degrees = Integer.parseInt(v.substring(1));
                     while (degrees > 0) {
                         int temp = -wpY;
-                        wpY = +wpX;
+                        wpY = wpX;
                         wpX = temp;
                         degrees -= 90;
                     }
@@ -74,7 +74,7 @@ public class Day12 {
 
 
 
-    public static void main(String[] args){
+    public static void main(){
         var day = "Day12";
 
         var inputs = new FileHelper().readFile("2020/"+day+".txt");

@@ -1,13 +1,16 @@
 package year2016.day09;
 
+import utils.AdventOfCode;
 import utils.FileHelper;
+import utils.Reporter;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
-public class Day09 {
+public class Day09 implements AdventOfCode {
 
-    static long solveA(List<String> values) {
+    @Override
+    public Object solveA(List<String> values) {
         long result=0;
         for(var val:values) {
             String tempString = val;
@@ -38,7 +41,8 @@ public class Day09 {
         return finalString.toString();
     }
 
-    static long solveB(List<String> values) {
+    @Override
+    public Object solveB(List<String> values) {
         long result=0;
         for(var val:values) {
             result+= getLengthRecurse(val);
@@ -64,20 +68,8 @@ public class Day09 {
         return result + times* getLengthRecurse(partToRepeat) + getLengthRecurse(rest);
     }
 
-
-    public static void main (String[] args){
-        var day = MethodHandles.lookup().lookupClass().getSimpleName();
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var timePart1 = System.currentTimeMillis()-t0;
-        var ansB = solveB(inputs);
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //120765
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //11658395076
+    public static void main(){
+        Reporter.report(new Day09());
     }
 
 }

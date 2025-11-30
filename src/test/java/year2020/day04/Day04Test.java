@@ -1,7 +1,6 @@
 package year2020.day04;
 
 import org.junit.jupiter.api.Test;
-import year2020.day03.Day03;
 
 import java.util.Arrays;
 import java.util.List;

@@ -19,7 +19,7 @@ public class Day15Test {
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(5, Day15.solveA(values));
+        assertEquals(5, new Day15().solveA(values));
 
 
     }

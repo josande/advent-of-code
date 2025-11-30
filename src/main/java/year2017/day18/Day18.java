@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Day18 implements AdventOfCode {
-    public static void main(String[] args){
+    public static void main(){
         Reporter.report(new Day18());
     }
 
@@ -59,13 +59,10 @@ public class Day18 implements AdventOfCode {
         p0.setInstructions(input);
         p1.setInstructions(input);
 
-        p0.runUntilPause();
-        p1.runUntilPause();
-
-        while(p0.hasOutput() || p1.hasOutput()) {
+        do {
             p0.runUntilPause();
             p1.runUntilPause();
-        }
+        } while(p0.hasOutput() || p1.hasOutput());
 
         return p1.getTimesSent();
     }

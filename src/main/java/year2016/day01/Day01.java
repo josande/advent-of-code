@@ -1,15 +1,16 @@
 package year2016.day01;
 
-import utils.FileHelper;
+import utils.AdventOfCode;
 import utils.Point;
+import utils.Reporter;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-public class Day01 {
+public class Day01 implements AdventOfCode {
 
-    static int solveA(List<String> values) {
+    @Override
+    public Object solveA(List<String> values) {
         int x=0, y=0, direction=0;
         for (var value : values) {
             for ( var part : value.split(", ") ) {
@@ -27,7 +28,8 @@ public class Day01 {
         return Math.abs(x) + Math.abs(y);
     }
 
-    static int solveB(List<String> values) {
+    @Override
+    public Object solveB(List<String> values) {
         int x=0, y=0, direction=0;
         var visited = new HashSet<Point>();
         for (var value : values) {
@@ -52,19 +54,7 @@ public class Day01 {
         return -1;
     }
 
-    public static void main(String[] args){
-        var day = "Day01";
-
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs);
-        var timePart1 = System.currentTimeMillis()-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //250
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //151
+    public static void main(){
+        Reporter.report(new Day01());
     }
 }

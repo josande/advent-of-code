@@ -223,7 +223,7 @@ public class Day12 {
         }
         return product;
     }
-    public static void main(String[] args) {
+    public static void main() {
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
 

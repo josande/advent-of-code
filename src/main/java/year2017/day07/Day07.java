@@ -8,12 +8,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Day07 implements AdventOfCode {
-    public static void main(String[] args){
+    public static void main(){
         Reporter.report(new Day07());
     }
 
     @Data
-    private static class Program {
+    public static class Program {
         private String name;
         private int weight;
         private List<Program> programs = new ArrayList<>();

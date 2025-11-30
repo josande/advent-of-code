@@ -54,7 +54,6 @@ public class Day25Test {
                 #####
                 """;
         var inputs = Arrays.stream(input.split("\n"))
-                .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
         Assertions.assertEquals(3, new Day25().solveA(inputs));

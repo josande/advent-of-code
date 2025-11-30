@@ -40,7 +40,7 @@ public class Day01 {
         return cals.get(0)+cals.get(1)+cals.get(2);
     }
 
-    public static void main(String[] args){
+    public static void main(){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2022/"+day+".txt");
 

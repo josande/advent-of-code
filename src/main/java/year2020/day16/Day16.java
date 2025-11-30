@@ -122,7 +122,7 @@ public class Day16 {
 
 
 
-    public static void main (String[] args){
+    public static void main(){
         var day = "Day16";
 
         var inputs = new FileHelper().readFile("2020/"+day+".txt");

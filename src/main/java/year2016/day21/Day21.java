@@ -1,14 +1,21 @@
 package year2016.day21;
 
 import org.apache.commons.lang3.StringUtils;
+import utils.AdventOfCode;
 import utils.FileHelper;
+import utils.Reporter;
 
 import java.lang.invoke.MethodHandles;
 import java.util.*;
 
-public class Day21 {
+public class Day21 implements AdventOfCode {
 
-    static Object solveA(String input, List<String> values) {
+    @Override
+    public Object solveA(List<String> values) {
+        return solveA("abcdefgh", values);
+
+    }
+    public String solveA(String input, List<String> values) {
         String password=input;
         for(String operation : values) {
             password=scramble(password, operation);
@@ -147,7 +154,11 @@ public class Day21 {
         throw new IllegalArgumentException("Unknown operation to unscramble: "+operation);
     }
 
-    static Object solveB(String input, List<String> values) {
+    @Override
+    public Object solveB(List<String> values) {
+        return solveB("fbgdceah", values);
+    }
+    public Object solveB(String input, List<String> values) {
         for(String password : getAllUniquePermutations(input)) {
             if(input.equals(solveA(password, values)))
                 return password;
@@ -185,19 +196,7 @@ public class Day21 {
         return permutations;
     }
 
-
-    public static void main(String[] args){
-        var day = MethodHandles.lookup().lookupClass().getSimpleName();
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA("abcdefgh", inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB("fbgdceah", inputs);
-        var timePart1 = t1-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // cbeghdaf
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // bacdefgh
+    public static void main(){
+        Reporter.report(new Day21());
     }
 }

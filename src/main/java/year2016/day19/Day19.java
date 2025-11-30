@@ -1,12 +1,14 @@
 package year2016.day19;
 
 import lombok.Data;
+import utils.AdventOfCode;
 import utils.FileHelper;
+import utils.Reporter;
 
 import java.lang.invoke.MethodHandles;
 import java.util.*;
 
-public class Day19 {
+public class Day19 implements AdventOfCode {
 
     @Data
     static class Elf {
@@ -24,11 +26,13 @@ public class Day19 {
         }
 
     }
-    static Object solveA(List<Integer> values) {
+
+    @Override
+    public Object solveA(List<String> values) {
         Elf startElf = new Elf(1);
         Elf lastElf = startElf;
         Elf currentElf = null;
-        for (int id = 2; id <= values.get(0); id++) {
+        for (int id = 2; id <= Integer.parseInt(values.getFirst()); id++) {
             currentElf = new Elf(id);
             lastElf.setLeft(currentElf);
             currentElf.setRight(lastElf);
@@ -46,12 +50,14 @@ public class Day19 {
         }
         return currentElf.getId();
     }
-    static Object solveB(List<Integer> values) {
+
+    @Override
+    public Object solveB(List<String> values) {
         Elf startElf = new Elf(1);
         Elf lastElf = startElf;
         Elf currentElf = null;
 
-        for (int id = 2; id <= values.get(0); id++) {
+        for (int id = 2; id <= Integer.parseInt(values.getFirst()); id++) {
             currentElf = new Elf(id);
             lastElf.setLeft(currentElf);
             currentElf.setRight(lastElf);
@@ -63,10 +69,10 @@ public class Day19 {
         currentElf = startElf;
 
         Elf nextToBeRemoved=startElf;
-        for(int i = 0; i< values.get(0)/2; i++) {
+        for(int i = 0; i< Integer.parseInt(values.getFirst())/2; i++) {
             nextToBeRemoved=nextToBeRemoved.getLeft();
         }
-        int skipCounter=values.get(0)%2;
+        int skipCounter=Integer.parseInt(values.getFirst())%2;
         while(currentElf.getLeft()!=currentElf) {
             Elf toRemove = nextToBeRemoved;
             skipCounter++;
@@ -79,19 +85,8 @@ public class Day19 {
         }
         return currentElf.getId();
     }
-    public static void main(String[] args){
-        var day = MethodHandles.lookup().lookupClass().getSimpleName();
-        var inputs = new FileHelper().readFileAsIntegers("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs);
-        var timePart1 = t1-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // 1816277
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // 1410967
+    public static void main(){
+        Reporter.report(new Day19());
     }
 
 }

@@ -1,14 +1,17 @@
 package year2016.day04;
 
+import utils.AdventOfCode;
 import utils.FileHelper;
+import utils.Reporter;
 
 import java.util.*;
 
 import static utils.MapUtil.getLetterOccurrencesMap;
 
-public class Day04 {
+public class Day04 implements AdventOfCode {
 
-    static int solveA(List<String> values) {
+    @Override
+    public Object solveA(List<String> values) {
         int result=0;
 
         for(var value : values) {
@@ -49,8 +52,8 @@ public class Day04 {
         }
     }
 
-
-    static int solveB(List<String> values) {
+    @Override
+    public Object solveB(List<String> values) {
         int result=0;
 
         for(var value : values) {
@@ -84,20 +87,7 @@ public class Day04 {
         return String.valueOf(asChars);
     }
 
-
-    public static void main(String[] args){
-        var day = "Day04";
-
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs);
-        var timePart1 = System.currentTimeMillis()-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //173787
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //548
+    public static void main(){
+        Reporter.report(new Day04());
     }
 }

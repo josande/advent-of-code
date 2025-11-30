@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Day11 implements AdventOfCode {
-    public static void main(String[] args){
+    public static void main(){
         Reporter.report(new Day11());
     }
 

@@ -243,14 +243,14 @@ public class Day24 {
         for(int y=0;y<5;y++) {
             for(int x=0;x<5;x++) {
                 if(map.get(new Point(x,y))=='#') {
-                    bio += Math.pow(2, pow);
+                    bio += (long) Math.pow(2, pow);
                 }
                 pow++;
             }
         }
         return bio;
     }
-    public static void main(String[] args) {
+    public static void main() {
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
 

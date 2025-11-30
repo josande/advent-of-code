@@ -1,12 +1,14 @@
 package year2016.day16;
 
 import org.apache.commons.lang3.StringUtils;
+import utils.AdventOfCode;
 import utils.FileHelper;
+import utils.Reporter;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
-public class Day16 {
+public class Day16 implements AdventOfCode {
 
     static String curve(String input) {
         String b = input;
@@ -30,12 +32,14 @@ public class Day16 {
         return temp.substring(0,diskSize);
     }
 
-    static Object solveA(List<String> values) {
+    @Override
+    public Object solveA(List<String> values) {
         int diskLength=272;
         String diskContent=fillDisk(values.get(0), diskLength);
         return makeChecksum(diskContent);
     }
-    static Object solveB(List<String> values) {
+    @Override
+    public Object solveB(List<String> values) {
         int diskLength=35651584;
         String diskContent=fillDisk(values.get(0), diskLength);
         return makeChecksum(diskContent);
@@ -59,18 +63,7 @@ public class Day16 {
         return checkSum;
     }
 
-    public static void main(String[] args){
-        var day = MethodHandles.lookup().lookupClass().getSimpleName();
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs);
-        var timePart1 = t1-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // 10100011010101011
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // 01010001101011001
+    public static void main(){
+        Reporter.report(new Day16());
     }
 }

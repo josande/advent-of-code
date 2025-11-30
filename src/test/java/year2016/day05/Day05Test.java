@@ -14,7 +14,7 @@ class Day05Test {
     @Test
     void testSolveA() {
         String input="abc";
-        assertEquals("18f47a30", Day05.solveA(List.of(input)));
+        assertEquals("18f47a30", new Day05().solveA(List.of(input)));
     }
 
     @Test
@@ -25,6 +25,6 @@ class Day05Test {
     @Test
     void testSolveB() {
         String input="abc";
-        assertEquals("05ace8e3", Day05.solveB(List.of(input)));
+        assertEquals("05ace8e3", new Day05().solveB(List.of(input)));
     }
 }

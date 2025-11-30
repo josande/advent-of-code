@@ -1,6 +1,8 @@
 package year2016.day05;
 
+import utils.AdventOfCode;
 import utils.FileHelper;
+import utils.Reporter;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -8,11 +10,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-public class Day05 {
+public class Day05 implements AdventOfCode {
 
-    static String solveA(List<String> values) {
+    @Override
+    public Object solveA(List<String> values) {
         int counter=0;
-        StringBuilder password= new StringBuilder();
+        StringBuilder password = new StringBuilder();
         MessageDigest messageDigest = null;
         try {
             messageDigest = MessageDigest.getInstance("MD5");
@@ -21,8 +24,7 @@ public class Day05 {
         }
         for ( var value : values ) {
             while (password.length()<8) {
-                String md5="";
-                md5 = asMD5(value+counter, messageDigest);
+                String md5 = asMD5(value+counter, messageDigest);
 
                 if(md5.startsWith("00000")) {
                     password.append(md5.charAt(5));
@@ -35,12 +37,12 @@ public class Day05 {
     }
 
     static String asMD5(String data, MessageDigest messageDigest) {
-       // messageDigest.update(data.getBytes());
         byte[] digest = messageDigest.digest(data.getBytes(StandardCharsets.UTF_8));
         return String.format("%032x", new BigInteger(1, digest));
     }
 
-    static String solveB(List<String> values) {
+    @Override
+    public Object solveB(List<String> values) {
         int counter=0;
         MessageDigest messageDigest = null;
         try {
@@ -70,20 +72,7 @@ public class Day05 {
         return String.valueOf(password);
     }
 
-
-    public static void main(String[] args){
-        var day = "Day05";
-
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs);
-        var timePart1 = System.currentTimeMillis()-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // f97c354d
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // 863dde27
+    public static void main(){
+        Reporter.report(new Day05());
     }
 }

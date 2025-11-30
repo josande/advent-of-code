@@ -2,13 +2,15 @@ package year2016.day13;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import utils.AdventOfCode;
 import utils.FileHelper;
 import utils.Point;
+import utils.Reporter;
 
 import java.lang.invoke.MethodHandles;
 import java.util.*;
 
-public class Day13 {
+public class Day13 implements AdventOfCode {
 
     @AllArgsConstructor
     @Data
@@ -40,14 +42,14 @@ public class Day13 {
         String binary = Integer.toBinaryString(val);
         return binary.replaceAll("0", "").length()%2!=0;
     }
-    static long solveA(List<Integer> values) {
-        int offset = values.get(0);
+    @Override
+    public Object solveA(List<String> values) {
+        int offset = Integer.parseInt(values.getFirst());
         Point target = new Point(31,39);
 
         return getSteps(offset, target);
-
-
     }
+
     static Integer getSteps(int offset, Point target)  {
         HashMap<Point, Integer> visited = new HashMap<>();
         Point start = new Point(1,1);
@@ -75,8 +77,9 @@ public class Day13 {
         return maxStepsToTarget;
     }
 
-    static long solveB(List<Integer> values) {
-        int offset = values.get(0);
+    @Override
+    public Object solveB(List<String> values) {
+        int offset = Integer.parseInt(values.getFirst());
         int maxSteps = 50;
 
 
@@ -100,20 +103,7 @@ public class Day13 {
         return visited.size();
     }
 
-
-    public static void main (String[] args){
-        var day = MethodHandles.lookup().lookupClass().getSimpleName();
-        var inputs = new FileHelper().readFileAsIntegers("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var timePart1 = System.currentTimeMillis()-t0;
-        var ansB = solveB(inputs);
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // 90
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // 135
+    public static void main(){
+        Reporter.report(new Day13());
     }
-
 }

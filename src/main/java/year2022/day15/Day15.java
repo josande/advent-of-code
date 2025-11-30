@@ -9,6 +9,9 @@ import java.util.*;
 
 public class Day15 {
 
+    static Object solveA(List<String> values) {
+        return solveA(values, 2000000);
+    }
     static Object solveA(List<String> values, int row) {
         HashMap<Point, Integer> sensors = new HashMap<>();
         HashSet<Point> beacons = new HashSet<>();
@@ -43,8 +46,7 @@ public class Day15 {
             for(Map.Entry<Point, Integer> e : sensors.entrySet()) {
                 if(p.getManhattanDistance(e.getKey()) <= e.getValue()) {
                     tooClose=true;
-                    continue;
-
+                    break;
                 }
             }
             if (tooClose) {
@@ -54,11 +56,14 @@ public class Day15 {
 
         return counter;
     }
+
+    static Object solveB(List<String> values) {
+        return solveB(values, 4000000);
+    }
     static Object solveB(List<String> values, int max ) {
 
 
        HashMap<Point, Integer> sensors = new HashMap<>();
-       HashSet<Point> beacons = new HashSet<>();
        HashSet<Point> borders = new HashSet<>();
 
        for (String str : values) {
@@ -76,33 +81,30 @@ public class Day15 {
            borders.addAll(MapUtil.getPointsAtManhattanDistance(s, distance+1, 0, max, 0, max ));
         }
 
+        borders.removeAll(sensors.keySet());
 
         for(Point p : borders) {
-            if(beacons.contains(p)) continue;
-            if(sensors.containsKey(p)) continue;
+            boolean tooClose = false;
 
-            if(p.getY() >= max || p.getX() >= max || p.getY() < 0 || p.getX() < 0)
-                continue;
-            boolean toClose = false;
             for(Map.Entry<Point, Integer> e : sensors.entrySet()) {
                 if(p.getManhattanDistance(e.getKey()) <= e.getValue()) {
-                    toClose = true;
+                    tooClose = true;
                     break;
                 }
             }
-            if(!toClose)
+            if(!tooClose)
                 return (long) p.getX()*4000000+p.getY();
        }
        return -1;
     }
-    public static void main(String[] args){
+    public static void main(){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2022/"+day+".txt");
 
         var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs,2000000);
+        var ansA = solveA(inputs);
         var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs, 4000000);
+        var ansB = solveB(inputs);
         var timePart1 = t1-t0;
         var timePart2 = System.currentTimeMillis()-t1;
 

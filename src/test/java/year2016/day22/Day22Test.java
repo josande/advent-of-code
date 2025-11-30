@@ -27,6 +27,6 @@ public class Day22Test {
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(7, Day22.solveB(inputs));
+        assertEquals(7, new Day22().solveB(inputs));
     }
 }

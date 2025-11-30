@@ -22,7 +22,7 @@ public class Day01 {
                             return values.get(i) * values.get(j) * values.get(k);
         return -1;
     }
-    public static void main(String[] args){
+    public static void main(){
         String day = "Day01";
 
         List<Integer> inputs = new FileHelper().readFileAsIntegers("2020/"+day+".txt");

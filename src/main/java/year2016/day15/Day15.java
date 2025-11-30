@@ -2,13 +2,15 @@ package year2016.day15;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import utils.AdventOfCode;
 import utils.FileHelper;
+import utils.Reporter;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Day15 {
+public class Day15 implements AdventOfCode {
 
     @Data
     @AllArgsConstructor
@@ -21,7 +23,8 @@ public class Day15 {
             return  ((startPosition+id+time)%size!=0);
         }
     }
-    static Object solveA(List<String> values) {
+    @Override
+    public Object solveA(List<String> values) {
         ArrayList<Disc> discs = new ArrayList<>();
         int discId=0;
         for(String row : values) {
@@ -45,7 +48,9 @@ public class Day15 {
         }
 
     }
-    static Object solveB(List<String> values) {
+
+    @Override
+    public Object solveB(List<String> values) {
         ArrayList<Disc> discs = new ArrayList<>();
         int discId=0;
         for(String row : values) {
@@ -69,18 +74,7 @@ public class Day15 {
         }
     }
 
-    public static void main(String[] args){
-        var day = MethodHandles.lookup().lookupClass().getSimpleName();
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs);
-        var timePart1 = t1-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // 203660
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // 2408135
+    public static void main(){
+        Reporter.report(new Day15());
     }
 }

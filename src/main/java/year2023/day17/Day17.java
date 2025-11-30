@@ -7,7 +7,7 @@ import utils.*;
 import java.util.*;
 
 public class Day17 implements AdventOfCode {
-    public static void main(String[] args){
+    public static void main(){
         Reporter.report(new Day17());
     }
 
@@ -16,7 +16,7 @@ public class Day17 implements AdventOfCode {
         var map = MapUtil.asMap(input);
 
         Point start = new Point(0,0);
-        Point end = new Point(MapUtil.getMaxX(map),MapUtil.getMaxY(map));
+        Point end = new Point(MapUtil.getMaxX(map), MapUtil.getMaxY(map));
         PriorityQueue<State> queue = new PriorityQueue<>();
 
         int bestSoFar= Integer.MAX_VALUE;
@@ -45,6 +45,7 @@ public class Day17 implements AdventOfCode {
     }
     List<State> getPossibleStates(State state, HashMap<Point, Character> map, int minMove, int maxMove) {
         Direction dir1 = state.direction.left();
+
         Direction dir2 = state.direction.right();
         Point point= state.position;
         int cost1=state.cost, cost2=state.cost;
@@ -75,7 +76,7 @@ public class Day17 implements AdventOfCode {
         Point end = new Point(MapUtil.getMaxX(map),MapUtil.getMaxY(map));
         PriorityQueue<State> queue = new PriorityQueue<>();
 
-        int bestSoFar= Integer.MAX_VALUE;
+        int bestSoFar = Integer.MAX_VALUE;
 
         queue.add(new State(start, Direction.EAST, 0));
         queue.add(new State(start, Direction.SOUTH, 0));
@@ -92,7 +93,11 @@ public class Day17 implements AdventOfCode {
 
             cache.put(current.asPair(), current.cost);
             int finalBestSoFar = bestSoFar;
-            queue.addAll(getPossibleStates(current, map, 4, 10).stream().filter(s -> !hasSeenBetter(cache, finalBestSoFar, s)).toList());
+            queue.addAll(
+                    getPossibleStates(current, map, 4, 10)
+                            .stream()
+                            .filter(s -> !hasSeenBetter(cache, finalBestSoFar, s))
+                            .toList());
 
         }
         return bestSoFar;
@@ -103,9 +108,6 @@ public class Day17 implements AdventOfCode {
 
         @Override
         public int compareTo(State other) {
-            int posCost = (other.position.getX()+other.position.getY()) - (this.position.getX()+this.position.getY());
-
-            if(posCost != 0) return posCost;
             return this.cost-other.cost;
         }
     }

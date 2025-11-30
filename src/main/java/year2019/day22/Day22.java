@@ -79,7 +79,7 @@ public class Day22 {
             cardPosition=BigInteger.valueOf(cardPosition.longValue()%deckSize.longValue());
         }
     }
-    public static void main(String[] args) {
+    public static void main() {
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2019/"+day+".txt");
 

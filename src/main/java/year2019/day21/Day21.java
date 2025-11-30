@@ -7,7 +7,7 @@ import java.lang.invoke.MethodHandles;
 
 public class Day21 {
 
-    public static void main(String[] args) {
+    public static void main() {
         long t0=System.currentTimeMillis();
 
         var day = MethodHandles.lookup().lookupClass().getSimpleName();

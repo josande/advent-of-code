@@ -1,13 +1,16 @@
 package year2016.day18;
 
+import utils.AdventOfCode;
 import utils.FileHelper;
+import utils.Reporter;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Day18 {
-    static Object solveA(List<String> values) {
+public class Day18 implements AdventOfCode {
+    @Override
+    public Object solveA(List<String> values) {
         int numberOfRows=40;
         ArrayList<String> rows = generateMap(values.get(0), numberOfRows);
         return calculateSafeSpaces(rows);
@@ -60,25 +63,16 @@ public class Day18 {
         }
         return safeSpaces;
     }
-    static Object solveB(List<String> values) {
+
+    @Override
+    public Object solveB(List<String> values) {
         int numberOfRows=400000;
-        ArrayList<String> rows = generateMap(values.get(0), numberOfRows);
+        ArrayList<String> rows = generateMap(values.getFirst(), numberOfRows);
         return calculateSafeSpaces(rows);
 
     }
 
-    public static void main(String[] args){
-        var day = MethodHandles.lookup().lookupClass().getSimpleName();
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs);
-        var timePart1 = t1-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // 2013
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // 20006289
+    public static void main(){
+        Reporter.report(new Day18());
     }
 }

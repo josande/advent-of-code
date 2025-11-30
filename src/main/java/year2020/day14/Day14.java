@@ -84,7 +84,7 @@ public class Day14 {
         return possibleValues;
     }
 
-    public static void main(String[] args){
+    public static void main(){
         var day = "Day14";
 
         var inputs = new FileHelper().readFile("2020/"+day+".txt");

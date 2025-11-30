@@ -1,8 +1,10 @@
 package year2016.day17;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import utils.AdventOfCode;
 import utils.FileHelper;
 import utils.Point;
+import utils.Reporter;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
@@ -10,9 +12,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class Day17 {
+public class Day17 implements AdventOfCode {
 
-    static Object solveA(List<String> values) {
+    @Override
+    public Object solveA(List<String> values) {
 
         return getShortestPath(values.get(0));
 
@@ -80,7 +83,9 @@ public class Day17 {
 
         return paths;
     }
-    static Object solveB(List<String> values) {
+
+    @Override
+    public Object solveB(List<String> values) {
         return getLongestPath(values.get(0));
     }
 
@@ -101,18 +106,7 @@ public class Day17 {
         }
         return longestPath;
     }
-    public static void main(String[] args){
-        var day = MethodHandles.lookup().lookupClass().getSimpleName();
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs);
-        var timePart1 = t1-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // DDRUDLRRRD
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // 398
+    public static void main(){
+        Reporter.report(new Day17());
     }
 }

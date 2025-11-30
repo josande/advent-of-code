@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Day12 implements AdventOfCode {
-    public static void main(String[] args){
+    public static void main(){
         Reporter.report(new Day12());
     }
 

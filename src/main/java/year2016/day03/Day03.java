@@ -1,14 +1,18 @@
 package year2016.day03;
 
+import utils.AdventOfCode;
 import utils.FileHelper;
+import utils.Reporter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Day03 {
+public class Day03 implements AdventOfCode {
 
-    static int solveA(List<String> values) {
+    @Override
+    public Object solveA(List<String> values) {
         int valid=0;
         for( var row : values ) {
             var lengths = Arrays.stream(row.split(" ")).filter(s->!s.isEmpty()).map(Integer::valueOf).collect(Collectors.toList());
@@ -22,7 +26,8 @@ public class Day03 {
         return valid;
     }
 
-    static int solveB(List<String> values) {
+    @Override
+    public Object solveB(List<String> values) {
         int valid=0;
         List<Integer> lengths = new ArrayList<>();
 
@@ -51,20 +56,7 @@ public class Day03 {
         return valid;
     }
 
-
-    public static void main(String[] args){
-        var day = "Day03";
-
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs);
-        var timePart1 = System.currentTimeMillis()-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //982
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //1826
+    public static void main(){
+        Reporter.report(new Day03());
     }
 }

@@ -52,7 +52,7 @@ public class Day18 {
 
 
 
-    public static void main(String[] args){
+    public static void main(){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2021/"+day+".txt");
 //        var inputs = new FileHelper().readFileAsIntegers("2021/"+day+".txt");

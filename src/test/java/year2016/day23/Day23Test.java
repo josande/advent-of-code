@@ -23,7 +23,7 @@ public class Day23Test {
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(3, Day23.solveA(inputs));
+        assertEquals(3, new Day23().solveA(inputs));
 
     }
 }

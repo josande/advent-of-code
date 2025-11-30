@@ -1,7 +1,6 @@
 package year2016.day02;
 
 import org.junit.jupiter.api.Test;
-import year2020.day01.Day01;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +21,7 @@ class Day02Test {
                 """;
         List<String> values = Arrays.stream(input.split("\n")).collect(Collectors.toList());
 
-        assertEquals("1985", Day02.solveA(values));
+        assertEquals("1985", new Day02().solveA(values));
     }
 
     @Test
@@ -36,7 +35,7 @@ class Day02Test {
                 """;
         List<String> values = Arrays.stream(input.split("\n")).collect(Collectors.toList());
 
-        assertEquals("5DB3", Day02.solveB(values));
+        assertEquals("5DB3", new Day02().solveB(values));
 
 
     }

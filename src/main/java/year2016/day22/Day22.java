@@ -4,14 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import utils.FileHelper;
-import utils.MapUtil;
-import utils.Point;
+import utils.*;
 
 import java.lang.invoke.MethodHandles;
 import java.util.*;
 
-public class Day22 {
+public class Day22 implements AdventOfCode {
 
     @Data
     @AllArgsConstructor
@@ -40,7 +38,9 @@ public class Day22 {
         }
         return nodes;
     }
-    static Object solveA(List<String> values) {
+
+    @Override
+    public Object solveA(List<String> values) {
         HashMap<Point, Node> nodes = asNodes(values);
 
         int matches = 0;
@@ -59,7 +59,8 @@ public class Day22 {
     }
 
 
-    static Object solveB(List<String> values) {
+    @Override
+    public Object solveB(List<String> values) {
         HashMap<Point, Node> nodes = asNodes(values);
         int maxX = MapUtil.getMaxX(nodes);
 
@@ -133,18 +134,7 @@ public class Day22 {
     }
 
 
-    public static void main(String[] args){
-        var day = MethodHandles.lookup().lookupClass().getSimpleName();
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs);
-        var timePart1 = t1-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // 888
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //  >165
+    public static void main(){
+        Reporter.report(new Day22());
     }
 }

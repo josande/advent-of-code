@@ -23,7 +23,7 @@ class Day10Test {
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals(5*2*3, Day10.solveB(values));
+        assertEquals(5*2*3, new Day10().solveB(values));
 
     }
 }

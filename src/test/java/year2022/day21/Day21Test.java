@@ -1,7 +1,6 @@
 package year2022.day21;
 
 import org.junit.jupiter.api.Test;
-import year2022.day22.Day22;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;

@@ -5,7 +5,6 @@ import utils.Point;
 
 import java.util.HashMap;
 
-import static year2019.day15.Day15.timeToFillWithOxygen;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Day15Test {
@@ -33,6 +32,6 @@ class Day15Test {
             x=0;
             y++;
         }
-        assertEquals(4, timeToFillWithOxygen(map));
+        assertEquals(4, Day15.timeToFillWithOxygen(map));
     }
 }

@@ -117,7 +117,7 @@ public class Day21Test {
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("decab", Day21.solveA("abcde", inputs));
+        assertEquals("decab", new Day21().solveA("abcde", inputs));
     }
     @Test
     void testSolveB() {
@@ -135,7 +135,7 @@ public class Day21Test {
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("abcde", Day21.solveB("decab", inputs));
+        assertEquals("abcde", new Day21().solveB("decab", inputs));
     }
 
 }

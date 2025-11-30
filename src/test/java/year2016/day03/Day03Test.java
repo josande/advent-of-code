@@ -22,7 +22,7 @@ class Day03Test {
                 """;
         List<String> values = Arrays.stream(input.split("\n")).collect(Collectors.toList());
 
-        assertEquals(2, Day03.solveA(values));
+        assertEquals(2, new Day03().solveA(values));
     }
 
     @Test
@@ -38,7 +38,7 @@ class Day03Test {
                 """;
         List<String> values = Arrays.stream(input.split("\n")).collect(Collectors.toList());
 
-        assertEquals(6, Day03.solveB(values));
+        assertEquals(6, new Day03().solveB(values));
     }
 
 

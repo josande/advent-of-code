@@ -28,7 +28,7 @@ public class Day03 {
         return trees;
     }
 
-    public static void main(String[] args){
+    public static void main(){
         String day = "Day03";
 
         List<String> inputs = new FileHelper().readFile("2020/" + day + ".txt");

@@ -26,7 +26,7 @@ class Day07Test {
         assertFalse(Day07.supportsTLS("aaaa[qwer]tyui"));
         assertTrue(Day07.supportsTLS("ioxxoj[asdfgh]zxcvbn"));
 
-        assertEquals(2, Day07.solveA(values));
+        assertEquals(2, new Day07().solveA(values));
 
     }
 
@@ -40,7 +40,7 @@ class Day07Test {
                 zazbz[bzb]cdb
                 """;
         List<String> values = Arrays.stream(input.split("\n")).collect(Collectors.toList());
-        assertEquals(3, Day07.solveB(values));
+        assertEquals(3, new Day07().solveB(values));
 
 
     }

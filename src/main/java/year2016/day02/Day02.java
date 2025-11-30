@@ -1,16 +1,18 @@
 package year2016.day02;
 
+import utils.AdventOfCode;
 import utils.FileHelper;
 import utils.Point;
+import utils.Reporter;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Day02 {
+public class Day02 implements AdventOfCode {
 
-    static String solveA(List<String> values) {
+    public String solveA(List<String> values) {
         String result = "";
         int x=1, y=1;
 
@@ -27,7 +29,7 @@ public class Day02 {
         return result;
     }
 
-    static String solveB(List<String> values) {
+    public String solveB(List<String> values) {
         String result = "";
         int x=0, y=2;
         Point current = new Point(x,y);
@@ -63,19 +65,7 @@ public class Day02 {
         return values.get(p.getY()).charAt(p.getX());
     }
 
-    public static void main(String[] args){
-        var day = "Day02";
-
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs);
-        var timePart1 = System.currentTimeMillis()-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); //36629
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); //99C3D
+    public static void main(){
+        Reporter.report(new Day02());
     }
 }

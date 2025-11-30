@@ -1,10 +1,8 @@
 package year2020.day12;
 
 import org.junit.jupiter.api.Test;
-import year2020.day10.Day10;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;

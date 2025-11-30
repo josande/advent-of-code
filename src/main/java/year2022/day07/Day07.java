@@ -8,6 +8,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 public class Day07 {
     @AllArgsConstructor
@@ -40,6 +41,17 @@ public class Day07 {
                 size+=file.getSize();
             }
             return size;
+        }
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Folder folder = (Folder) o;
+            return name.equals(folder.name) &&
+                    parent.equals(folder.parent) &&
+                    folders.equals(folder.folders) &&
+                    files.equals(folder.files) &&
+                    Objects.equals(size, folder.size);
         }
         @Override
         public int hashCode() {
@@ -94,7 +106,7 @@ public class Day07 {
         int result=0;
         for(Folder folder : allFolders) {
             if (folder.getSize() <= 100000L) {
-                result+=folder.getSize();
+                result+= (int) folder.getSize();
             }
         }
 
@@ -153,7 +165,7 @@ public class Day07 {
 
             return smallestOK;
     }
-    public static void main(String[] args){
+    public static void main(){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2022/"+day+".txt");
 

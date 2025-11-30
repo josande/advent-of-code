@@ -1,5 +1,6 @@
 package year2016.day14;
 
+import utils.AdventOfCode;
 import utils.FileHelper;
 
 import java.lang.invoke.MethodHandles;
@@ -7,9 +8,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.codec.digest.DigestUtils;
-public class Day14 {
+import utils.Reporter;
 
-    static Object solveA(List<String> values) {
+public class Day14 implements AdventOfCode {
+
+    @Override
+    public Object solveA(List<String> values) {
 
         String salt = values.get(0);
 
@@ -43,7 +47,9 @@ public class Day14 {
             }
         }
     }
-    static Object solveB(List<String> values) {
+
+    @Override
+    public Object solveB(List<String> values) {
         String salt = values.get(0);
 
         ArrayList<Integer> keys = new ArrayList<>();
@@ -100,18 +106,7 @@ public class Day14 {
         return temp;
     }
 
-    public static void main(String[] args){
-        var day = MethodHandles.lookup().lookupClass().getSimpleName();
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var ansB = solveB(inputs);
-        var timePart1 = t1-t0;
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // 15035
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // 19968
+    public static void main(){
+        Reporter.report(new Day14());
     }
 }

@@ -56,7 +56,7 @@ public class Day09 {
     }
 
 
-    public static void main(String[] args){
+    public static void main(){
         var day = "Day09";
 
         var inputs = new FileHelper().readFile("2020/"+day+".txt").stream().map(Long::valueOf).collect(Collectors.toList());

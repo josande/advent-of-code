@@ -31,7 +31,7 @@ public class Day25 {
         return output.toString();
     }
 
-    public static void main(String[] args) {
+    public static void main() {
 
         allItems.add("whirled peas");
         allItems.add("space law space brochure");

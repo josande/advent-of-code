@@ -50,8 +50,8 @@ public class Day22 {
 
             Cube c = new Cube(a,b);
 
+            ArrayList<Cube> newSubCubes=new ArrayList<>();
             if(val.startsWith("on")) {
-                ArrayList<Cube> newSubCubes=new ArrayList<>();
                 for(Cube current: cubes) {
                     Cube overLap= findOverlappingCube(current, c);
                     if(overLap.getVolume()==0L) {
@@ -61,16 +61,14 @@ public class Day22 {
                     }
                 }
                 newSubCubes.add(c);
-                cubes = newSubCubes;
 
 
             } else {
-                ArrayList<Cube> newSubCubes=new ArrayList<>();
                 for(Cube current : cubes) {
                     newSubCubes.addAll(explodeAndRemove(current, c));
                 }
-                cubes = newSubCubes;
             }
+            cubes = newSubCubes;
         }
         Long totalVol = 0L;
         for(Cube c : cubes) {
@@ -199,7 +197,7 @@ public class Day22 {
         return subCubes;
     }
 
-    public static void main(String[] args){
+    public static void main(){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2021/"+day+".txt");
 //        var inputs = new FileHelper().readFileAsIntegers("2021/"+day+".txt");

@@ -29,7 +29,7 @@ public class Day23 {
             State current = toDo.poll();
 
             if(testedStates.containsKey(current.getMap())) {
-                if(testedStates.get(current.getMap())<current.getEnergy()) {
+                if(testedStates.get(current.getMap())<=current.getEnergy()) {
                     continue;
                 }
             }
@@ -39,6 +39,7 @@ public class Day23 {
             }
             if(current.isWon()) {
                 lowestEnergyUsageFound = current.getEnergy();
+                continue;
             }
             toDo.addAll(current.getAllStates());
         }
@@ -200,7 +201,7 @@ public class Day23 {
         return solvePuzzle(newMap);
     }
 
-    public static void main(String[] args){
+    public static void main(){
         var day = MethodHandles.lookup().lookupClass().getSimpleName();
         var inputs = new FileHelper().readFile("2021/"+day+".txt");
 

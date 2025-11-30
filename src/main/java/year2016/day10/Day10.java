@@ -1,11 +1,13 @@
 package year2016.day10;
 
+import utils.AdventOfCode;
 import utils.FileHelper;
+import utils.Reporter;
 
 import java.lang.invoke.MethodHandles;
 import java.util.*;
 
-public class Day10 {
+public class Day10 implements AdventOfCode {
 
     static class Bot {
         private final Integer lowToBot;
@@ -51,7 +53,8 @@ public class Day10 {
         }
 
     }
-    static long solveA(List<String> values) {
+    @Override
+    public Object solveA(List<String> values) {
         HashMap<Integer, Bot> bots = new HashMap<>();
         HashMap<Integer, ArrayList<Integer>> outputs = new HashMap<>();
 
@@ -97,7 +100,8 @@ public class Day10 {
         return -1;
     }
 
-    static Integer solveB(List<String> values) {
+    @Override
+    public Object solveB(List<String> values) {
         HashMap<Integer, Bot> bots = new HashMap<>();
         HashMap<Integer, ArrayList<Integer>> outputs = new HashMap<>();
 
@@ -142,19 +146,8 @@ public class Day10 {
     }
 
 
-    public static void main (String[] args){
-        var day = MethodHandles.lookup().lookupClass().getSimpleName();
-        var inputs = new FileHelper().readFile("2016/"+day+".txt");
-
-        var t0 = System.currentTimeMillis();
-        var ansA = solveA(inputs);
-        var t1 = System.currentTimeMillis();
-        var timePart1 = System.currentTimeMillis()-t0;
-        var ansB = solveB(inputs);
-        var timePart2 = System.currentTimeMillis()-t1;
-
-        System.out.println(day + "A: ("+timePart1+" ms)\t"+ansA); // 56
-        System.out.println(day + "B: ("+timePart2+" ms)\t"+ansB); // 7847
+    public static void main(){
+        Reporter.report(new Day10());
     }
 
 }

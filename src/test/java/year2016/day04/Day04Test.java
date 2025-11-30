@@ -21,7 +21,7 @@ class Day04Test {
                 """;
         List<String> values = Arrays.stream(input.split("\n")).collect(Collectors.toList());
 
-        assertEquals(1514, Day04.solveA(values));
+        assertEquals(1514, new Day04().solveA(values));
     }
 
     @Test
