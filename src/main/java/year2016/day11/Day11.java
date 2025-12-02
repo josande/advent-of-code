@@ -4,10 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import utils.AdventOfCode;
-import utils.FileHelper;
 import utils.Reporter;
 
-import java.lang.invoke.MethodHandles;
 import java.util.*;
 
 public class Day11 implements AdventOfCode {

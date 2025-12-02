@@ -12,22 +12,25 @@ public class Day02Test {
     @Test
     void testSolveA() {
         String input = """
+                11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
 
-        assertEquals("Not yet implemented", new Day02().solveA(inputs));
+        assertEquals(1227775554L, new Day02().solveA(inputs));
     }
+
     @Test
     void testSolveB() {
         String input = """
+                11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day02().solveB(inputs));
+        assertEquals(4174379265L, new Day02().solveB(inputs));
     }
 }

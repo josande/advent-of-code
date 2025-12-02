@@ -1,7 +1,6 @@
 package year2021.day14;
 
 import org.junit.jupiter.api.Test;
-import year2021.day11.Day11;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -13,7 +12,7 @@ class Day14Test {
     void solveA() {
         String input = """
                 NNCB
-                                
+                
                 CH -> B
                 HH -> N
                 CB -> H
@@ -42,7 +41,7 @@ class Day14Test {
     void solveB() {
         String input = """
                 NNCB
-                                
+                
                 CH -> B
                 HH -> N
                 CB -> H

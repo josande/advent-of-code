@@ -8,7 +8,7 @@ import java.util.List;
 public class Day17 {
 
     static Object solveA(List<String> values) {
-        String input = values.get(0);
+        String input = values.getFirst();
         String xRange = input.substring(input.indexOf("=")+1, input.indexOf(","));
         String yRange = input.substring(input.lastIndexOf("=")+1);
 
@@ -34,7 +34,7 @@ public class Day17 {
     static boolean isHit(int x, int y, int xMin, int xMax, int yMin, int yMax) {
         int velX=x, velY=y;
         int posX=0, posY=0;
-        for( int step = 0; ; step++) {
+        for(;;) {
             posX+=velX;
             posY+=velY;
             if(xMin <= posX && posX <= xMax &&
@@ -59,7 +59,7 @@ public class Day17 {
     }
     static Object solveB(List<String> values) {
 
-        String input = values.get(0);
+        String input = values.getFirst();
         String xRange = input.substring(input.indexOf("=")+1, input.indexOf(","));
         String yRange = input.substring(input.lastIndexOf("=")+1);
 

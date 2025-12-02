@@ -1,7 +1,6 @@
 package year2021.day19;
 
 import org.junit.jupiter.api.Test;
-import year2021.day11.Day11;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -38,7 +37,7 @@ class Day19Test {
                 443,580,662
                 -789,900,-551
                 459,-707,401
-                                
+                
                 --- scanner 1 ---
                 686,422,578
                 605,423,415
@@ -65,7 +64,7 @@ class Day19Test {
                 807,-499,-711
                 755,-354,-619
                 553,889,-390
-                                
+                
                 --- scanner 2 ---
                 649,640,665
                 682,-795,504
@@ -185,7 +184,7 @@ class Day19Test {
                 443,580,662
                 -789,900,-551
                 459,-707,401
-                                
+                
                 --- scanner 1 ---
                 686,422,578
                 605,423,415
@@ -212,7 +211,7 @@ class Day19Test {
                 807,-499,-711
                 755,-354,-619
                 553,889,-390
-                                
+                
                 --- scanner 2 ---
                 649,640,665
                 682,-795,504
