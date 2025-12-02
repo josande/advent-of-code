@@ -1,19 +1,17 @@
 package year2016.day02;
 
 import utils.AdventOfCode;
-import utils.FileHelper;
 import utils.Point;
 import utils.Reporter;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Day02 implements AdventOfCode {
 
     public String solveA(List<String> values) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         int x=1, y=1;
 
         for( var value : values ) {
@@ -24,13 +22,13 @@ public class Day02 implements AdventOfCode {
                 if ( c== 'R') {x=Math.min(2, ++x);}
 
             }
-            result+= (y*3+x+1);
+            result.append(y * 3 + x + 1);
         }
-        return result;
+        return result.toString();
     }
 
     public String solveB(List<String> values) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         int x=0, y=2;
         Point current = new Point(x,y);
         for( var value : values ) {
@@ -49,19 +47,20 @@ public class Day02 implements AdventOfCode {
                 }
             }
 
-            result+= getValue(current);
+            result.append(getValue(current));
         }
 
-        return result;
+        return result.toString();
     }
     private static char getValue(Point p) {
-        String keypad=
-                "  1  \n" +
-                " 234 \n" +
-                "56789\n" +
-                " ABC \n" +
-                "  D  \n";
-        List<String> values = Arrays.stream(keypad.split("\n")).collect(Collectors.toList());
+        String keypad= """
+                  1 \s
+                 234\s
+                56789
+                 ABC\s
+                  D \s
+                """;
+        List<String> values = Arrays.stream(keypad.split("\n")).toList();
         return values.get(p.getY()).charAt(p.getX());
     }
 
