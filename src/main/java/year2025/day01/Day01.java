@@ -14,11 +14,10 @@ public class Day01 implements AdventOfCode {
     public Object solveA(List<String> input) {
         int result = 0, current = 50;
         for(String row : input) {
-            boolean left = row.startsWith("L");
             var value = Integer.parseInt(row.substring(1));
-            if(left) current = (current - value) % 100;
-            if(!left) current = (current + value) % 100;
-            if (current == 0) result++;
+            value*=row.startsWith("L")?-1:1;
+            current = (100+current + value%100) % 100;
+            result+=current==0?1:0;
         }
         return result;
     }
@@ -27,24 +26,14 @@ public class Day01 implements AdventOfCode {
     public Object solveB(List<String> input) {
         int result = 0, current = 50;
         for(String row : input) {
-            boolean left = row.startsWith("L");
             var value = Integer.parseInt(row.substring(1));
             result+=value/100;
             value%=100;
-            if(left) {
-                var temp = current - value;
-                if (current > 0 && temp <= 0)
-                    result++;
-                current = (100 + temp) % 100;
-            }
-            if(!left) {
-                var temp = current + value;
-                if (temp>=100)
-                    result++;
-                current = temp % 100;
-            }
+            value*=row.startsWith("L")?-1:1;
+            var temp = current + value;
+            result+= ((current > 0 && temp<=0) || temp>99)?1:0;
+            current = (100+temp)%100;
         }
-
         return result;
     }
 }
