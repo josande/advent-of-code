@@ -19,7 +19,7 @@ public class Day02 implements AdventOfCode {
             val values = part.split("-");
             long start = Long.parseLong(values[0]);
             long end =   Long.parseLong(values[1]);
-            for(Long i=start; i<=end;i++) {
+            for(long i=start; i<=end;i++) {
                String value = String.valueOf(i);
                if(value.length() % 2 == 1) continue;
                if(value.substring(0, value.length()/2).equals(value.substring(value.length()/2))) {
@@ -38,7 +38,7 @@ public class Day02 implements AdventOfCode {
             val values = part.split("-");
             long start = Long.parseLong(values[0]);
             long end =   Long.parseLong(values[1]);
-            for(Long i=start; i<=end; i++) {
+            for(long i=start; i<=end; i++) {
                 String id = String.valueOf(i);
                 for(int len = 1; len<=id.length()/2; len++) {
                     if(id.length()%len!=0) continue;
