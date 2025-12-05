@@ -57,6 +57,9 @@ public class MapUtil {
         }
         return map;
     }
+    public static HashMap<Point,Character> asMapFiltered(List<String> values, Character... allowed) {
+        return asMapFiltered(values, Arrays.asList(allowed));
+    }
     public static HashMap<Point,Character> asMapFiltered(List<String> values, List<Character> allowed) {
         HashMap<Point, Character> map = new HashMap<>();
         for(int y=0; y < values.size(); y++) {

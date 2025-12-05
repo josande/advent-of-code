@@ -12,22 +12,43 @@ public class Day04Test {
     @Test
     void testSolveA() {
         String input = """
+                ..@@.@@@@.
+                @@@.@.@.@@
+                @@@@@.@.@@
+                @.@@@@..@.
+                @@.@@@@.@@
+                .@@@@@@@.@
+                .@.@.@.@@@
+                @.@@@.@@@@
+                .@@@@@@@@.
+                @.@.@@@.@.
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
 
-        assertEquals("Not yet implemented", new Day04().solveA(inputs));
+        assertEquals(13, new Day04().solveA(inputs));
     }
+
     @Test
     void testSolveB() {
         String input = """
+                ..@@.@@@@.
+                @@@.@.@.@@
+                @@@@@.@.@@
+                @.@@@@..@.
+                @@.@@@@.@@
+                .@@@@@@@.@
+                .@.@.@.@@@
+                @.@@@.@@@@
+                .@@@@@@@@.
+                @.@.@@@.@.
                 """;
         var inputs = Arrays.stream(input.split("\n"))
                 .filter(s->!s.isEmpty())
                 .map(String::valueOf)
                 .collect(Collectors.toList());
-        assertEquals("Not yet implemented", new Day04().solveB(inputs));
+        assertEquals(43, new Day04().solveB(inputs));
     }
 }
