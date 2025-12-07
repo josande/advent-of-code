@@ -5,7 +5,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import utils.AdventOfCode;
 import utils.Reporter;
 
-import java.time.chrono.MinguoDate;
 import java.util.*;
 
 public class Day05 implements AdventOfCode {
@@ -17,8 +16,8 @@ public class Day05 implements AdventOfCode {
     public Object solveA(List<String> input) {
         List<Long> lowerBounds = new ArrayList<>();
         List<Long> upperBounds = new ArrayList<>();
-        List<Long> ingredients = new ArrayList<>();
-        Set<Long> freshIngredients = new HashSet<>();
+        var result = 0L;
+        Set<Long> skipped = new HashSet<>();
 
         for(String line : input){
             if(line.isBlank()) continue;
@@ -26,64 +25,65 @@ public class Day05 implements AdventOfCode {
                 String[] parts = line.split("-");
                 lowerBounds.add(Long.parseLong(parts[0]));
                 upperBounds.add(Long.parseLong(parts[1]));
-            } else ingredients.add(Long.parseLong(line));
-        }
-        for(Long ingredient : ingredients) {
-            if(freshIngredients.contains(ingredient)) continue;
-            for(int i=0; i<lowerBounds.size(); i++) {
-                if(ingredient >= lowerBounds.get(i) && ingredient <= upperBounds.get(i)) {
-                    freshIngredients.add(ingredient);
-                    break;
+            } else {
+                var ingredient = Long.parseLong(line);
+                if(skipped.contains(ingredient)) continue;
+                for(int i=0; i<lowerBounds.size(); i++) {
+                    if(ingredient >= lowerBounds.get(i) && ingredient <= upperBounds.get(i)) {
+                        result++;
+                    }
                 }
+                skipped.add(ingredient);
             }
         }
-        return freshIngredients.size();
+        return result;
     }
 
     @Override
     public Object solveB(List<String> input) {
-        List<Long> lowerBounds = new ArrayList<>();
-        List<Long> upperBounds = new ArrayList<>();
+        Stack<Pair<Long, Long>> sections = new Stack<>();
         for(String line : input){
             if(line.isBlank()) continue;
             if(line.contains("-")) {
                 String[] parts = line.split("-");
-                lowerBounds.add(Long.parseLong(parts[0]));
-                upperBounds.add(Long.parseLong(parts[1]));
+                sections.push(new ImmutablePair<>(Long.parseLong(parts[0]), Long.parseLong(parts[1])));
             }
         }
+        long result =0L;
 
-        Pair<Integer, Integer> merged;
-        do {
-            merged=null;
-            for(int i=0; i<lowerBounds.size(); i++) {
-                for(int j = i+1; j<lowerBounds.size(); j++) {
-                    if ((lowerBounds.get(j) >= lowerBounds.get(i)   && lowerBounds.get(j) <= upperBounds.get(i)+1)
-                     || (upperBounds.get(j) >= lowerBounds.get(i)-1 && upperBounds.get(j) <= upperBounds.get(i)  )
-                     || (lowerBounds.get(j) >= lowerBounds.get(i)   && upperBounds.get(j) <= upperBounds.get(i))
-                     || (lowerBounds.get(j) <= lowerBounds.get(i)   && upperBounds.get(j) >= upperBounds.get(i))) {
-                        merged=new ImmutablePair<>(i,j);
-                        break;
-                    }
+        while(!sections.isEmpty()) {
+            var section = sections.pop();
+            var foundMatch = false;
+            for(int i=sections.size()-1; i>=0 && !foundMatch; i--) {
+                var otherSection = sections.get(i);
+                Pair<Long, Long> merged = mergeIfPossible(section, otherSection);
+                if(merged != null) {
+                    sections.set(i, merged);
+                    foundMatch=true;
                 }
-                if(merged != null) break;
             }
-            if(merged != null) {
-                Long newLowerBound = Math.min(lowerBounds.get(merged.getLeft()), lowerBounds.get(merged.getRight()));
-                Long newUpperBound = Math.max(upperBounds.get(merged.getLeft()), upperBounds.get(merged.getRight()));
-                lowerBounds.remove(Math.max(merged.getLeft(), merged.getRight()));
-                upperBounds.remove(Math.max(merged.getLeft(), merged.getRight()));
-                lowerBounds.remove(Math.min(merged.getLeft(), merged.getRight()));
-                upperBounds.remove(Math.min(merged.getLeft(), merged.getRight()));
-                lowerBounds.add(newLowerBound);
-                upperBounds.add(newUpperBound);
+            if(!foundMatch) {
+                result+=section.getRight()-section.getLeft()+1;
             }
-        } while(merged != null);
-
-        long result = 0L;
-        for(int i=0; i<lowerBounds.size(); i++) {
-            result+=upperBounds.get(i)-lowerBounds.get(i)+1;
         }
         return result;
     }
+    
+    private Pair<Long, Long> mergeIfPossible(Pair<Long, Long> pair1, Pair<Long, Long> pair2) {
+        if(pair1.getLeft() >= pair2.getLeft()-1 && pair1.getLeft() <= pair2.getRight()+1) return merge(pair1, pair2);
+        if(pair2.getLeft() >= pair1.getLeft()-1 && pair2.getLeft() <= pair1.getRight()+1) return merge(pair1, pair2);
+
+        if(pair1.getRight() >= pair2.getLeft()-1 && pair1.getRight() <= pair2.getRight()+1) return merge(pair1, pair2);
+        if(pair2.getRight() >= pair1.getLeft()-1 && pair2.getRight() <= pair1.getRight()+1) return merge(pair1, pair2);
+
+        if(pair1.getLeft() >= pair2.getLeft()-1 && pair1.getRight() <= pair2.getRight()+1) return merge(pair1, pair2);
+        if(pair1.getLeft() <= pair2.getLeft()+1 && pair1.getRight() >= pair2.getRight()-1) return merge(pair1, pair2);
+        return null;
+    }
+
+    private Pair<Long, Long> merge(Pair<Long, Long> pair1, Pair<Long, Long> pair2) {
+        return new ImmutablePair<>(Math.min(pair1.getLeft(), pair2.getLeft()), Math.max(pair1.getRight(), pair2.getRight()));
+    }
+
+
 }
