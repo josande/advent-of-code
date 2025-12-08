@@ -130,6 +130,9 @@ public class Point {
                 Math.abs(z-point.getZ()) +
                 Math.abs(w-point.getW());
     }
+    public Long getLineDistanceSquared(Point other) {
+        return (long) (Math.pow(x-other.getX(), 2) + Math.pow(y-other.getY(), 2) + Math.pow(z-other.getZ(), 2));
+    }
 
     public boolean isNeighbour(Point point) {
         if(this.equals(point)) return false;
