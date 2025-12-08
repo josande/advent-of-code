@@ -1,8 +1,12 @@
 package utils;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.*;
+
+@Getter
+@Setter
 public class Point {
     private int x, y, z, w;
     public Point(int x, int y) {
@@ -24,8 +28,8 @@ public class Point {
         this.w=w;
     }
     public Point(String string) {
-        List<Integer> values = Arrays.stream(string.split(",")).map(Integer::valueOf).collect(Collectors.toList());
-        this.x=values.get(0);
+        List<Integer> values = Arrays.stream(string.split(",")).map(Integer::valueOf).toList();
+        this.x=values.getFirst();
         this.y=values.get(1);
         if(values.size()>2){
             this.z=values.get(2);
@@ -60,38 +64,6 @@ public class Point {
             result[i] = Integer.parseInt(coordinates[i]);
         }
         return result;
-    }
-    public int getX() {
-        return x;
-    }
-
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getZ() {
-        return z;
-    }
-
-    public void setZ(int z) {
-        this.z = z;
-    }
-
-    public int getW() {
-        return w;
-    }
-
-    public void setW(int w) {
-        this.w = w;
     }
 
     public Point north() {
@@ -148,18 +120,12 @@ public class Point {
     }
     @Override
     public boolean equals(Object obj) {
-        if (obj == null)
-            return false;
+        if (!(obj instanceof Point o)) return false;
 
-        if (!(obj instanceof Point)) {
-            return false;
-        }
-
-        Point o = (Point) obj;
         return this.getX() == o.getX() &&
-                this.getY() == o.getY() &&
-                this.getZ() == o.getZ() &&
-                this.getW() == o.getW();
+               this.getY() == o.getY() &&
+               this.getZ() == o.getZ() &&
+               this.getW() == o.getW();
     }
     @Override
     public int hashCode() {
@@ -168,8 +134,8 @@ public class Point {
 
 
     public static void print(Collection<Point> points) {
-        int maxX= Integer.MIN_VALUE, maxY= Integer.MIN_VALUE,
-            minX= Integer.MAX_VALUE, minY= Integer.MAX_VALUE;
+        int maxX=Integer.MIN_VALUE, maxY=Integer.MIN_VALUE,
+            minX=Integer.MAX_VALUE, minY=Integer.MAX_VALUE;
         for ( Point p : points ) {
             maxX=Math.max(maxX, p.getX());
             maxY=Math.max(maxY, p.getY());
@@ -178,12 +144,7 @@ public class Point {
         }
         for (int y=minY-1;y<=maxY;y++) {
             for (int x=minX-1;x<=maxX;x++) {
-                if (points.contains(new Point(x,y))) {
-                    System.out.print("#");
-                }
-                else {
-                    System.out.print(" ");
-                }
+                System.out.print(points.contains(new Point(x, y)) ? "#" : " ");
             }
             System.out.print("\n");
         }
@@ -223,7 +184,7 @@ public class Point {
 
         for (int y=minY-1;y<=maxY;y++) {
             for (int x=minX-1;x<=maxX;x++) {
-                System.out.print(points.getOrDefault(new Point(x,y), ' ' ));
+                System.out.print(points.getOrDefault(new Point(x,y), ' '));
             }
             System.out.print("\n");
         }
@@ -292,12 +253,11 @@ public class Point {
                 );
     }
     public Point getNext(Direction direction) {
-        switch (direction) {
-            case NORTH -> {return north(); }
-            case EAST  -> {return east(); }
-            case SOUTH -> {return south(); }
-            case WEST -> {return west(); }
-            default -> throw new IllegalStateException("Unknown direction "+direction);
-        }
+        return switch (direction) {
+            case NORTH -> north();
+            case EAST  -> east();
+            case SOUTH -> south();
+            case WEST  -> west();
+        };
     }
 }

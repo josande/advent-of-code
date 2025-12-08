@@ -90,6 +90,30 @@ public class MapUtil {
             }
         }
     }
+
+    public static void printWithSpace(HashMap<Point, String> points) {
+        var maxLength=0;
+        for(String v : points.values()) {
+            maxLength = Math.max(maxLength, v.length());
+        }
+        int minX = getMinX(points);
+        int maxX = getMaxX(points);
+        int minY = getMinY(points);
+        int maxY = getMaxY(points);
+        int minZ = getMinZ(points);
+        int maxZ = getMaxZ(points);
+        for (int z=minZ;z<=maxZ;z++) {
+            if(maxZ>0)
+                System.out.println("z="+z);
+            for (int y = minY - 1; y <= maxY+1; y++) {
+                System.out.print(y+"\t");
+                for (int x = minX - 1; x <= maxX*(maxLength+1)+1; x++) {
+                    System.out.print(StringUtils.leftPad(points.getOrDefault(new Point(x, y, z), ""), maxLength+1, ' '));
+                }
+                System.out.print("\n");
+            }
+        }
+    }
     public static void print(Collection<Point> points) {
         int minX = getMinX(points);
         int maxX = getMaxX(points);
