@@ -456,7 +456,7 @@ public class MapUtil {
                 var rowBefore = map.stream().filter(p->p.getY()==n.getY() && p.getX() < n.getX()).toList();
                 var rowAfter =  map.stream().filter(p->p.getY()==n.getY() && p.getX() > n.getX()).toList();
                 int crossed=0;
-                if(rowAfter.isEmpty() || rowAfter.isEmpty()) { contour.add(n);continue;}
+                if(rowBefore.isEmpty() || rowAfter.isEmpty()) { contour.add(n);continue;}
                 for(Point p : rowBefore) {
                     if(!rowBefore.contains(p.west())) crossed++;
                 }

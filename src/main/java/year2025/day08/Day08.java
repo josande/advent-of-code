@@ -9,25 +9,23 @@ import utils.Reporter;
 import java.util.*;
 
 public class Day08 implements AdventOfCode {
-    public static void main(){
+    public static void main() {
         Reporter.report(new Day08());
     }
 
     public Object solveA(List<String> input, int connections) {
         List<Point> points = new java.util.ArrayList<>();
+        HashMap<Long, Pair<Point, Point>> distances = new HashMap<>();
         for(var line : input) {
             Point point = new Point(line);
+            for(var point2 : points) {
+                var pairing = new ImmutablePair<>(point, point2);
+                distances.put(pairing.getLeft().getLineDistanceSquared(pairing.getRight()), pairing);
+            }
             points.add(point);
         }
 
         HashMap<UUID, HashSet<Point>> circuits = new HashMap<>();
-        HashMap<Long, Pair<Point, Point>> distances = new HashMap<>();
-        for(int i = 0; i < points.size(); i++) {
-            for(int j = i + 1; j < points.size(); j++) {
-                var pairing = new ImmutablePair<>(points.get(i), points.get(j));
-                distances.put(pairing.getLeft().getLineDistanceSquared(pairing.getRight()), pairing);
-            }
-        }
         var list = distances.entrySet().stream()
                 .sorted(Comparator.comparingLong(Map.Entry::getKey))
                 .map(Map.Entry::getValue)
@@ -48,17 +46,10 @@ public class Day08 implements AdventOfCode {
                     values.addAll(circuits.get(clusterB));
                     circuits.put(clusterA, values);
                     circuits.remove(clusterB);
-                } else {
-                    var values = circuits.get(clusterA);
-                    values.add(pair.getRight());
-                    circuits.put(clusterA, values);
-                }
+                } else { circuits.get(clusterA).add(pair.getRight()); }
             } else {
-                if(clusterB != null) {
-                    var values = circuits.get(clusterB);
-                    values.add(pair.getLeft());
-                    circuits.put(clusterB, values);
-                } else {
+                if(clusterB != null) { circuits.get(clusterB).add(pair.getLeft()); }
+                else {
                     HashSet<Point> newCluster = new HashSet<>();
                     newCluster.add(pair.getLeft());
                     newCluster.add(pair.getRight());
@@ -81,34 +72,27 @@ public class Day08 implements AdventOfCode {
     @Override
     public Object solveB(List<String> input) {
         List<Point> points = new java.util.ArrayList<>();
+        SortedMap<Long, Pair<Point, Point>> distances = new TreeMap<>();
         for(var line : input) {
             Point point = new Point(line);
+            for(var point2 : points) {
+                var pairing = new ImmutablePair<>(point, point2);
+                distances.put(pairing.getLeft().getLineDistanceSquared(pairing.getRight()), pairing);
+            }
             points.add(point);
         }
 
         HashMap<UUID, HashSet<Point>> circuits = new HashMap<>();
-        SortedMap<Long, Pair<Point, Point>> distances = new TreeMap<>();
-        for(int i = 0; i < points.size(); i++) {
-            for(int j = i + 1; j < points.size(); j++) {
-                var pairing = new ImmutablePair<>(points.get(i), points.get(j));
-                distances.put(pairing.getLeft().getLineDistanceSquared(pairing.getRight()), pairing);
-            }
-        }
-
         for(var pair : distances.values()) {
             UUID clusterA = null, clusterB = null;
             for(var cluster : circuits.entrySet()) {
-                if(cluster.getValue().contains(pair.getLeft())) {
-                    clusterA = cluster.getKey();
-                }
-                if(cluster.getValue().contains(pair.getRight())) {
-                    clusterB = cluster.getKey();
-                }
+                if(cluster.getValue().contains(pair.getLeft()))  clusterA = cluster.getKey();
+                if(cluster.getValue().contains(pair.getRight())) clusterB = cluster.getKey();
+                if(clusterA != null && clusterB != null) break;
             }
             if(clusterA != null) {
-                if(clusterA.equals(clusterB)) {
-                    continue;
-                }
+                if(clusterA.equals(clusterB)) continue;
+
                 if(clusterB != null) {
                     var values = circuits.get(clusterA);
                     values.addAll(circuits.get(clusterB));
@@ -136,6 +120,5 @@ public class Day08 implements AdventOfCode {
             }
         }
         return null;
-
     }
 }

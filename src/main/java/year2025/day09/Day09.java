@@ -112,7 +112,7 @@ public class Day09 implements AdventOfCode {
             int maxY = Math.max(p0.getY(), p1.getY());
             int minX = Math.min(p0.getX(), p1.getX());
             int minY = Math.min(p0.getY(), p1.getY());
-            if(!outside.stream().anyMatch(p->p.getX()>=minX && p.getX()<=maxX && p.getY()>=minY && p.getY()<=maxY)) {
+            if(outside.stream().noneMatch(p->p.getX()>=minX && p.getX()<=maxX && p.getY()>=minY && p.getY()<=maxY)) {
                 return es.getKey();
             }
         }
