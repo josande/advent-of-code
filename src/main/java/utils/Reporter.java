@@ -2,7 +2,6 @@ package utils;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Locale;
 
 public class Reporter {
     public static void report(AdventOfCode aoc){
