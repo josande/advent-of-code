@@ -410,6 +410,63 @@ public class MapUtil {
         }
         return possiblePaths;
     }
+
+    public static HashSet<Point> getPointsBetween(Point p0, Point p1) {
+        HashSet<Point> between = new HashSet<>();
+        int maxX = Math.max(p0.getX(), p1.getX());
+        int minX = Math.min(p0.getX(), p1.getX());
+        int maxY = Math.max(p0.getY(), p1.getY());
+        int minY = Math.min(p0.getY(), p1.getY());
+        for(int y=minY; y<=maxY; y++) {
+            for(int x=minX; x<=maxX; x++) {
+                between.add(new Point(x,y));
+            }
+        }
+        //remove corners
+        between.remove(new Point(minX, minY));
+        between.remove(new Point(maxX, minY));
+        between.remove(new Point(minX, maxY));
+        between.remove(new Point(maxX, maxY));
+
+        return between;
+    }
+
+    public static HashSet<Point> floodFill(HashSet<Point> map, Point inside) {
+        Stack<Point> stack = new Stack<>();
+        stack.add(inside);
+        var newMap = new HashSet<Point>(map);
+        while(!stack.isEmpty()) {
+            var c = stack.pop();
+            var next = c.getAllNeighbours2d();
+            newMap.add(c);
+            for(var n : next) {
+                if(newMap.contains(n)) continue;
+                stack.add(n);
+            }
+        }
+        return newMap;
+    }
+
+    public static HashSet<Point> findContour(HashSet<Point> map) {
+        HashSet<Point> contour = new HashSet<>();
+        for(Point point : map) {
+            for(Point n : point.getOrthogonalNeighbours2d()) {
+                if(map.contains(n))
+                    continue;
+                var rowBefore = map.stream().filter(p->p.getY()==n.getY() && p.getX() < n.getX()).toList();
+                var rowAfter =  map.stream().filter(p->p.getY()==n.getY() && p.getX() > n.getX()).toList();
+                int crossed=0;
+                if(rowAfter.isEmpty() || rowAfter.isEmpty()) { contour.add(n);continue;}
+                for(Point p : rowBefore) {
+                    if(!rowBefore.contains(p.west())) crossed++;
+                }
+                if(crossed%2==0)
+                    contour.add(n);
+            }
+        }
+        return contour;
+    }
+
     private record State(Point position, ArrayList<Point> visited) {}
 
 }

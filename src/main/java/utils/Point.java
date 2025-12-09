@@ -260,4 +260,19 @@ public class Point {
             case WEST  -> west();
         };
     }
+
+    public boolean isEastOf(Point p1) {
+        return x > p1.x;
+    }
+
+    public boolean isWestOf(Point p1) {
+        return x < p1.x;
+    }
+
+    public boolean isNorthOf(Point p1) {
+        return y < p1.y;
+    }
+    public boolean isSouthOf(Point p1) {
+        return y > p1.y;
+    }
 }
